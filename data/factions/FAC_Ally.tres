@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Faction" load_steps=2 format=3 uid="uid://bhl3w22s6bj14"]
+
+[ext_resource type="Script" path="res://scripts/entities/Faction.gd" id="1_8n6j8"]
+
+[resource]
+script = ExtResource("1_8n6j8")
+factionName = "Ally"
+alliedFactions = Array[ExtResource("1_8n6j8")]([])

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://dloci0bf0gaho"]
+
+[ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="1_hfmkj"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_okta5"]
+[ext_resource type="PackedScene" uid="uid://dlvi34ij1dsbu" path="res://scenes/vehicles/Vehicle Parts/abilities/autogun/autogun_projectiles/projectile_raycast/projectile_raycast.tscn" id="1_r6gyf"]
+
+[resource]
+script = ExtResource("1_hfmkj")
+ability_name = "MachineGun"
+default_hardpoint = 0
+base_damage = 10.0
+cooldown = 0.3
+activation_type = 1
+duration = 1.0
+burst_delay = 1.0
+max_duration = 1.0
+spawn_logic = 0
+projectile_scene = ExtResource("1_r6gyf")
+lifeTime = 2.0
+initial_velocity = 100.0
+modifiers_on_activation = Array[ExtResource("1_okta5")]([])
+remove_modifiers_on_deactivation = true
+selection_weight = 10

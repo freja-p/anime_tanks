@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://csbgm5khdwqun"]
+
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_0snjg"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="1_bi2c6"]
+[ext_resource type="PackedScene" uid="uid://qlmdyrvgr7o3" path="res://scenes/vehicles/Vehicle Parts/abilities/defense_bubble/defensive.tscn" id="1_f7047"]
+
+[resource]
+script = ExtResource("1_bi2c6")
+ability_name = "DefenseBubble"
+default_hardpoint = 0
+base_damage = 10.0
+cooldown = 1.0
+activation_type = 0
+duration = 1.0
+burst_delay = 1.0
+max_duration = 1.0
+spawn_logic = 0
+projectile_scene = ExtResource("1_f7047")
+lifeTime = 2.0
+initial_velocity = 100.0
+modifiers_on_activation = Array[ExtResource("1_0snjg")]([])
+remove_modifiers_on_deactivation = true
+selection_weight = 10

@@ -1,0 +1,198 @@
+[gd_scene load_steps=28 format=3 uid="uid://w6x72hj4juyi"]
+
+[ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
+[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_khb0o"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="3_67187"]
+[ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Turret_APC.tscn" id="3_cpnh4"]
+[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_jfctr"]
+[ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/equipment/abilities/defence_bubble.tres" id="4_k5wr7"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatSheet.gd" id="4_kia1d"]
+[ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="4_m78uk"]
+[ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="5_q4hkq"]
+[ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="6_uxbq3"]
+[ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="6_yhege"]
+[ext_resource type="Script" path="res://scenes/vehicles/VehicleController.gd" id="9_ma6uu"]
+[ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Body_APC.tscn" id="9_qvub4"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="10_6gqms"]
+[ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="10_dopfq"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/input/InputController_Player.gd" id="11_kntdl"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="15_tcejk"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="18_letig"]
+[ext_resource type="Resource" uid="uid://d35ou6o38qs4l" path="res://data/equipment/abilities/test_modifier/test_modifier_attachmod.tres" id="18_msfhw"]
+[ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/Vehicle Parts/misc/health_manager.tscn" id="20_t70pv"]
+
+[sub_resource type="Resource" id="Resource_yi2k5"]
+script = ExtResource("3_67187")
+primary = ExtResource("2_khb0o")
+
+[sub_resource type="Resource" id="Resource_gnsn5"]
+script = ExtResource("4_kia1d")
+hp = 100.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nsq0u"]
+points = PackedVector3Array(1.55437, 0.812815, 1.5055, 1.11578, 0.79121, 3.12206, 1.10787, -1.65173e-07, 2.33352, 1.55437, 0.812815, -2.048, 1.23053, 1.13178, -1.32222, 1.18548, 1.17499, 0.556008, 1.00865, 1.30603, 0.857659, -1.11552, 0.79121, 3.12257, 0.943816, -1.65173e-07, 2.33402, 1.10787, -1.65173e-07, 1.82891, 1.04791, -1.65173e-07, -1.83341, -1.55472, 0.812815, -2.048, 1.00834, 1.30603, -1.83341, 1.18518, 1.17499, -1.32222, -2.09808e-05, 1.30603, 0.852091, -1.00869, 1.3059, 0.857659, -1.55472, 0.812815, 1.506, -1.10791, -1.65173e-07, 2.33402, -1.04856, -1.65173e-07, -1.83341, -1.23118, 1.13178, -1.32222, -1.18583, 1.17499, -1.32222, -1.00899, 1.3059, -1.83341, -0.000325322, 1.30603, -1.83341, -1.10791, -1.65173e-07, 1.82891, -1.00899, 1.3059, -1.32222, -1.18552, 1.17499, 0.556514)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3g2n7"]
+size = Vector3(2.38, 1.765, 4.69)
+
+[sub_resource type="Curve" id="Curve_topfr"]
+_data = [Vector2(0, 1), 0.0, -2.43284, 0, 0, Vector2(1, 0.0526315), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gprna"]
+_data = [Vector2(0, 1), 0.0, -1.68421, 0, 0, Vector2(1, 0.105263), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yyl8x"]
+max_value = 250.0
+_data = [Vector2(0, 110.526), 0.0, 1338.16, 0, 0, Vector2(0.181416, 250), -9.77601e-05, -9.77601e-05, 0, 0, Vector2(0.654167, 81.5789), -229.665, -229.665, 0, 0, Vector2(1, 50), -48.2218, 0.0, 0, 0]
+point_count = 4
+
+[node name="APC" type="VehicleBody3D"]
+collision_layer = 2
+mass = 5000.0
+script = ExtResource("1_lpcwq")
+defaultLoadout = SubResource("Resource_yi2k5")
+stat_sheet = SubResource("Resource_gnsn5")
+primary = ExtResource("2_khb0o")
+secondary = ExtResource("3_jfctr")
+internal = ExtResource("4_k5wr7")
+
+[node name="BodyCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, 0.411694, -0.147787)
+shape = SubResource("ConvexPolygonShape3D_nsq0u")
+
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106862, 0, 0)
+script = ExtResource("6_yhege")
+ownerEntity = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881894, 0.133577)
+shape = SubResource("BoxShape3D_3g2n7")
+
+[node name="Body" parent="." node_paths=PackedStringArray("wheels", "turret") instance=ExtResource("9_qvub4")]
+wheels = [NodePath("../Wheel_Steering_L"), NodePath("../Wheel_Steering_R"), NodePath("../Wheel_L1"), NodePath("../Wheel_L2"), NodePath("../Wheel_R1"), NodePath("../Wheel_R1")]
+turret = NodePath("../Turret")
+
+[node name="Turret" parent="." instance=ExtResource("3_cpnh4")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141454, 1.72315, -0.427929)
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("10_dopfq")
+
+[node name="Wheel_Steering_L" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, 0.888991)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.0
+wheel_rest_length = 0.075
+wheel_friction_slip = 5.0
+suspension_travel = 0.1
+suspension_stiffness = 40.0
+suspension_max_force = 37500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_Steering_L"]
+mesh = ExtResource("4_m78uk")
+
+[node name="Wheel_Steering_R" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.812038, 0.467202, 0.888991)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.0
+wheel_rest_length = 0.075
+wheel_friction_slip = 5.0
+suspension_travel = 0.1
+suspension_stiffness = 40.0
+suspension_max_force = 37500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_Steering_R"]
+mesh = ExtResource("6_uxbq3")
+
+[node name="Wheel_L1" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, -0.216302)
+use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_rest_length = 0.075
+wheel_friction_slip = 2.0
+suspension_stiffness = 40.0
+suspension_max_force = 37500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_L1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("5_q4hkq")
+
+[node name="Wheel_L2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, -1.3089)
+use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_rest_length = 0.075
+wheel_friction_slip = 2.0
+suspension_stiffness = 40.0
+suspension_max_force = 37500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("5_q4hkq")
+
+[node name="Wheel_R1" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869938, 0.467202, -0.213682)
+use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_rest_length = 0.075
+wheel_friction_slip = 2.0
+suspension_stiffness = 40.0
+suspension_max_force = 37500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_R1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("6_uxbq3")
+
+[node name="Wheel_R2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869939, 0.467202, -1.3089)
+use_as_traction = true
+wheel_roll_influence = 0.0
+wheel_rest_length = 0.075
+wheel_friction_slip = 2.0
+suspension_stiffness = 40.0
+suspension_max_force = 37500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_R2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("6_uxbq3")
+
+[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("body", "vehicleController", "turretComponent", "equipmentLoadout")]
+unique_name_in_owner = true
+script = ExtResource("11_kntdl")
+body = NodePath("..")
+vehicleController = NodePath("../VehicleController")
+turretComponent = NodePath("../Turret")
+equipmentLoadout = NodePath("../EquipmentLoadout")
+
+[node name="VehicleController" type="Node" parent="."]
+script = ExtResource("9_ma6uu")
+steerLimitCurve = SubResource("Curve_topfr")
+steerBrakeCurve = SubResource("Curve_gprna")
+engineForceCurve = SubResource("Curve_yyl8x")
+
+[node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
+unique_name_in_owner = true
+script = ExtResource("10_6gqms")
+bodyComponent = NodePath("../Body")
+modifierHandler = NodePath("../ModifierHandler")
+stat_calculator = NodePath("../StatCalculator")
+
+[node name="ModifierHandler" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]
+unique_name_in_owner = true
+script = ExtResource("15_tcejk")
+owner_entity = NodePath("..")
+test_mod = ExtResource("18_msfhw")
+
+[node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
+script = ExtResource("18_letig")
+modifier_handler = NodePath("../ModifierHandler")
+
+[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("20_t70pv")]
+owner_entity = NodePath("..")
+modifier_handler = NodePath("../ModifierHandler")

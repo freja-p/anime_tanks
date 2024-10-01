@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://i4hwdqd0am7w"]
+
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStateMachine.gd" id="1_hwa1r"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStats.gd" id="2_erk8n"]
+[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_ogy5u"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_think.gd" id="4_cey6y"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_move.gd" id="5_t20ah"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_attack.gd" id="6_vi48c"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_patrolregion.gd" id="7_s3hwt"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_patrolwait.gd" id="8_sr8o7"]
+
+[node name="AIFSM" type="Node" node_paths=PackedStringArray("startingState")]
+script = ExtResource("1_hwa1r")
+startingState = NodePath("patrol")
+
+[node name="AIStats" type="Node" parent="."]
+script = ExtResource("2_erk8n")
+maxRange = Vector2(40, 40)
+patrolCurve = ExtResource("3_ogy5u")
+
+[node name="think" type="Node" parent="."]
+script = ExtResource("4_cey6y")
+
+[node name="move" type="Node" parent="."]
+script = ExtResource("5_t20ah")
+
+[node name="attack" type="Node" parent="."]
+script = ExtResource("6_vi48c")
+
+[node name="AimTimer" type="Timer" parent="attack"]
+wait_time = 3.0
+one_shot = true
+
+[node name="patrol" type="Node" parent="." node_paths=PackedStringArray("attack_state", "patrol_state", "patrolWait_state")]
+script = ExtResource("7_s3hwt")
+attack_state = NodePath("../attack")
+patrol_state = NodePath(".")
+patrolWait_state = NodePath("../patrolwait")
+
+[node name="patrolwait" type="Node" parent="." node_paths=PackedStringArray("attack_state", "overwatch_state", "patrol_state")]
+script = ExtResource("8_sr8o7")
+attack_state = NodePath("../attack")
+overwatch_state = NodePath(".")
+patrol_state = NodePath("../patrol")
+
+[node name="OverwatchTimer" type="Timer" parent="patrolwait"]
+wait_time = 5.0
+one_shot = true
+
+[node name="WaitTimeout" type="Timer" parent="patrolwait"]
+one_shot = true
+
+[connection signal="timeout" from="attack/AimTimer" to="attack" method="_on_aim_timer_timeout"]
+[connection signal="timeout" from="patrolwait/OverwatchTimer" to="patrolwait" method="_on_overwatch_timer_timeout"]
+[connection signal="timeout" from="patrolwait/WaitTimeout" to="patrolwait" method="_on_wait_timeout_timeout"]

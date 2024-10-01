@@ -1,0 +1,14 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://dao2c1ukryp7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_52c1e"]
+noise_type = 0
+seed = -2089087611
+frequency = 0.3446
+fractal_type = 2
+
+[resource]
+width = 5120
+height = 1024
+as_normal_map = true
+normalize = false
+noise = SubResource("FastNoiseLite_52c1e")

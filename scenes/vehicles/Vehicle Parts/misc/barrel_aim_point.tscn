@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfk0qute4is8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt0uj"]
+albedo_color = Color(0.909804, 0.027451, 0.231373, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3owex"]
+radius = 0.3
+height = 0.6
+
+[node name="BarrelAimPoint" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71663, -13.5792)
+visible = false
+
+[node name="TargetMesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jt0uj")
+mesh = SubResource("SphereMesh_3owex")

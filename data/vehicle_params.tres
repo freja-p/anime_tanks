@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VehicleParameters" load_steps=2 format=3 uid="uid://d3kysr0s4m433"]
+
+[ext_resource type="Script" path="res://scripts/entities/VehicleParameters.gd" id="1_sjnto"]
+
+[resource]
+script = ExtResource("1_sjnto")
+spring_constant = 500000.0
+spring_damping = 100000.0
+spring_distance_max_in = 0.07
+spring_distance_max_out = 0.14

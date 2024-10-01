@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://duqmb0gcbgixr"]
+
+[ext_resource type="PackedScene" uid="uid://b8nmqscfgggnm" path="res://raw_assets/vehicles/meshes/tank_body_base.glb" id="1_ul658"]
+[ext_resource type="Material" uid="uid://b1jv31y04fd4w" path="res://raw_assets/vehicles/player.tres" id="2_bbgq6"]
+[ext_resource type="Material" uid="uid://2tmt1slo1hc1" path="res://raw_assets/vehicles/black.tres" id="3_3274g"]
+
+[node name="tank_body_base" instance=ExtResource("1_ul658")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Base_Body" parent="." index="0"]
+transform = Transform3D(5.96046e-07, 0, -1, 0, 1, 0, 1, 0, 5.96046e-07, 0, 1.02893, 0.500631)
+surface_material_override/0 = ExtResource("2_bbgq6")
+
+[node name="TreadModel" parent="Base_Body" index="1"]
+surface_material_override/0 = ExtResource("3_3274g")
+
+[node name="WheelBottom" parent="Base_Body" index="2"]
+surface_material_override/0 = ExtResource("3_3274g")
+
+[node name="WheelFront" parent="Base_Body" index="3"]
+surface_material_override/0 = ExtResource("3_3274g")
+
+[node name="WheelRear" parent="Base_Body" index="4"]
+surface_material_override/0 = ExtResource("3_3274g")
+
+[node name="WheelTop" parent="Base_Body" index="5"]
+surface_material_override/0 = ExtResource("3_3274g")

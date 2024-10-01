@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bktulbcw04xyk"]
+
+[ext_resource type="Texture2D" uid="uid://dao2c1ukryp7" path="res://scenes/map objects/road_noise.tres" id="1_wa1w4"]
+
+[resource]
+albedo_color = Color(0.462745, 0.462745, 0.462745, 1)
+normal_enabled = true
+normal_texture = ExtResource("1_wa1w4")
+heightmap_scale = 16.0
+heightmap_texture = ExtResource("1_wa1w4")

@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp4x1m1mvv53q"]
+
+[ext_resource type="PackedScene" uid="uid://xbycfiufji8r" path="res://scenes/map objects/M_PavementCorner_Inner.tscn" id="1_2qetx"]
+[ext_resource type="Texture2D" uid="uid://dao2c1ukryp7" path="res://scenes/map objects/road_noise.tres" id="2_l1n8a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_biypv"]
+albedo_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+normal_enabled = true
+normal_texture = ExtResource("2_l1n8a")
+heightmap_scale = 16.0
+heightmap_texture = ExtResource("2_l1n8a")
+
+[node name="RoadPavedJunction_Cross" type="Node3D"]
+
+[node name="PavementCorner_NW" parent="." instance=ExtResource("1_2qetx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, -8)
+
+[node name="PavementCorner_NE" parent="." instance=ExtResource("1_2qetx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, -8)
+
+[node name="PavementCorner_SW" parent="." instance=ExtResource("1_2qetx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="PavementCorner_SE" parent="." instance=ExtResource("1_2qetx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 8)
+
+[node name="RoadForward" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5, -30)
+size = Vector3(10, 1, 50)
+material = SubResource("StandardMaterial3D_biypv")
+
+[node name="RoadBack" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 30)
+size = Vector3(10, 1, 50)
+material = SubResource("StandardMaterial3D_biypv")
+
+[node name="RoadLeft" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30, 0.5, 0)
+size = Vector3(10, 1, 50)
+material = SubResource("StandardMaterial3D_biypv")
+
+[node name="RoadRight" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30, 0.5, 0)
+size = Vector3(10, 1, 50)
+material = SubResource("StandardMaterial3D_biypv")
+
+[node name="RoadIntersection" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(10, 1, 10)
+material = SubResource("StandardMaterial3D_biypv")

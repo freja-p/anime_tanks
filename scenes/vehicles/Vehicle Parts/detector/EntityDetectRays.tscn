@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjwrtbvi6cax0"]
+
+[ext_resource type="Script" path="res://scenes/vehicles/Vehicle Parts/detector/EntityDetectInfo.gd" id="1_fbowf"]
+
+[node name="DetectCasts" type="Node3D"]
+script = ExtResource("1_fbowf")
+
+[node name="Center" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)
+collision_mask = 49
+collide_with_areas = true
+
+[node name="Left" type="RayCast3D" parent="."]
+transform = Transform3D(0.99863, 0, 0.052336, 0, 1, 0, -0.052336, 0, 0.99863, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 49
+collide_with_areas = true
+
+[node name="LeftFar" type="RayCast3D" parent="."]
+transform = Transform3D(0.994522, 0, 0.104528, 0, 1, 0, -0.104528, 0, 0.994522, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 49
+collide_with_areas = true
+
+[node name="Right" type="RayCast3D" parent="."]
+transform = Transform3D(0.99863, 0, -0.052336, 0, 1, 0, 0.052336, 0, 0.99863, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 49
+collide_with_areas = true
+
+[node name="RightFar" type="RayCast3D" parent="."]
+transform = Transform3D(0.994522, 0, -0.104528, 0, 1, 0, 0.104528, 0, 0.994522, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 49
+collide_with_areas = true
+
+[node name="LifeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="CheckPing" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timeout_timeout"]
+[connection signal="timeout" from="CheckPing" to="." method="_on_check_ping_timeout"]

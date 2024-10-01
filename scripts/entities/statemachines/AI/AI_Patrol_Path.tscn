@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://copkwhiw8bgxc"]
+
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStateMachine.gd" id="1_j160f"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStats.gd" id="2_ipdk3"]
+[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_4f77r"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_think.gd" id="4_16k7f"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_move.gd" id="5_bbxlh"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_attack.gd" id="6_w7xmi"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_patrol.gd" id="7_42thp"]
+
+[node name="AIFSM" type="Node" node_paths=PackedStringArray("startingState")]
+script = ExtResource("1_j160f")
+startingState = NodePath("patrol")
+
+[node name="AIStats" type="Node" parent="."]
+script = ExtResource("2_ipdk3")
+maxRange = Vector2(40, 40)
+patrolCurve = ExtResource("3_4f77r")
+
+[node name="think" type="Node" parent="." node_paths=PackedStringArray("move_state")]
+script = ExtResource("4_16k7f")
+move_state = NodePath("../move")
+
+[node name="move" type="Node" parent="." node_paths=PackedStringArray("attack_state", "patrol_state")]
+script = ExtResource("5_bbxlh")
+attack_state = NodePath("../attack")
+patrol_state = NodePath("../patrol")
+
+[node name="attack" type="Node" parent="." node_paths=PackedStringArray("think_state")]
+script = ExtResource("6_w7xmi")
+think_state = NodePath("../think")
+
+[node name="AimTimer" type="Timer" parent="attack"]
+wait_time = 3.0
+one_shot = true
+
+[node name="patrol" type="Node" parent="." node_paths=PackedStringArray("attack_state", "patrol_state")]
+script = ExtResource("7_42thp")
+attack_state = NodePath("../attack")
+patrol_state = NodePath(".")
+
+[connection signal="timeout" from="attack/AimTimer" to="attack" method="_on_aim_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy6l3637hlisq"]
+
+[ext_resource type="Script" path="res://scripts/ui/Overlay.gd" id="1_7m30p"]
+[ext_resource type="Script" path="res://scripts/ui/DebugText.gd" id="1_aqj7d"]
+
+[node name="Overlay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7m30p")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+
+[node name="DebugText" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 73.0
+offset_bottom = 25.0
+script = ExtResource("1_aqj7d")

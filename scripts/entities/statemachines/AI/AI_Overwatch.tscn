@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dff3ycjh7cwq3"]
+
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStateMachine.gd" id="1_i56g7"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStats.gd" id="2_fuqyu"]
+[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_v4wdn"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_attack.gd" id="4_dbixu"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIState_overwatch.gd" id="5_tjkgx"]
+
+[node name="AIFSM" type="Node" node_paths=PackedStringArray("startingState")]
+script = ExtResource("1_i56g7")
+startingState = NodePath("overwatch")
+
+[node name="AIStats" type="Node" parent="."]
+script = ExtResource("2_fuqyu")
+maxRange = Vector2(40, 40)
+patrolCurve = ExtResource("3_v4wdn")
+
+[node name="attack" type="Node" parent="." node_paths=PackedStringArray("think_state")]
+script = ExtResource("4_dbixu")
+think_state = NodePath("../overwatch")
+
+[node name="AimTimer" type="Timer" parent="attack"]
+wait_time = 3.0
+one_shot = true
+
+[node name="overwatch" type="Node" parent="." node_paths=PackedStringArray("attack_state", "overwatch_state")]
+script = ExtResource("5_tjkgx")
+attack_state = NodePath("../attack")
+overwatch_state = NodePath(".")
+
+[node name="OverwatchTimout" type="Timer" parent="overwatch"]
+one_shot = true
+
+[connection signal="timeout" from="attack/AimTimer" to="attack" method="_on_aim_timer_timeout"]
+[connection signal="timeout" from="overwatch/OverwatchTimout" to="overwatch" method="_on_overwatch_timer_timeout"]

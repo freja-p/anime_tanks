@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl70ddkvvevkk"]
+
+[ext_resource type="Script" path="res://scripts/camera/PlayerCam.gd" id="1_2tvwt"]
+[ext_resource type="Script" path="res://scripts/CursorRay.gd" id="3_kw06v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7y421"]
+albedo_color = Color(0.909804, 0.027451, 0.231373, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_12ggg"]
+radius = 0.3
+height = 0.6
+
+[node name="PlayerCam" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38389, 3.51277)
+script = ExtResource("1_2tvwt")
+
+[node name="CursorRay" type="RayCast3D" parent="."]
+visible = false
+target_position = Vector3(0, 0, -100)
+collision_mask = 33
+collide_with_areas = true
+script = ExtResource("3_kw06v")
+
+[node name="CursorAimPoint" type="Node3D" parent="."]
+transform = Transform3D(1, -6.61929e-16, -2.97081e-08, 0, 1, -2.22811e-08, 2.97081e-08, 2.22811e-08, 1, -7.34248e-08, 1.71663, -7.0792)
+
+[node name="TargetMesh" type="MeshInstance3D" parent="CursorAimPoint"]
+visible = false
+material_override = SubResource("StandardMaterial3D_7y421")
+mesh = SubResource("SphereMesh_12ggg")

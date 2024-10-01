@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg4130t4le47p"]
+
+[ext_resource type="Script" path="res://scripts/ui/AimUI.gd" id="1_vgy0h"]
+[ext_resource type="Texture2D" uid="uid://cs7eh137s7alb" path="res://raw_assets/ui/AimPointTexture.png" id="2_to43p"]
+[ext_resource type="Texture2D" uid="uid://bhijopthp5wss" path="res://raw_assets/ui/AimTargetTexture.png" id="3_qp26k"]
+
+[node name="AimUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+script = ExtResource("1_vgy0h")
+metadata/_edit_use_anchors_ = true
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(181, 185)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_to43p")
+
+[node name="BarrelCrosshair" type="Sprite2D" parent="."]
+position = Vector2(348.5, 179.5)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_qp26k")

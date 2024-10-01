@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Loadout" load_steps=5 format=3 uid="uid://kefunhlgvb2c"]
+
+[ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/equipment/abilities/defence_bubble.tres" id="1_31ele"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="1_yfxpr"]
+[ext_resource type="Resource" uid="uid://cxmwt8vh2vcr8" path="res://data/equipment/abilities/mainGun.tres" id="2_h0yfl"]
+[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="4_klstf"]
+
+[resource]
+script = ExtResource("1_yfxpr")
+primary = ExtResource("2_h0yfl")
+secondary = ExtResource("4_klstf")
+internal = ExtResource("1_31ele")

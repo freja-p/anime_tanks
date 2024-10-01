@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://cxmwt8vh2vcr8"]
+
+[ext_resource type="AudioStream" uid="uid://btqooe071likd" path="res://raw_assets/sfx/SFX_MainGun_Attack.ogg" id="1_1qv67"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="1_vn308"]
+[ext_resource type="PackedScene" uid="uid://tiknftrqfhsv" path="res://scenes/vehicles/Vehicle Parts/abilities/autogun/autogun_projectiles/projectile_body/projectile_body.tscn" id="2_n1e5m"]
+
+[resource]
+script = ExtResource("1_vn308")
+abilityName = "Auto Gun"
+activationSFX = ExtResource("1_1qv67")
+defaultHardpoint = 0
+baseDamage = 10.0
+coolDown = 1.0
+activationType = 0
+duration = 1.0
+burstDelay = 1.0
+maxDuration = 1.0
+spawnLogic = 3
+projectileScene = ExtResource("2_n1e5m")
+lifeTime = 2.0
+initialVelocity = 100.0
+selectionWeight = 50

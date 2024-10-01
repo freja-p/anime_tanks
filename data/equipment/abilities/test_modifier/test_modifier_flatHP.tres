@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ModifierData" load_steps=6 format=3 uid="uid://dyd35bap17qm7"]
+
+[ext_resource type="Resource" uid="uid://1rmcs2guisy5" path="res://data/equipment/abilities/test_modifier/test_context.tres" id="1_pkfxl"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect.gd" id="2_66ko2"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect_StatMult.gd" id="3_e0lqt"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="4_sfnnc"]
+
+[sub_resource type="Resource" id="Resource_8hmrb"]
+script = ExtResource("3_e0lqt")
+stat_affected = 0
+multiplier_type = 0
+intensity = 50.0
+
+[resource]
+script = ExtResource("4_sfnnc")
+modifier_name = "TEST_MODIFIER_FLATHP"
+effects = Array[ExtResource("2_66ko2")]([SubResource("Resource_8hmrb")])
+context = ExtResource("1_pkfxl")
+max_stacks = 3

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://qlmdyrvgr7o3"]
+
+[ext_resource type="Script" path="res://scenes/vehicles/DefensiveBase.gd" id="1_rhyqe"]
+[ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="2_mtm5j"]
+[ext_resource type="Shape3D" uid="uid://usc5xfv0o2ot" path="res://scenes/vehicles/Vehicle Parts/abilities/defense_bubble/VAC_DefenseBubble_Shape.tres" id="3_d3sys"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikx8k"]
+transparency = 1
+albedo_color = Color(0.368627, 0.478431, 0.709804, 0.231373)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sxuhr"]
+material = SubResource("StandardMaterial3D_ikx8k")
+radius = 6.0
+height = 12.0
+
+[node name="Defensive" type="Node3D"]
+script = ExtResource("1_rhyqe")
+
+[node name="ActiveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DefenceBubble" type="Area3D" parent="." groups=["hitbox"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_mtm5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DefenceBubble"]
+shape = ExtResource("3_d3sys")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DefenceBubble"]
+mesh = SubResource("SphereMesh_sxuhr")
+
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]

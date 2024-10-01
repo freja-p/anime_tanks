@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsaak8simh14"]
+
+[ext_resource type="Curve" uid="uid://b8mdm2c7na0ly" path="res://scenes/vehicles/Vehicle Parts/abilities/autogun/tankgun/P_GunSmoke/R_GunSmoke_ScaleCurve.tres" id="1_8hb0t"]
+[ext_resource type="Script" path="res://scenes/vehicles/Vehicle Parts/abilities/autogun/tankgun/P_GunSmoke/GunSmoke.gd" id="2_ix8ar"]
+
+[sub_resource type="Gradient" id="Gradient_0nmdo"]
+offsets = PackedFloat32Array(0, 0.335106, 1)
+colors = PackedColorArray(0.823529, 0.823529, 0.823529, 0.490196, 0.823529, 0.823529, 0.823529, 0.490196, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x1cgq"]
+gradient = SubResource("Gradient_0nmdo")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_b5f6q"]
+curve_x = ExtResource("1_8hb0t")
+curve_y = ExtResource("1_8hb0t")
+curve_z = ExtResource("1_8hb0t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5qgcn"]
+lifetime_randomness = 0.4
+direction = Vector3(0, 0, -1)
+spread = 20.0
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.0
+linear_accel_max = 0.5
+damping_min = 2.0
+damping_max = 7.0
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveXYZTexture_b5f6q")
+color = Color(0.701961, 0.701961, 0.701961, 0.490196)
+color_ramp = SubResource("GradientTexture1D_x1cgq")
+turbulence_noise_strength = 3.97
+turbulence_noise_scale = 3.05
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.01
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkv0w"]
+transparency = 1
+vertex_color_use_as_albedo = true
+metallic_specular = 0.0
+rim_enabled = true
+rim = 0.55
+rim_tint = 0.19
+clearcoat = 0.36
+clearcoat_roughness = 0.0
+ao_light_affect = 1.0
+heightmap_scale = 10.197
+refraction_scale = -0.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_otn57"]
+material = SubResource("StandardMaterial3D_bkv0w")
+
+[node name="SmokeParticle" type="GPUParticles3D"]
+transform = Transform3D(1.0983, 0, 8.9407e-08, 0, 1.0983, 0, 8.9407e-08, 0, 1.0983, 0, 0, 0)
+amount = 16
+lifetime = 3.0
+explosiveness = 0.99
+randomness = 1.0
+collision_base_size = 1.0
+visibility_aabb = AABB(-5.00223, -5.23813, -17.0697, 10.0044, 10.4763, 17.0749)
+process_material = SubResource("ParticleProcessMaterial_5qgcn")
+draw_pass_1 = SubResource("SphereMesh_otn57")
+script = ExtResource("2_ix8ar")
+
+[node name="ParticleTimeout" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ParticleTimeout" to="." method="_on_particle_timeout_timeout"]
