@@ -8,6 +8,7 @@ extends Resource
 @export var default_hardpoint : Enums.Hardpoint
 @export var base_damage : float = 10.0
 @export var cooldown : float = 1.0
+@export var cooldown_resource : CooldownResource
 
 @export_category("Activation")
 @export var activation_type : AbilityExecutor.ACTIVATION_TYPE

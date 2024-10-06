@@ -14,4 +14,4 @@ script = ExtResource("4_mhato")
 modifier_name = "TEST_MODIFIER_DOT"
 effects = Array[ExtResource("2_x886p")]([SubResource("Resource_yt3sy")])
 context = ExtResource("1_easi2")
-max_stacks = 1
+max_stacks = 3

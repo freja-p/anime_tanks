@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://csbgm5khdwqun"]
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://csbgm5khdwqun"]
 
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_0snjg"]
 [ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="1_bi2c6"]
 [ext_resource type="PackedScene" uid="uid://qlmdyrvgr7o3" path="res://scenes/vehicles/Vehicle Parts/abilities/defense_bubble/defensive.tscn" id="1_f7047"]
+[ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_qiw4c"]
 
 [resource]
 script = ExtResource("1_bi2c6")
@@ -10,6 +11,7 @@ ability_name = "DefenseBubble"
 default_hardpoint = 0
 base_damage = 10.0
 cooldown = 1.0
+cooldown_resource = ExtResource("1_qiw4c")
 activation_type = 0
 duration = 1.0
 burst_delay = 1.0

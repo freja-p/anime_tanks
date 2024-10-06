@@ -26,7 +26,7 @@ func calculate_hit(collider : Node3D):
 	if collider is Hitbox:
 		if collider.ownerEntity == shooter:
 			return
-		collider.get_entity().hit(collider, base_damage, shooter)
+		collider.hit(damage, shooter, modifier_payload)
 	queue_free()
 		
 

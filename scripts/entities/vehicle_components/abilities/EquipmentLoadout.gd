@@ -7,6 +7,8 @@ extends Node
 var equipped : Dictionary
 
 func _ready():
+	modifierHandler.modifier_added.connect(_on_modifier_added)
+	modifierHandler.modifier_removed.connect(_on_modifier_removed)
 	var parent = get_parent() as Entity_Vehicle
 	if parent.primary:
 		set_equipment(Enums.Hardpoint.PRIMARY, parent.primary)
@@ -36,7 +38,11 @@ func activate_equipment(hardpoint: Enums.Hardpoint, toggle_on : bool = true) -> 
 	return equipped[hardpoint].activate(toggle_on)
 
 func _on_modifier_added(modifier : ModifierData):
-	var new_effects : Array[ModifierEffectData] = []
 	for effect in modifier.effects:
 		if effect is ModifierEffect_AttachModToProjectile:
-			new_effects.append(effect.modifier_attached)
+			equipped[effect.hardpoint_affected].modifiers.append(effect.modifier_attached)
+
+func _on_modifier_removed(modifier : ModifierData):
+	for effect in modifier.effects:
+		if effect is ModifierEffect_AttachModToProjectile:
+			equipped[effect.hardpoint_affected].modifiers.erase(effect.modifier_attached)

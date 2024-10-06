@@ -40,7 +40,7 @@ func _on_modifier_removed(modifier : ModifierData):
 
 func hurt(damage_amount : float):
 	current_health -= damage_amount
-	print("%s took damage: %f.2" % [owner_entity.name, damage_amount])
+	print("%s took damage: %.2f" % [owner_entity.name, damage_amount])
 
 func apply_damage_over_time_tick():
 	var total_dot : float = 0.0

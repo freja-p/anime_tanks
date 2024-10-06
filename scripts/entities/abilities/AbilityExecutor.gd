@@ -2,6 +2,8 @@ class_name AbilityExecutor
 extends Node
 
 var abilityRes : Ability
+var cooldown_resource : CooldownResource
+var cooldown : Cooldown
 var ownerEntity : Entity
 var hardPoint : Node3D
 var stat_calculator : StatCalculator
@@ -14,7 +16,7 @@ var autofiring : bool = false
 
 var isReady : bool:
 	get: 
-		return _currentState == ABILITY_STATE.READY
+		return cooldown.ready_to_activate()
 	set(_val): 
 		return
 
@@ -24,13 +26,13 @@ var isActive : bool:
 	set(_val): 
 		return
 
-@onready var cooldownTimer = %Cooldown as Timer
 @onready var sfxPlayer = %ActivateSFXPlayer as AudioStreamPlayer3D
 @onready var activeDurationTimer = %ActiveDurationTimer as Timer
 @onready var burstControlTimer = %BurstControlTimer as Timer	
 
 signal ability_ready(ability : AbilityExecutor)
 signal ability_activated(ability : AbilityExecutor)
+signal ability_cooldown_started(ability : AbilityExecutor)
 
 enum ACTIVATION_TYPE {
 	SINGLE,
@@ -57,6 +59,8 @@ func initialise(ability : Ability, arg_ownerEntity : Entity, arg_hardPoint : Nod
 	else:
 		hardPoint = arg_ownerEntity.get_hardpoint(ability.default_hardpoint)
 	abilityRes = ability
+	cooldown = ability.cooldown_resource.create_instance(stat_calculator)
+	cooldown.cooldown_ended.connect(_on_cooldown_timeout)
 
 func activate(toggle_on : bool = true) -> bool:
 	if autofiring and not toggle_on:
@@ -120,8 +124,12 @@ func _enter_active() -> void:
 	burstControlTimer.start(abilityRes.burst_delay)
 
 func _enter_cooldown() -> void:
+	cooldown.start_cooldown(stat_calculator.get_hardpoint_stat(
+			abilityRes.cooldown_resource.time_between_shots, 
+			abilityRes.default_hardpoint, 
+			Enums.HardpointStat.COOLDOWN_TIME))
 	_currentState = ABILITY_STATE.COOLDOWN
-	cooldownTimer.start(stat_calculator.get_hardpoint_stat(abilityRes.cooldown, abilityRes.default_hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
+	ability_cooldown_started.emit(self)
 	
 func _on_cooldown_timeout():
 	_currentState = ABILITY_STATE.READY
