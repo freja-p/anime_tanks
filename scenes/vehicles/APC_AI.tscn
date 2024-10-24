@@ -1,10 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bmhx1apw1smhr"]
+[gd_scene load_steps=24 format=3 uid="uid://bmhx1apw1smhr"]
 
 [ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_jh07m"]
-[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_20h8g"]
 [ext_resource type="Resource" uid="uid://kefunhlgvb2c" path="res://data/equipment/loadouts/DefaultLoadout.tres" id="2_v24ml"]
-[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_vsc6f"]
-[ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/equipment/abilities/defence_bubble.tres" id="4_qojcw"]
 [ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Body_APC.tscn" id="5_8bnt6"]
 [ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Turret_APC.tscn" id="6_w47r0"]
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="7_yqxe5"]
@@ -47,9 +44,6 @@ collision_layer = 2
 mass = 5000.0
 script = ExtResource("1_jh07m")
 defaultLoadout = ExtResource("2_v24ml")
-primary = ExtResource("2_20h8g")
-secondary = ExtResource("3_vsc6f")
-internal = ExtResource("4_qojcw")
 
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, 0.411694, -0.147787)

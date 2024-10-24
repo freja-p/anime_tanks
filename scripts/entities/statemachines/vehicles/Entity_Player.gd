@@ -52,10 +52,6 @@ func _ready():
 #	This should grab all turret hardpoints (Excluding main gun) at some point
 #	hardPoints.append(turretMesh.get_projectile_spawn_node())
 	hardPoints.append_array($Hardpoints.get_children())
-	
-	defensive = _init_ability(defensiveAbility, $Hardpoints/Internal)
-	secondaryhp = _init_ability(secondaryAbility, $Hardpoints/RearDeck)
-	mainGun = _init_ability(mainAbility, turretMesh.get_projectile_spawn_node())
 	CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
 
 func _integrate_forces(state : PhysicsDirectBodyState3D):

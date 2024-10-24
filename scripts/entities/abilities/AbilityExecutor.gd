@@ -1,7 +1,7 @@
 class_name AbilityExecutor
 extends Node
 
-var abilityRes : Ability
+var ability_resource : Ability
 var cooldown_resource : CooldownResource
 var cooldown : Cooldown
 var ownerEntity : Entity
@@ -52,24 +52,24 @@ var _currentState : ABILITY_STATE
 func _ready():
 	_currentState = ABILITY_STATE.READY
 
-func initialise(ability : Ability, arg_ownerEntity : Entity, arg_hardPoint : Node3D):
+func initialise(ability : Ability, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
 	ownerEntity = arg_ownerEntity
-	if arg_hardPoint:
-		hardPoint = arg_hardPoint
-	else:
-		hardPoint = arg_ownerEntity.get_hardpoint(ability.default_hardpoint)
-	abilityRes = ability
-	cooldown = ability.cooldown_resource.create_instance(stat_calculator)
+	hardPoint = arg_ownerEntity.get_hardpoint(ability.default_hardpoint)
+	ability_resource = ability
+	cooldown = ability.cooldown_resource.create_instance(stat_calculator, ability)
+	add_child(cooldown)
 	cooldown.cooldown_ended.connect(_on_cooldown_timeout)
 
 func activate(toggle_on : bool = true) -> bool:
-	if autofiring and not toggle_on:
+	if not toggle_on:
 		autofiring = false
+		return false
 		
 	if not isReady:
+		print("not ready")
 		return false
 	
-	match abilityRes.activation_type:
+	match ability_resource.activation_type:
 		ACTIVATION_TYPE.SINGLE:
 			if not toggle_on:
 				return false
@@ -99,12 +99,12 @@ func activate(toggle_on : bool = true) -> bool:
 
 func _execute_logic():
 	AbilityLogicManager.execute_logic(
-			abilityRes, 
+			ability_resource, 
 			hardPoint, 
 			ownerEntity, 
 			stat_calculator.get_hardpoint_stat(
-					abilityRes.base_damage, 
-					abilityRes.default_hardpoint, 
+					ability_resource.base_damage, 
+					ability_resource.default_hardpoint, 
 					Enums.HardpointStat.DAMAGE),
 			modifiers)
 					
@@ -113,31 +113,29 @@ func _execute_logic():
 	return true
 
 func get_weight() -> int:
-	return abilityRes.selection_weight
+	return ability_resource.selection_weight
 
 func set_modifiers(arg_modifiers : Array[ModifierData]) -> void:
 	modifiers = arg_modifiers
 
 func _enter_active() -> void:
 	_currentState = ABILITY_STATE.ACTIVE
-	activeDurationTimer.start(abilityRes.duration)
-	burstControlTimer.start(abilityRes.burst_delay)
+	activeDurationTimer.start(ability_resource.duration)
+	burstControlTimer.start(ability_resource.burst_delay)
 
 func _enter_cooldown() -> void:
-	cooldown.start_cooldown(stat_calculator.get_hardpoint_stat(
-			abilityRes.cooldown_resource.time_between_shots, 
-			abilityRes.default_hardpoint, 
-			Enums.HardpointStat.COOLDOWN_TIME))
+	cooldown.start_cooldown()
 	_currentState = ABILITY_STATE.COOLDOWN
 	ability_cooldown_started.emit(self)
 	
 func _on_cooldown_timeout():
 	_currentState = ABILITY_STATE.READY
-	match abilityRes.activation_type:
+	match ability_resource.activation_type:
 		ACTIVATION_TYPE.SINGLE, ACTIVATION_TYPE.BURST, ACTIVATION_TYPE.TOGGLE:
 			ability_ready.emit(self)
 		ACTIVATION_TYPE.AUTO:
 			if autofiring:
+				_enter_cooldown()
 				_execute_logic()
 			
 func _on_active_duration_timer_timeout():
@@ -146,4 +144,4 @@ func _on_active_duration_timer_timeout():
 
 func _on_burst_control_timer_timeout():
 	_execute_logic()
-	burstControlTimer.start(abilityRes.burst_delay)
+	burstControlTimer.start(ability_resource.burst_delay)

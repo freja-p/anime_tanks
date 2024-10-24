@@ -1,5 +1,11 @@
 extends Node
 
+@export var hud : CanvasLayer
+@export var player : Entity_Vehicle
+
+func _ready():
+	hud.initialise()
+
 func player_fell(body : RigidBody3D):
 	body.linear_velocity = Vector3.ZERO
 	body.angular_velocity = Vector3.ZERO

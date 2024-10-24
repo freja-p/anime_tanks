@@ -1,17 +1,16 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://sruykpx7awph"]
 
+[ext_resource type="Resource" uid="uid://6euxgey14p5q" path="res://data/equipment/abilities/test_abilities/test_cooldown_magazine.tres" id="1_ir4tx"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_it142"]
-[ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_rw8kq"]
 [ext_resource type="PackedScene" uid="uid://bjn8urkj1uugf" path="res://scenes/vehicles/Vehicle Parts/abilities/micro_rockets/projectile_microrocket.tscn" id="2_g3oka"]
 [ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="3_nb17b"]
 
 [resource]
 script = ExtResource("3_nb17b")
 ability_name = "MicroRockets"
-default_hardpoint = 0
+default_hardpoint = 1
 base_damage = 10.0
-cooldown = 1.0
-cooldown_resource = ExtResource("1_rw8kq")
+cooldown_resource = ExtResource("1_ir4tx")
 activation_type = 2
 duration = 2.0
 burst_delay = 0.1

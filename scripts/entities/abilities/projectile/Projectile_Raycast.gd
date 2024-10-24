@@ -13,9 +13,10 @@ func _physics_process(delta):
 	if collider:
 		$Explosion.global_position = ray.get_collision_point()
 		if collider is Hitbox:
-			hitbox_intersected(collider)
+			if collider.ownerEntity != shooter:
+				hitbox_intersected(collider)
 			_die()
-#	print("Collide: %s" % $Explosion.global_position)
+
 	checkCount -= 1
 	if checkCount < 1 and not dying:
 		_die()

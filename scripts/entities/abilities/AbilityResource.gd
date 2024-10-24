@@ -7,7 +7,6 @@ extends Resource
 @export var activation_sfx : AudioStream
 @export var default_hardpoint : Enums.Hardpoint
 @export var base_damage : float = 10.0
-@export var cooldown : float = 1.0
 @export var cooldown_resource : CooldownResource
 
 @export_category("Activation")
@@ -34,8 +33,8 @@ extends Resource
 @export_category("AI")
 @export var selection_weight : int = 10
 
-func initialise(arg_ownerEntity : Entity, arg_hardPoint : Node3D = null) -> AbilityExecutor:
+func initialise(arg_ownerEntity : Entity, stat_calculator : StatCalculator) -> AbilityExecutor:
 	var executor : AbilityExecutor = preload("res://scenes/vehicles/Vehicle Parts/abilities/AbilityExecutor.tscn").instantiate()
-	executor.initialise(self, arg_ownerEntity, arg_hardPoint)
+	executor.initialise(self, arg_ownerEntity, stat_calculator)
 	executor.name = ability_name
 	return executor

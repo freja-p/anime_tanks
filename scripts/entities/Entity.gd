@@ -10,25 +10,11 @@ extends RigidBody3D
 @export_category("Movement")
 @export var vehicleStats : VehicleParameters
 
-@export_category("Equipment Loadout")
-@export var primary : Ability
-@export var secondary : Ability
-@export var special : Ability
-@export var internal : Ability
-
 var dying : bool = false
 signal died(entity : Entity, killer : Entity)
 
 # Turret
 @onready var turretMesh : TurretComponent = $Turret as TurretComponent
-
-func _init_ability(ability : Ability, arg_hardPoint : Node3D = null) -> AbilityExecutor:
-	var abilityNode :AbilityExecutor = ability.initialise(self, arg_hardPoint)
-	if arg_hardPoint:
-		arg_hardPoint.add_child(abilityNode)
-	else:
-		get_hardpoint(ability.default_hardpoint).add_child(abilityNode)
-	return abilityNode
 
 func get_hardpoint(hardPoint : Enums.Hardpoint) -> Node3D:
 	var hardPointNode = get_node("Body").get_hardpoint_node(hardPoint)

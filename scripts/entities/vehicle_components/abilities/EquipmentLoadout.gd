@@ -6,21 +6,14 @@ extends Node
 @export var stat_calculator : StatCalculator
 var equipped : Dictionary
 
+signal equipment_set(executor : AbilityExecutor)
+
 func _ready():
 	modifierHandler.modifier_added.connect(_on_modifier_added)
 	modifierHandler.modifier_removed.connect(_on_modifier_removed)
-	var parent = get_parent() as Entity_Vehicle
-	if parent.primary:
-		set_equipment(Enums.Hardpoint.PRIMARY, parent.primary)
-	if parent.secondary:
-		set_equipment(Enums.Hardpoint.SECONDARY, parent.secondary)
-	if parent.special:
-		set_equipment(Enums.Hardpoint.SPECIAL, parent.special)
-	if parent.internal:
-		set_equipment(Enums.Hardpoint.INTERNAL, parent.internal)
 
 func set_equipment(hardPoint : Enums.Hardpoint, ability : Ability):
-	var executor = ability.initialise(get_parent() as Entity)
+	var executor = ability.initialise(get_parent() as Entity, stat_calculator)
 	executor.stat_calculator = stat_calculator
 	equipped[hardPoint] = executor
 	add_child(executor)
@@ -35,6 +28,8 @@ func get_equipment(hardpoint : Enums.Hardpoint) -> AbilityExecutor:
 	return equipped[hardpoint]
 
 func activate_equipment(hardpoint: Enums.Hardpoint, toggle_on : bool = true) -> bool:
+	if not equipped.has(hardpoint):
+		return false
 	return equipped[hardpoint].activate(toggle_on)
 
 func _on_modifier_added(modifier : ModifierData):

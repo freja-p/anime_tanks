@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://dloci0bf0gaho"]
 
+[ext_resource type="Resource" uid="uid://vir7elwonxbx" path="res://data/equipment/abilities/test_abilities/test_cooldown_fast_magazine.tres" id="1_gyecu"]
 [ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="1_hfmkj"]
-[ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_l8cv1"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_okta5"]
 [ext_resource type="PackedScene" uid="uid://dlvi34ij1dsbu" path="res://scenes/vehicles/Vehicle Parts/abilities/autogun/autogun_projectiles/projectile_raycast/projectile_raycast.tscn" id="1_r6gyf"]
 
@@ -10,8 +10,7 @@ script = ExtResource("1_hfmkj")
 ability_name = "MachineGun"
 default_hardpoint = 0
 base_damage = 10.0
-cooldown = 0.3
-cooldown_resource = ExtResource("1_l8cv1")
+cooldown_resource = ExtResource("1_gyecu")
 activation_type = 1
 duration = 1.0
 burst_delay = 1.0

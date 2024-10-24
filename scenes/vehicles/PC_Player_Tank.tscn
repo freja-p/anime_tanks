@@ -1,11 +1,5 @@
-[gd_scene load_steps=21 format=3 uid="uid://cah3yi1owbyrt"]
+[gd_scene load_steps=15 format=3 uid="uid://cah3yi1owbyrt"]
 
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/Entity_Player.gd" id="1_trkm4"]
-[ext_resource type="Resource" uid="uid://cxmwt8vh2vcr8" path="res://data/equipment/abilities/mainGun.tres" id="2_5a4f2"]
-[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_c0ko6"]
-[ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/equipment/abilities/defence_bubble.tres" id="4_wshbx"]
-[ext_resource type="Resource" uid="uid://bhl3w22s6bj14" path="res://data/factions/FAC_Ally.tres" id="5_u5af5"]
-[ext_resource type="Resource" uid="uid://d3kysr0s4m433" path="res://data/vehicle_params.tres" id="6_j7ss2"]
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="7_cwe31"]
 [ext_resource type="PackedScene" uid="uid://bkqw8v0xydhh6" path="res://scenes/vehicles/Vehicle Parts/bodies/Basic/VP_BodyBasic_Player.tscn" id="9_7nftt"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleStateMachine.gd" id="10_uxl2h"]
@@ -32,12 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.361167, 0)
 collision_layer = 2
 collision_mask = 9
 mass = 50000.0
-script = ExtResource("1_trkm4")
-mainAbility = ExtResource("2_5a4f2")
-secondaryAbility = ExtResource("3_c0ko6")
-defensiveAbility = ExtResource("4_wshbx")
-faction = ExtResource("5_u5af5")
-vehicleStats = ExtResource("6_j7ss2")
 
 [node name="EventBus" type="Node" parent="."]
 script = ExtResource("7_cwe31")
