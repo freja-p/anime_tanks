@@ -8,4 +8,4 @@ func _process(delta):
 	text = """
 	Propulsion Velocity: %.3f
 	Angle: %3f
-	""" % [v.length(), rad_to_deg(dir.signed_angle_to(Vector3.FORWARD, Vector3.UP))]	
+	""" % [v.length()*3.6, rad_to_deg(dir.signed_angle_to(Vector3.FORWARD, Vector3.UP))]	

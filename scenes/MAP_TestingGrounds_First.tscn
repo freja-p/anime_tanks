@@ -193,7 +193,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_r2ji0")
 
 [node name="APC" parent="." instance=ExtResource("9_gdvix")]
-transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952, -43, 1.72888, -90.0145)
+transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952, -33.4067, 0.484735, -91.4566)
 
 [node name="APC2" parent="." instance=ExtResource("9_dr2t0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -68.3408)

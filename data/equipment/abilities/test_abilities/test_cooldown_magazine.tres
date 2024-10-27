@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CooldownResource" load_steps=2 format=3 uid="uid://6euxgey14p5q"]
+
+[ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/CooldownResource.gd" id="1_rfe35"]
+
+[resource]
+script = ExtResource("1_rfe35")
+cooldown_type = 1
+time_between_shots = 1.0
+time_to_reload = 3.0
+magazine_size = 5
+overheat_buildup = 5.0
+overheat_threshold = 100.0
+overheat_dropoff_per_second = 10.0
+overheat_dropoff_delay = 2.0
