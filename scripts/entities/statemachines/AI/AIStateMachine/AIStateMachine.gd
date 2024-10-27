@@ -1,4 +1,4 @@
-class_name AIFSM
+class_name StateMachine
 extends Node
 
 @export var startingState : AIState

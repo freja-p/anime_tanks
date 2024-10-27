@@ -1,5 +1,5 @@
 class_name AIVariableStore
-extends Object
+extends RefCounted
 
 # AIVariableStore is used to pass data into and out of the AI FSM
 # or between states that need to share data
