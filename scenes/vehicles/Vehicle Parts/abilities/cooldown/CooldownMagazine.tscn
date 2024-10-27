@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn7a360y0mga"]
+
+[ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/CooldownMagazine.gd" id="1_frqxs"]
+
+[node name="CooldownMagazine" type="Node"]
+script = ExtResource("1_frqxs")

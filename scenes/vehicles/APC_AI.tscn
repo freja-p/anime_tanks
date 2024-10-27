@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bmhx1apw1smhr"]
+[gd_scene load_steps=25 format=3 uid="uid://bmhx1apw1smhr"]
 
 [ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_jh07m"]
 [ext_resource type="Resource" uid="uid://kefunhlgvb2c" path="res://data/equipment/loadouts/DefaultLoadout.tres" id="2_v24ml"]
@@ -8,6 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="8_v88wp"]
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="9_rj1dr"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="10_xml00"]
+[ext_resource type="Curve" uid="uid://dqe5ogso62y8t" path="res://data/APC_engine_curve.tres" id="11_4crso"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/input/InputController_AI.gd" id="11_rqjgl"]
 [ext_resource type="Script" path="res://scenes/vehicles/VehicleController.gd" id="12_fgaky"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="13_yifmc"]
@@ -16,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://dyd35bap17qm7" path="res://data/equipment/abilities/test_modifier/test_modifier_flatHP.tres" id="17_fomll"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="17_qc6pn"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/Vehicle Parts/misc/health_manager.tscn" id="18_runbh"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/AI/AIStateMachine/AIStateMachine.gd" id="19_1avpg"]
 [ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="20_0l1ft"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nsq0u"]
@@ -30,11 +32,6 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_gprna"]
 _data = [Vector2(0, 1), 0.0, -1.68421, 0, 0, Vector2(1, 0.105263), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Curve" id="Curve_yyl8x"]
-max_value = 250.0
-_data = [Vector2(0, 110.526), 0.0, 1338.16, 0, 0, Vector2(0.181416, 250), -9.77601e-05, -9.77601e-05, 0, 0, Vector2(0.654167, 81.5789), -229.665, -229.665, 0, 0, Vector2(1, 50), -48.2218, 0.0, 0, 0]
-point_count = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7fncc"]
 size = Vector3(2.675, 1.49, 4.225)
@@ -160,7 +157,7 @@ skeleton = NodePath("../../Navigator")
 script = ExtResource("12_fgaky")
 steerLimitCurve = SubResource("Curve_topfr")
 steerBrakeCurve = SubResource("Curve_gprna")
-engineForceCurve = SubResource("Curve_yyl8x")
+engineForceCurve = ExtResource("11_4crso")
 
 [node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
 unique_name_in_owner = true
@@ -199,6 +196,9 @@ ownerEntity = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0686834, 1.04963, 0.0686834)
 shape = SubResource("BoxShape3D_7fncc")
+
+[node name="AIFSM" type="Node" parent="."]
+script = ExtResource("19_1avpg")
 
 [connection signal="timeout" from="InputController/IterationTimer" to="InputController" method="_on_iteration_timer_timeout"]
 [connection signal="navigation_finished" from="Navigator" to="Navigator" method="_on_navigation_finished"]

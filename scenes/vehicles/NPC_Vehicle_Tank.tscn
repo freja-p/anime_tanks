@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://rs5vo0ryk123"]
 
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/Entity_Vehicle.gd" id="1_1ym0t"]
+[ext_resource type="Script" path="res://scripts/Entity_Vehicle.gd" id="1_1ym0t"]
 [ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_e151r"]
 [ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="2_u6ig8"]
 [ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_1f5b1"]

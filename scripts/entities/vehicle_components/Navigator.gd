@@ -57,7 +57,6 @@ func calculate_curve_speed():
 	var last_vector = current_waypoint - body.global_position
 	var distance_processed : float = last_vector.length()
 	var curvature : float = last_vector.normalized().dot(body.global_transform.basis.z)
-
 	var i = get_current_navigation_path_index() + 1
 	var path : PackedVector3Array = get_current_navigation_path()
 	var path_size : int = path.size()
@@ -107,8 +106,8 @@ func _on_path_changed():
 	inputController.set_target_location(get_next_path_position())
 
 var lookpos : Vector3
-#func _unhandled_input(event):
-	#if event.is_action_pressed("primary_attack"):
-		#navigate_to(lookpos, 15)
+func _unhandled_input(event):
+	if event.is_action_pressed("primary_attack"):
+		navigate_to(lookpos, 15)
 func _on_player_cam_camera_rotated(worldPos : Vector3):
 	lookpos = worldPos

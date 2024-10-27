@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="10_6gqms"]
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="10_dopfq"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/input/InputController_Player.gd" id="11_kntdl"]
+[ext_resource type="Curve" uid="uid://dqe5ogso62y8t" path="res://data/APC_engine_curve.tres" id="15_pthpm"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="15_tcejk"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="18_letig"]
 [ext_resource type="Resource" uid="uid://d35ou6o38qs4l" path="res://data/equipment/abilities/test_modifier/test_modifier_attachmod.tres" id="18_msfhw"]
@@ -42,11 +43,6 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_gprna"]
 _data = [Vector2(0, 1), 0.0, -1.68421, 0, 0, Vector2(1, 0.105263), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Curve" id="Curve_yyl8x"]
-max_value = 250.0
-_data = [Vector2(0, 110.526), 0.0, 1338.16, 0, 0, Vector2(0.181416, 250), -9.77601e-05, -9.77601e-05, 0, 0, Vector2(0.654167, 81.5789), -229.665, -229.665, 0, 0, Vector2(1, 50), -48.2218, 0.0, 0, 0]
-point_count = 4
 
 [node name="APC" type="VehicleBody3D"]
 collision_layer = 2
@@ -171,7 +167,7 @@ equipmentLoadout = NodePath("../EquipmentLoadout")
 script = ExtResource("9_ma6uu")
 steerLimitCurve = SubResource("Curve_topfr")
 steerBrakeCurve = SubResource("Curve_gprna")
-engineForceCurve = SubResource("Curve_yyl8x")
+engineForceCurve = ExtResource("15_pthpm")
 
 [node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
 unique_name_in_owner = true

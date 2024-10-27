@@ -14,7 +14,7 @@ const STEER_LIMIT = deg_to_rad(30)
 const STEER_SPEED_LIMIT = 30.0
 const STEER_SPEED = 1.0
 
-const ENGINE_SPEED_LIMIT = 30
+const ENGINE_SPEED_LIMIT = 35
 const BRAKE_FORCE = 60
 
 var speed : float

@@ -12,6 +12,7 @@ extends IInputController
 @export var _dt : float = 0.01
 
 @export_category("Steering PID Controller")
+@export var speed_cap_max_angle : float = 10
 @export var min_turn_speed : float = 3
 @export var max_turn_speed : float = 5
 @export var _Kpt : float = 1
@@ -19,6 +20,7 @@ extends IInputController
 
 @export_category("Distance PID Controller")
 @export var distance_threshold : float = 1.0
+@export var braking_distance : float = 10.0
 @export var _Kpd : float = 0.01
 
 var _prev_error : float = 0.0
@@ -27,10 +29,13 @@ var _int_max = 200
 
 @onready var iterationTimer : Timer = $IterationTimer as Timer
 
+var stop_at_target : bool = true
 var override_speed : bool = false
 var target_speed_override : float = 0
 
-var _target_is_behind : bool = false
+var _angle_to_target : float
+var _distance_to_target : float
+var _braking : bool = false
 var _target_position : Vector3
 var _target_speed : float = 0
 
@@ -45,40 +50,33 @@ func _ready():
 	_target_position = body.global_position
 	
 func _on_iteration_timer_timeout():
-	if target_reached:
-		_target_speed = target_speed_override
-		print(target_speed_override)
-		_output_turn_ratio = 0
-	else:
-		_calculate_distance()
-		_calculate_steering()
+	_calculate_distance()
+	_calculate_steering()
 	_calculate_speed_pid()
 	
 	vehicleController.apply_forward(_output_force_ratio)
 	vehicleController.turn(_output_turn_ratio)
+	print("Forward: %.2f | Turn: %.2f" % [_output_force_ratio, _output_turn_ratio])
 	
 func _calculate_distance():
-			
-	if body.global_position.direction_to(_target_position).dot(body.global_transform.basis.z) < 0:
-		_target_is_behind = true
-	else:
-		_target_is_behind = false
-		
+	_angle_to_target = body.global_basis.z.signed_angle_to(body.global_position.direction_to(_target_position), body.global_basis.y)
+	
 	var error = (_target_position - body.global_position).length()
 	var Pout = _Kpd * error
 	
-	if _target_is_behind:
-		# Prioritise turning to target postion over hitting the speed override
+	if _angle_to_target > speed_cap_max_angle:
 		_target_speed = clampf(Pout, min_turn_speed, max_turn_speed)
 		return
+	elif error < braking_distance and stop_at_target:
+		_target_speed = 0
 	elif override_speed:
 		_target_speed = target_speed_override
-	elif error < distance_threshold:
-		_target_speed = 0
-		return
 	else:
 		_target_speed = Pout
-
+		
+	if error < distance_threshold:
+		target_reached = true
+		
 func _calculate_speed_pid():
 	
 	var error = absf(_target_speed) - body.linear_velocity.length()
@@ -103,11 +101,9 @@ func _calculate_speed_pid():
 #	_prev_error = error
 
 func _calculate_steering():
-	var target_angle = body.global_transform.basis.z.signed_angle_to(body.position.direction_to(_target_position), body.basis.y)
+	var Pout = _Kpt * _angle_to_target
 	
-	var Pout = _Kpt * target_angle
-	
-	_integral += target_angle * _dt
+	_integral += _angle_to_target * _dt
 	var Iout = _Ki * _integral
 	
 	
