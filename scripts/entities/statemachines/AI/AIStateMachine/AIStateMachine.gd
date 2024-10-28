@@ -1,4 +1,4 @@
-class_name StateMachine
+class_name AIFSM
 extends Node
 
 @export var startingState : AIState
@@ -38,7 +38,7 @@ func process_physics(delta: float) -> void:
 	var new_state = currentState.process_physics(delta)
 	if new_state:
 		change_state(new_state)
-
+	
 func process_frame(delta : float) -> void:
 	var newState = currentState.process_frame(delta)
 	if newState:
