@@ -1,10 +1,12 @@
 class_name Loadout
 extends Resource
+
 @export_category("Equipment")
 @export var primary : Ability
 @export var secondary : Ability
 @export var special : Ability
 @export var internal : Ability
+
 
 func get_ability(hardpoint : Enums.Hardpoint) -> Ability:
 	match hardpoint:

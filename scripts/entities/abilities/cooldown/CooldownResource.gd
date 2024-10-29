@@ -21,10 +21,9 @@ var cooldown_type_map : Dictionary = {
 	Enums.CooldownType.MAGAZINE : preload("res://scenes/vehicles/Vehicle Parts/abilities/cooldown/CooldownMagazine.tscn")
 }
 
-func create_instance(arg_stat_calculator : StatCalculator, ability : Ability) -> Cooldown:
-	var cooldown : Cooldown = cooldown_type_map[cooldown_type].instantiate()
+func create_instance(arg_stat_calculator : StatCalculator, ability : Ability) -> CooldownInterface:
+	var cooldown : CooldownInterface = cooldown_type_map[cooldown_type].instantiate()
 	cooldown.stat_calculator = arg_stat_calculator
 	cooldown.ability_resource = ability
 	cooldown.cooldown_resource = self
-	cooldown.initialise()
 	return cooldown

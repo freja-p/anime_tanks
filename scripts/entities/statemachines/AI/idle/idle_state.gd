@@ -4,6 +4,7 @@ extends StateInterface
 
 var has_been_hit : bool
 
+
 func _enter_state():
 	has_been_hit = false
 	

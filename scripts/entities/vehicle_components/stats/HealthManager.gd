@@ -19,7 +19,6 @@ func _ready() -> void:
 	modifier_handler.modifier_removed.connect(_on_modifier_removed)
 	
 
-
 func hurt(damage_amount : float):
 	current_health -= damage_amount
 	print("%s took damage: %.2f" % [owner_entity.name, damage_amount])

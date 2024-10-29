@@ -1,9 +1,26 @@
 class_name AbilityExecutor
 extends Node
 
+signal ability_ready(ability : AbilityExecutor)
+signal ability_activated(ability : AbilityExecutor)
+signal ability_cooldown_started(ability : AbilityExecutor)
+
+enum ACTIVATION_TYPE {
+	SINGLE,
+	AUTO,
+	BURST,
+	TOGGLE
+}
+
+enum ABILITY_STATE {
+	READY, 
+	ACTIVE,
+	COOLDOWN
+	}
+	
 var ability_resource : Ability
 var cooldown_resource : CooldownResource
-var cooldown : Cooldown
+var cooldown : CooldownInterface
 var ownerEntity : Entity
 var hardPoint : Node3D
 var stat_calculator : StatCalculator
@@ -26,39 +43,26 @@ var isActive : bool:
 	set(_val): 
 		return
 
+var _currentState : ABILITY_STATE
+
 @onready var sfxPlayer = %ActivateSFXPlayer as AudioStreamPlayer3D
 @onready var activeDurationTimer = %ActiveDurationTimer as Timer
 @onready var burstControlTimer = %BurstControlTimer as Timer	
 
-signal ability_ready(ability : AbilityExecutor)
-signal ability_activated(ability : AbilityExecutor)
-signal ability_cooldown_started(ability : AbilityExecutor)
-
-enum ACTIVATION_TYPE {
-	SINGLE,
-	AUTO,
-	BURST,
-	TOGGLE
-}
-
-enum ABILITY_STATE {
-	READY, 
-	ACTIVE,
-	COOLDOWN
-	}
-
-var _currentState : ABILITY_STATE
 
 func _ready():
 	_currentState = ABILITY_STATE.READY
 
-func initialise(ability : Ability, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
+
+func construct(ability : Ability, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
 	ownerEntity = arg_ownerEntity
 	hardPoint = arg_ownerEntity.get_hardpoint(ability.default_hardpoint)
 	ability_resource = ability
+	
 	cooldown = ability.cooldown_resource.create_instance(stat_calculator, ability)
 	add_child(cooldown)
 	cooldown.cooldown_ended.connect(_on_cooldown_timeout)
+
 
 func activate(toggle_on : bool = true) -> bool:
 	if not toggle_on:
@@ -97,6 +101,7 @@ func activate(toggle_on : bool = true) -> bool:
 	_execute_logic()
 	return true
 
+
 func _execute_logic():
 	AbilityLogicManager.execute_logic(
 			ability_resource, 
@@ -112,21 +117,26 @@ func _execute_logic():
 	ability_activated.emit(self)
 	return true
 
+
 func get_weight() -> int:
 	return ability_resource.selection_weight
 
+
 func set_modifiers(arg_modifiers : Array[ModifierData]) -> void:
 	modifiers = arg_modifiers
+
 
 func _enter_active() -> void:
 	_currentState = ABILITY_STATE.ACTIVE
 	activeDurationTimer.start(ability_resource.duration)
 	burstControlTimer.start(ability_resource.burst_delay)
 
+
 func _enter_cooldown() -> void:
 	cooldown.start_cooldown()
 	_currentState = ABILITY_STATE.COOLDOWN
 	ability_cooldown_started.emit(self)
+	
 	
 func _on_cooldown_timeout():
 	_currentState = ABILITY_STATE.READY
@@ -138,9 +148,11 @@ func _on_cooldown_timeout():
 				_enter_cooldown()
 				_execute_logic()
 			
+			
 func _on_active_duration_timer_timeout():
 	burstControlTimer.stop()
 	_enter_cooldown()
+
 
 func _on_burst_control_timer_timeout():
 	_execute_logic()

@@ -1,18 +1,21 @@
 class_name CooldownSimple
-extends Cooldown
+extends CooldownInterface
 
 var timer: Timer
 var current_cooldown : float
 
-func initialise():
+
+func _ready():
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.autostart = false
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 
+
 func ready_to_activate() -> bool:
 	return timer.is_stopped()
+	
 	
 func start_cooldown() -> bool:
 	if not timer.is_stopped():
@@ -23,12 +26,15 @@ func start_cooldown() -> bool:
 
 	return true
 	
+	
 func _on_timer_timeout() -> void:
 	timer.wait_time = current_cooldown
 	cooldown_ended.emit()
 	
+	
 func get_cooldown_max() -> float:
 	return current_cooldown
+	
 	
 func get_cooldown_current() -> float:
 	if timer.is_stopped():
