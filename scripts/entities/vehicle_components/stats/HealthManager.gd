@@ -1,21 +1,37 @@
 class_name HealthManager
 extends Node
 
-const dot_timer_tick_rate : float = 0.25
+signal damaged_by(entity : Entity, damage : float)
 
-var max_health : float = 100
-var current_health : float = 100
+const dot_timer_tick_rate : float = 0.25
 
 @export var owner_entity : Entity
 @export var modifier_handler : ModifierHandler
 
-@onready var dot_ticker: Timer = $DotTicker
-
+var max_health : float = 100
+var current_health : float = 100
 var dot_effects : Dictionary
+
+@onready var dot_ticker: Timer = $DotTicker
 
 func _ready() -> void:
 	modifier_handler.modifier_added.connect(_on_modifier_added)
 	modifier_handler.modifier_removed.connect(_on_modifier_removed)
+	
+
+
+func hurt(damage_amount : float):
+	current_health -= damage_amount
+	print("%s took damage: %.2f" % [owner_entity.name, damage_amount])
+
+
+func apply_damage_over_time_tick():
+	var total_dot : float = 0.0
+	for effect in dot_effects:
+		total_dot += effect.damage_per_second * dot_effects[effect]
+	total_dot *= dot_timer_tick_rate
+	hurt(total_dot)
+	
 	
 func _on_modifier_added(modifier : ModifierData):
 	for effect in modifier.effects:
@@ -29,6 +45,7 @@ func _on_modifier_added(modifier : ModifierData):
 				
 			print("Health manager added new dot effect")
 
+
 func _on_modifier_removed(modifier : ModifierData):
 	for effect in modifier.effects:
 		if dot_effects.has(effect):
@@ -38,16 +55,6 @@ func _on_modifier_removed(modifier : ModifierData):
 				if dot_effects.is_empty():
 					dot_ticker.stop()
 
-func hurt(damage_amount : float):
-	current_health -= damage_amount
-	print("%s took damage: %.2f" % [owner_entity.name, damage_amount])
-
-func apply_damage_over_time_tick():
-	var total_dot : float = 0.0
-	for effect in dot_effects:
-		total_dot += effect.damage_per_second * dot_effects[effect]
-	total_dot *= dot_timer_tick_rate
-	hurt(total_dot)
 
 func _on_dot_timer_timeout() -> void:
 	apply_damage_over_time_tick()

@@ -2,6 +2,7 @@ class_name AiStateMachine
 extends StateMachineInterface
 
 @export var navigator : Navigator
+@export var entity : Entity_Vehicle
 
 enum AiVars {
 	NAVIGATOR

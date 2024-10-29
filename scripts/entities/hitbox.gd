@@ -2,14 +2,16 @@ class_name Hitbox
 extends Area3D
 
 @export var ownerEntity : Entity_Vehicle
+@export var health_manager : HealthManager
+@export var modifier_handler : ModifierHandler
 
 func get_entity() -> Entity:
 	return ownerEntity
 
 func hit(damage : float, shooter : Entity, modifiers : Array[ModifierData]):
-	ownerEntity.hurt(damage)
+	health_manager.hurt(damage)
 	for mod in modifiers:
-		ownerEntity.modifier_handler.add_modifier(mod)
+		modifier_handler.add_modifier(mod)
 
 func disable() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED

@@ -1,0 +1,53 @@
+Follow Godot's official documentation on coding style guide.
+
+This section below provides a summary of the documentation for quick reference,
+as well as some additional points not mentioned in the docs.
+
+Naming Conventions
+Type			Convention		Info
+File names		snake_case		yaml_parsed.gd
+class_name		PascalCase		YAMLParser
+Node names		PascalCase	
+Functions		snake_case	
+Variables		snake_case	
+Signals			snake_case		always in past tense "door_opened"
+Constants		CONSTANT_CASE	
+enum names		PascalCase	
+enum members	CONSTANT_CASE	
+*Prepend a single underscore (_) to virtual methods functions the user must override,
+private functions, and private variables.
+
+Class Names
+Class names should be omitted by default. They should be added only when other 
+scripts need to refer to the class explicitly by name.
+
+Append "Interface" to the end of classes that follow the interface pattern.
+Append "Abstract" to the end of classes that follow the abstract class pattern.
+
+
+Code
+
+01. tool
+02. class_name
+03. extends
+04. # docstring
+
+05. inner classes
+06. signals
+07. enums
+08. constants
+09. exported variables
+10. public variables
+11. private variables
+12. public onready variables
+13. private onready variables
+
+14. optional built-in virtual _init method
+15. built-in virtual _ready method
+16. 
+17. remaining built-in virtual methods
+18. public methods
+19. private methods
+20. private signal receiver methods
+21. public static methods
+22. private static methods

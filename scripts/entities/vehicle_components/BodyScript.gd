@@ -12,10 +12,12 @@ extends Node3D
 @export var specialHardpoint : Node3D
 @export var internalHardpoint : Node3D
 
+
 func _ready():
 	turret.global_position = turretPoint.global_position
 	for i in range(wheels.size()):
 		wheels[i].global_position = wheelPoints[i].global_position
+
 
 func get_hardpoint_node(hardpoint : Enums.Hardpoint) -> Node3D:
 	match hardpoint:

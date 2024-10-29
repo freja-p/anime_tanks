@@ -185,12 +185,12 @@ script = ExtResource("16_mkmm1")
 owner_entity = NodePath("..")
 test_mod = ExtResource("17_fomll")
 
-[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("18_runbh")]
-owner_entity = NodePath("..")
-modifier_handler = NodePath("../ModifierHandler")
-
 [node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
 script = ExtResource("17_qc6pn")
+modifier_handler = NodePath("../ModifierHandler")
+
+[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("18_runbh")]
+owner_entity = NodePath("..")
 modifier_handler = NodePath("../ModifierHandler")
 
 [node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]

@@ -1,6 +1,12 @@
 class_name Navigator
 extends NavigationAgent3D
 
+enum NAV_STATE {
+	NORMAL,
+	SPEED_OVERRIDE,
+	TURNING
+}
+
 @export var body : Entity
 @export var inputController : InputController_AI_Vehicle
 
@@ -18,27 +24,24 @@ var curve_speed : float
 var current_waypoint : Vector3
 
 var current_state : NAV_STATE
-enum NAV_STATE {
-	NORMAL,
-	SPEED_OVERRIDE,
-	TURNING
-}
 
 func _ready():
 	CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
+
 
 func _physics_process(delta):
 	if not is_navigation_finished():
 		
 		var next_waypoint = get_next_path_position()
 
-		calculate_curve_speed()
+		_calculate_curve_speed()
 		
 		if next_waypoint == current_waypoint:
 			return
 		
 		inputController.set_target_location(next_waypoint)
 		current_waypoint = next_waypoint
+
 
 func navigate_to(world_pos : Vector3, arg_target_speed : float = INF):
 	target_position = world_pos
@@ -52,7 +55,8 @@ func navigate_to(world_pos : Vector3, arg_target_speed : float = INF):
 		inputController.override_speed = true
 		inputController.target_speed_override = arg_target_speed
 	
-func calculate_curve_speed():
+	
+func _calculate_curve_speed():
 	var last_waypoint = current_waypoint
 	var last_vector = current_waypoint - body.global_position
 	var distance_processed : float = last_vector.length()
@@ -80,13 +84,14 @@ func calculate_curve_speed():
 		
 	print("%s | %.3f, %.3f" % [turn, curvature, curve_speed])
 	
+	
 func _turning_override(is_turning : bool):
 	if destination_speed_override:
 		if is_turning:
 			inputController.target_speed_override = curve_speed
 		else:
 			inputController.target_speed_override = destination_speed
-
+		
 	else:
 		if is_turning:
 			inputController.speed_override = true
@@ -94,17 +99,18 @@ func _turning_override(is_turning : bool):
 		else:
 			inputController.speed_override = false
 
-func _unset_controller_speed_override():
-	inputController.speed_override = false
 
 func _on_navigation_finished():
 #	inputController.set_target_location(body.global_position)
 	inputController.target_reached = true
 	_turning_override(false)
 	
+	
 func _on_path_changed():
 	inputController.set_target_location(get_next_path_position())
 
+
+# TEMPORARY DEBUG CODE
 var lookpos : Vector3
 func _unhandled_input(event):
 	if event.is_action_pressed("primary_attack"):

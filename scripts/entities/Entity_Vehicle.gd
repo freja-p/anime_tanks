@@ -10,16 +10,16 @@ extends Entity
 @onready var health_manager: HealthManager = $HealthManager
 @onready var stat_calculator: StatCalculator = $StatCalculator
 
+
 func _ready():
 	equipmentLoadout.set_equipment_loadout(defaultLoadout)
 
+
 func get_barrel_aim() -> Vector3:
 	return turret.get_barrel_aim()
+	
 	
 func get_target_aim() -> Vector3:
 	if input.has_method("get_current_aim"):
 		return input.get_current_aim()
 	return get_barrel_aim()
-
-func hurt(damage : float):
-	health_manager.hurt(damage)

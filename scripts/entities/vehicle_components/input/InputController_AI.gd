@@ -23,15 +23,14 @@ extends IInputController
 @export var braking_distance : float = 10.0
 @export var _Kpd : float = 0.01
 
-var _prev_error : float = 0.0
-var _integral : float = 0.0
-var _int_max = 200
-
-@onready var iterationTimer : Timer = $IterationTimer as Timer
-
 var stop_at_target : bool = true
 var override_speed : bool = false
 var target_speed_override : float = 0
+var is_dying : bool = false
+
+var _prev_error : float = 0.0
+var _integral : float = 0.0
+var _int_max = 200
 
 var _angle_to_target : float
 var _distance_to_target : float
@@ -41,13 +40,23 @@ var _target_speed : float = 0
 
 var _output_force_ratio : float = 0.0
 var _output_turn_ratio : float = 0.0
-var is_dying : bool = false
 
-var target_reached : bool = false
+@onready var iterationTimer : Timer = $IterationTimer as Timer
+
 
 func _ready():
 	iterationTimer.wait_time = _dt
 	_target_position = body.global_position
+	
+	
+func set_target_location(worldPos : Vector3):
+	_target_position = worldPos
+	$MeshInstance3D.global_position = worldPos
+
+
+func get_current_aim() -> Vector3:
+	return turretComponent.get_barrel_aim()
+	
 	
 func _on_iteration_timer_timeout():
 	_calculate_distance()
@@ -57,6 +66,7 @@ func _on_iteration_timer_timeout():
 	vehicleController.apply_forward(_output_force_ratio)
 	vehicleController.turn(_output_turn_ratio)
 	print("Forward: %.2f | Turn: %.2f" % [_output_force_ratio, _output_turn_ratio])
+	
 	
 func _calculate_distance():
 	_angle_to_target = body.global_basis.z.signed_angle_to(body.global_position.direction_to(_target_position), body.global_basis.y)
@@ -74,8 +84,9 @@ func _calculate_distance():
 	else:
 		_target_speed = Pout
 		
-	if error < distance_threshold:
-		target_reached = true
+	#if error < distance_threshold:
+		#target_reached = true
+		
 		
 func _calculate_speed_pid():
 	
@@ -100,6 +111,7 @@ func _calculate_speed_pid():
 #		_integral = -_int_max
 #	_prev_error = error
 
+
 func _calculate_steering():
 	var Pout = _Kpt * _angle_to_target
 	
@@ -110,11 +122,3 @@ func _calculate_steering():
 	_output_turn_ratio = -(Pout + Iout)
 
 #	print("%.3f | %.3f" % [rad_to_deg(target_angle), _output_turn_ratio])
-	
-func set_target_location(worldPos : Vector3):
-	_target_position = worldPos
-	target_reached = false
-	$MeshInstance3D.global_position = worldPos
-
-func get_current_aim() -> Vector3:
-	return turretComponent.get_barrel_aim()
