@@ -44,10 +44,9 @@ Code
 
 14. optional built-in virtual _init method
 15. built-in virtual _ready method
-16. 
-17. remaining built-in virtual methods
-18. public methods
-19. private methods
-20. private signal receiver methods
-21. public static methods
-22. private static methods
+16. remaining built-in virtual methods
+17. public methods
+18. private methods
+19. private signal receiver methods
+20. public static methods
+21. private static methods
