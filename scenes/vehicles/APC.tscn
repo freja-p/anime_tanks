@@ -44,7 +44,7 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, -1.68421, 0, 0, Vector2(1, 0.105263), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="APC" type="VehicleBody3D"]
+[node name="Apc" type="VehicleBody3D"]
 collision_layer = 2
 mass = 5000.0
 script = ExtResource("1_lpcwq")

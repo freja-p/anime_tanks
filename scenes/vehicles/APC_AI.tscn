@@ -40,7 +40,7 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_7fncc"]
 size = Vector3(2.675, 1.49, 4.225)
 
-[node name="APC" type="VehicleBody3D"]
+[node name="ApcAi" type="VehicleBody3D"]
 collision_layer = 2
 mass = 5000.0
 script = ExtResource("1_jh07m")
