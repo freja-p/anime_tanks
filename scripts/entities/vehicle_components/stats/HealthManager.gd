@@ -1,27 +1,32 @@
 class_name HealthManager
 extends Node
 
-signal damaged_by(entity : Entity, damage : float)
+signal damage_taken(damage : float)
 
 const dot_timer_tick_rate : float = 0.25
 
 @export var owner_entity : Entity
 @export var modifier_handler : ModifierHandler
+@export var health_restore_delay : float = 3
+@export var health_restore_rate : float = 10
 
 var max_health : float = 100
 var current_health : float = 100
 var dot_effects : Dictionary
 
 @onready var dot_ticker: Timer = $DotTicker
+@onready var health_restore_timer: Timer = $HealthRestoreTimer
+
 
 func _ready() -> void:
 	modifier_handler.modifier_added.connect(_on_modifier_added)
 	modifier_handler.modifier_removed.connect(_on_modifier_removed)
 	
 
-func hurt(damage_amount : float):
+func hurt(damage_amount : float) -> float:
 	current_health -= damage_amount
 	print("%s took damage: %.2f" % [owner_entity.name, damage_amount])
+	return damage_amount
 
 
 func apply_damage_over_time_tick():
@@ -30,6 +35,14 @@ func apply_damage_over_time_tick():
 		total_dot += effect.damage_per_second * dot_effects[effect]
 	total_dot *= dot_timer_tick_rate
 	hurt(total_dot)
+	
+	
+func get_health() -> float:
+	return current_health
+
+
+func get_health_percent() -> float :
+	return current_health / max_health
 	
 	
 func _on_modifier_added(modifier : ModifierData):

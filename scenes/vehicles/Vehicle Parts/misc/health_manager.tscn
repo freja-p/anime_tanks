@@ -8,4 +8,6 @@ script = ExtResource("1_up5ka")
 [node name="DotTicker" type="Timer" parent="."]
 wait_time = 0.25
 
+[node name="HealthRestoreTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="DotTicker" to="." method="_on_dot_timer_timeout"]

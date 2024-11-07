@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://w6x72hj4juyi"]
+[gd_scene load_steps=28 format=3 uid="uid://w6x72hj4juyi"]
 
 [ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
 [ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_khb0o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatSheet.gd" id="4_kia1d"]
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="4_m78uk"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="5_q4hkq"]
+[ext_resource type="Resource" uid="uid://bhl3w22s6bj14" path="res://data/factions/FAC_Ally.tres" id="6_ux2hk"]
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="6_uxbq3"]
 [ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="6_yhege"]
 [ext_resource type="Script" path="res://scenes/vehicles/VehicleController.gd" id="9_ma6uu"]
@@ -50,6 +51,7 @@ mass = 5000.0
 script = ExtResource("1_lpcwq")
 defaultLoadout = SubResource("Resource_yi2k5")
 stat_sheet = SubResource("Resource_gnsn5")
+faction = ExtResource("6_ux2hk")
 
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, 0.411694, -0.147787)

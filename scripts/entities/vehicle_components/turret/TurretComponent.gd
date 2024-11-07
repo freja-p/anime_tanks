@@ -18,19 +18,19 @@ func turn_to_rad(yaw : float, pitch : float):
 	
 	
 func reset_turret():
-	controller.current_state = TurretController.TURRET_STATE.RESET
+	controller.current_mode = TurretController.TurretModes.RESET
 
 
 func lock_turret():
-	controller.current_state = TurretController.TURRET_STATE.LOCK
+	controller.current_mode = TurretController.TurretModes.LOCK
 	
 	
 func activate_turret():
-	controller.current_state = TurretController.TURRET_STATE.ACTIVE
+	controller.current_mode = TurretController.TurretModes.ACTIVE
 
 
 func die():
-	controller.current_state = TurretController.TURRET_STATE.DYING
+	controller.current_mode = TurretController.TurretModes.DYING
 
 
 func get_projectile_spawn_node() -> Node3D:

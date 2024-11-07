@@ -75,14 +75,14 @@ func _calculate_curve_speed():
 	curvature /= distance_processed
 	curve_speed = 1 / absf(curvature * Kp_c)
 	var turn : bool
-	if absf(curvature) < 0.2:
-		turn = false
-		_turning_override(false)
-	else:
-		turn = true
-		_turning_override(true)
+	#if absf(curvature) < 0.2:
+		#turn = false
+		#_turning_override(false)
+	#else:
+		#turn = true
+		#_turning_override(true)
 		
-	print("%s | %.3f, %.3f" % [turn, curvature, curve_speed])
+	#print("%s | %.3f, %.3f" % [turn, curvature, curve_speed])
 	
 	
 func _turning_override(is_turning : bool):
@@ -94,15 +94,14 @@ func _turning_override(is_turning : bool):
 		
 	else:
 		if is_turning:
-			inputController.speed_override = true
+			inputController.override_speed = true
 			inputController.target_speed_override = curve_speed
 		else:
-			inputController.speed_override = false
+			inputController.override_speed = false
 
 
 func _on_navigation_finished():
 #	inputController.set_target_location(body.global_position)
-	inputController.target_reached = true
 	_turning_override(false)
 	
 	

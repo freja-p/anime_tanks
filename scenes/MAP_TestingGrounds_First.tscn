@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cuwrm66qa2p5p"]
+[gd_scene load_steps=19 format=3 uid="uid://cuwrm66qa2p5p"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6shsj"]
 [ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_8ifb2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="8_03k8j"]
 [ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="9_gdvix"]
 [ext_resource type="Script" path="res://scripts/DevTools.gd" id="9_lte1c"]
+[ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="10_876im"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv3pq"]
 size = Vector3(303.221, 20.5594, 252.592)
@@ -185,8 +186,6 @@ playerNode = NodePath("../Apc")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="PlayerCam"]
 environment = SubResource("Environment_0dimq")
 
-[node name="Map" parent="." groups=["terrain"] instance=ExtResource("7_fjcds")]
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_r2ji0")
@@ -194,9 +193,14 @@ mesh = SubResource("BoxMesh_r2ji0")
 [node name="Apc" parent="." instance=ExtResource("9_gdvix")]
 transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952, -33.4067, 0.484735, -91.4566)
 
+[node name="ApcAi" parent="." instance=ExtResource("10_876im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.087, 0, -90.4781)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.453, -1.90735e-06, -89.8715)
 use_collision = true
 size = Vector3(7.11735, 1.88504, 7.60901)
+
+[node name="Map" parent="." groups=["terrain"] instance=ExtResource("7_fjcds")]
 
 [connection signal="body_entered" from="DeathBox" to="." method="_on_death_box_body_entered"]

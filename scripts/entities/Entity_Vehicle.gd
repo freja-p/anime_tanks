@@ -10,7 +10,6 @@ extends Entity
 @onready var health_manager: HealthManager = $HealthManager
 @onready var stat_calculator: StatCalculator = $StatCalculator
 
-
 func _ready():
 	equipmentLoadout.set_equipment_loadout(defaultLoadout)
 

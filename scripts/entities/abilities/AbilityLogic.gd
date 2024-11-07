@@ -18,20 +18,19 @@ func execute_logic(ability : Ability, hardpoint_node : Node3D, shooter : Entity,
 		SPAWNLOGIC.PROJECTILE:
 			projectile_spawn(projectile, hardpoint_node)
 		SPAWNLOGIC.TARGETED_PROJECTILE:
-			targeted_projectile(projectile, hardpoint_node, shooter)
+			targeted_projectile(projectile, hardpoint_node)
 		SPAWNLOGIC.RIGIDBODY:
 			projectile_body_spawn(projectile, hardpoint_node)
 
 func node3d_spawn(projectile : Projectile, hardpoint_node : Node3D):
 	get_tree().get_root().add_child(projectile)
 	projectile.initialise(hardpoint_node.global_position, hardpoint_node.global_transform.basis)
-	return
 
 func projectile_spawn(projectile : Projectile, hardpoint_node : Node3D):
 	get_tree().get_root().add_child(projectile)
 	projectile.initialise(hardpoint_node.global_position, hardpoint_node.global_transform.basis)
 	
-func targeted_projectile(projectile : Projectile, hardpoint_node : Node3D, shooter : Entity):
+func targeted_projectile(projectile : Projectile, hardpoint_node : Node3D):
 	get_tree().get_root().add_child(projectile)
 	projectile.initialise(hardpoint_node.global_position, hardpoint_node.global_transform.basis)
 

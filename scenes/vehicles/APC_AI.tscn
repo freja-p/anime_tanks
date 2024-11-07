@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmhx1apw1smhr"]
+[gd_scene load_steps=31 format=3 uid="uid://bmhx1apw1smhr"]
 
 [ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_jh07m"]
 [ext_resource type="Resource" uid="uid://kefunhlgvb2c" path="res://data/equipment/loadouts/DefaultLoadout.tres" id="2_v24ml"]
+[ext_resource type="Resource" uid="uid://c5b4ysl7lf04x" path="res://data/factions/FAC_Enemy.tres" id="3_xf1ct"]
 [ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Body_APC.tscn" id="5_8bnt6"]
 [ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Turret_APC.tscn" id="6_w47r0"]
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="7_yqxe5"]
@@ -14,15 +15,16 @@
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="13_yifmc"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/Navigator.gd" id="15_vwrf1"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="16_mkmm1"]
+[ext_resource type="Script" path="res://scenes/vehicles/Vehicle Parts/threatanalyzer/ThreatAnalyzer.gd" id="17_4o44x"]
 [ext_resource type="Resource" uid="uid://dyd35bap17qm7" path="res://data/equipment/abilities/test_modifier/test_modifier_flatHP.tres" id="17_fomll"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="17_qc6pn"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/Vehicle Parts/misc/health_manager.tscn" id="18_runbh"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/ai_state_machine.gd" id="19_87eym"]
 [ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="20_0l1ft"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/state_machine_interface.gd" id="20_fj5ys"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/combat/attack_moving_state.gd" id="21_j3oir"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/state_interface.gd" id="21_t3unt"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/idle/idle_state.gd" id="23_0jt3e"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/flee/flee_state.gd" id="23_wdrws"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nsq0u"]
 points = PackedVector3Array(1.55437, 0.812815, 1.5055, 1.11578, 0.79121, 3.12206, 1.10787, -1.65173e-07, 2.33352, 1.55437, 0.812815, -2.048, 1.23053, 1.13178, -1.32222, 1.18548, 1.17499, 0.556008, 1.00865, 1.30603, 0.857659, -1.11552, 0.79121, 3.12257, 0.943816, -1.65173e-07, 2.33402, 1.10787, -1.65173e-07, 1.82891, 1.04791, -1.65173e-07, -1.83341, -1.55472, 0.812815, -2.048, 1.00834, 1.30603, -1.83341, 1.18518, 1.17499, -1.32222, -2.09808e-05, 1.30603, 0.852091, -1.00869, 1.3059, 0.857659, -1.55472, 0.812815, 1.506, -1.10791, -1.65173e-07, 2.33402, -1.04856, -1.65173e-07, -1.83341, -1.23118, 1.13178, -1.32222, -1.18583, 1.17499, -1.32222, -1.00899, 1.3059, -1.83341, -0.000325322, 1.30603, -1.83341, -1.10791, -1.65173e-07, 1.82891, -1.00899, 1.3059, -1.32222, -1.18552, 1.17499, 0.556514)
@@ -45,6 +47,7 @@ collision_layer = 2
 mass = 5000.0
 script = ExtResource("1_jh07m")
 defaultLoadout = ExtResource("2_v24ml")
+faction = ExtResource("3_xf1ct")
 
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, 0.411694, -0.147787)
@@ -189,36 +192,48 @@ test_mod = ExtResource("17_fomll")
 script = ExtResource("17_qc6pn")
 modifier_handler = NodePath("../ModifierHandler")
 
+[node name="ThreatAnalyzer" type="Node" parent="." node_paths=PackedStringArray("health_manager", "hitboxes")]
+script = ExtResource("17_4o44x")
+health_manager = NodePath("../HealthManager")
+hitboxes = [NodePath("../BodyHitbox")]
+
 [node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("18_runbh")]
 owner_entity = NodePath("..")
 modifier_handler = NodePath("../ModifierHandler")
 
-[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
 script = ExtResource("20_0l1ft")
 ownerEntity = NodePath("..")
+health_manager = NodePath("../HealthManager")
+modifier_handler = NodePath("../ModifierHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0686834, 1.04963, 0.0686834)
 shape = SubResource("BoxShape3D_7fncc")
 
-[node name="AIFSM" type="Node" parent="."]
+[node name="AiStateMachine" type="Node" parent="." node_paths=PackedStringArray("navigator", "entity", "threat_analyzer", "starting_state")]
 script = ExtResource("19_87eym")
+navigator = NodePath("../Navigator")
+entity = NodePath("..")
+threat_analyzer = NodePath("../ThreatAnalyzer")
+starting_state = NodePath("Idle")
 
-[node name="Combat" type="Node" parent="AIFSM"]
-script = ExtResource("20_fj5ys")
-
-[node name="Attack" type="Node" parent="AIFSM/Combat"]
-script = ExtResource("21_j3oir")
-
-[node name="Reposition" type="Node" parent="AIFSM/Combat"]
-script = ExtResource("21_t3unt")
-
-[node name="Flee" type="Node" parent="AIFSM/Combat"]
-script = ExtResource("21_t3unt")
-
-[node name="Idle" type="Node" parent="AIFSM" node_paths=PackedStringArray("combat_state")]
+[node name="Idle" type="Node" parent="AiStateMachine" node_paths=PackedStringArray("attack_state", "flee_state")]
 script = ExtResource("23_0jt3e")
-combat_state = NodePath("../Combat")
+attack_state = NodePath("../Attack")
+flee_state = NodePath("../Flee")
+
+[node name="Attack" type="Node" parent="AiStateMachine" node_paths=PackedStringArray("idle_state", "flee_state", "turret")]
+script = ExtResource("21_j3oir")
+idle_state = NodePath("../Idle")
+flee_state = NodePath("../Flee")
+turret = NodePath("../../Turret")
+
+[node name="Reposition" type="Node" parent="AiStateMachine"]
+script = ExtResource("21_t3unt")
+
+[node name="Flee" type="Node" parent="AiStateMachine"]
+script = ExtResource("23_wdrws")
 
 [connection signal="timeout" from="InputController/IterationTimer" to="InputController" method="_on_iteration_timer_timeout"]
 [connection signal="navigation_finished" from="Navigator" to="Navigator" method="_on_navigation_finished"]

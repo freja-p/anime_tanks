@@ -13,8 +13,8 @@ extends IInputController
 
 @export_category("Steering PID Controller")
 @export var speed_cap_max_angle : float = 10
-@export var min_turn_speed : float = 3
-@export var max_turn_speed : float = 5
+@export var min_turn_speed : float = 5
+@export var max_turn_speed : float = 10
 @export var _Kpt : float = 1
 @export var _Kit : float = 0.5
 
@@ -65,7 +65,7 @@ func _on_iteration_timer_timeout():
 	
 	vehicleController.apply_forward(_output_force_ratio)
 	vehicleController.turn(_output_turn_ratio)
-	print("Forward: %.2f | Turn: %.2f" % [_output_force_ratio, _output_turn_ratio])
+	#print("Forward: %.2f | Turn: %.2f" % [_output_force_ratio, _output_turn_ratio])
 	
 	
 func _calculate_distance():
@@ -77,8 +77,6 @@ func _calculate_distance():
 	if _angle_to_target > speed_cap_max_angle:
 		_target_speed = clampf(Pout, min_turn_speed, max_turn_speed)
 		return
-	elif error < braking_distance and stop_at_target:
-		_target_speed = 0
 	elif override_speed:
 		_target_speed = target_speed_override
 	else:
