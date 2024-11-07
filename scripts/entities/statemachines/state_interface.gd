@@ -1,14 +1,19 @@
 class_name StateInterface
 extends Node
 
+var root_statemachine : StateMachineInterface
 var parent_statemachine : StateMachineInterface
-var blackboard : VariableStore
-
+var tick_process_timer : Timer
 
 func _ready() -> void:
 	parent_statemachine = get_parent() as StateMachineInterface
+
+
+func initialise() -> void:
+	_initialise()
 	for c in get_children():
-		c.blackboard = blackboard
+		c.root_statemachine = root_statemachine
+		c.initialise()
 	
 	
 func process_tick(_delta : float) -> void:

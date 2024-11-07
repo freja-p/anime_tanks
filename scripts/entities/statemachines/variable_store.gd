@@ -16,4 +16,8 @@ func get_variable(variable : int):
 	return _variable_store[variable]
 
 func set_variable(variable : int, value):
+	if _variable_store.has(variable):
+		# Does not work for comparing Variant types to classes (int vs Node3D)
+		if _variable_store[variable].get_class() != value.get_class():
+			printerr("Attempted to modify already defined variable of type %s to %s" % [_variable_store[variable].get_class(), value.get_class()])
 	_variable_store[variable] = value

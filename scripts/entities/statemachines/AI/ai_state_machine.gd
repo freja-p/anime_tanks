@@ -3,11 +3,12 @@ extends StateMachineInterface
 
 @export var navigator : Navigator
 @export var entity : Entity_Vehicle
+@export var threat_analyzer : ThreatAnalyzer
 
-
-enum AiVars {
-	NAVIGATOR
-}
-
-func _ready() -> void:
-	blackboard.set_variable(AiVars.NAVIGATOR, navigator)
+func _initialise() -> void:
+	for c in get_children():
+		if c is AiState:
+			c.root = self
+			c.navigator = navigator
+			c.entity = entity
+			c.threat_analyzer = threat_analyzer
