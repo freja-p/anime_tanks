@@ -5,17 +5,18 @@ signal ability_ready(ability : AbilityExecutor)
 signal ability_activated(ability : AbilityExecutor)
 signal ability_cooldown_started(ability : AbilityExecutor)
 
-enum ACTIVATION_TYPE {
+enum ActivationType {
 	SINGLE,
 	AUTO,
 	BURST,
 	TOGGLE
 }
 
-enum ABILITY_STATE {
+enum AbilityState {
 	READY, 
 	ACTIVE,
-	COOLDOWN
+	COOLDOWN,
+	RELOAD
 	}
 	
 var ability_resource : Ability
@@ -39,11 +40,11 @@ var isReady : bool:
 
 var isActive : bool:
 	get: 
-		return _currentState == ABILITY_STATE.ACTIVE
+		return _currentState == AbilityState.ACTIVE
 	set(_val): 
 		return
 
-var _currentState : ABILITY_STATE
+var _currentState : AbilityState
 
 @onready var sfxPlayer = %ActivateSFXPlayer as AudioStreamPlayer3D
 @onready var activeDurationTimer = %ActiveDurationTimer as Timer
@@ -51,7 +52,7 @@ var _currentState : ABILITY_STATE
 
 
 func _ready():
-	_currentState = ABILITY_STATE.READY
+	_currentState = AbilityState.READY
 
 
 func construct(ability : Ability, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
@@ -74,24 +75,24 @@ func activate(toggle_on : bool = true) -> bool:
 		return false
 	
 	match ability_resource.activation_type:
-		ACTIVATION_TYPE.SINGLE:
+		ActivationType.SINGLE:
 			if not toggle_on:
 				return false
 			_enter_cooldown()
 			
-		ACTIVATION_TYPE.AUTO:
+		ActivationType.AUTO:
 			if toggle_on:
 				autofiring = true
 				_enter_cooldown()	
 			else:
 				return false
 				
-		ACTIVATION_TYPE.BURST:
+		ActivationType.BURST:
 			if not toggle_on:
 				return false
 			_enter_active()
 			
-		ACTIVATION_TYPE.TOGGLE:
+		ActivationType.TOGGLE:
 			if isActive:
 				_enter_cooldown()
 				return false
@@ -127,23 +128,23 @@ func set_modifiers(arg_modifiers : Array[ModifierData]) -> void:
 
 
 func _enter_active() -> void:
-	_currentState = ABILITY_STATE.ACTIVE
+	_currentState = AbilityState.ACTIVE
 	activeDurationTimer.start(ability_resource.duration)
 	burstControlTimer.start(ability_resource.burst_delay)
 
 
 func _enter_cooldown() -> void:
 	cooldown.start_cooldown()
-	_currentState = ABILITY_STATE.COOLDOWN
+	_currentState = AbilityState.COOLDOWN
 	ability_cooldown_started.emit(self)
 	
 	
 func _on_cooldown_timeout():
-	_currentState = ABILITY_STATE.READY
+	_currentState = AbilityState.READY
 	match ability_resource.activation_type:
-		ACTIVATION_TYPE.SINGLE, ACTIVATION_TYPE.BURST, ACTIVATION_TYPE.TOGGLE:
+		ActivationType.SINGLE, ActivationType.BURST, ActivationType.TOGGLE:
 			ability_ready.emit(self)
-		ACTIVATION_TYPE.AUTO:
+		ActivationType.AUTO:
 			if autofiring:
 				_enter_cooldown()
 				_execute_logic()

@@ -10,7 +10,7 @@ extends Resource
 @export var cooldown_resource : CooldownResource
 
 @export_category("Activation")
-@export var activation_type : AbilityExecutor.ACTIVATION_TYPE
+@export var activation_type : AbilityExecutor.ActivationType
 @export_subgroup("Single")
 @export_subgroup("Auto")
 @export_subgroup("Burst")
