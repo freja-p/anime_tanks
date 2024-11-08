@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CooldownResource" load_steps=2 format=3 uid="uid://r0xfxoxoif5m"]
 
-[ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/CooldownResource.gd" id="1_e0ofs"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/cooldown_resource.gd" id="1_e0ofs"]
 
 [resource]
 script = ExtResource("1_e0ofs")

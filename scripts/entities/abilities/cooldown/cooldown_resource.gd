@@ -1,7 +1,13 @@
 class_name CooldownResource
 extends Resource
 
-@export var cooldown_type : Enums.CooldownType
+enum CooldownType {
+	SIMPLE,
+	MAGAZINE,
+	OVERHEAT
+}
+
+@export var cooldown_type : CooldownType
 
 @export var time_between_shots : float = 1.0
 
@@ -17,8 +23,8 @@ extends Resource
 @export var overheat_modifier : ModifierData
 
 var cooldown_type_map : Dictionary = {
-	Enums.CooldownType.SIMPLE : preload("res://scenes/vehicles/Vehicle Parts/abilities/cooldown/CooldownSimple.tscn"),
-	Enums.CooldownType.MAGAZINE : preload("res://scenes/vehicles/Vehicle Parts/abilities/cooldown/CooldownMagazine.tscn")
+	CooldownType.SIMPLE : preload("res://scenes/vehicles/Vehicle Parts/abilities/cooldown/CooldownSimple.tscn"),
+	CooldownType.MAGAZINE : preload("res://scenes/vehicles/Vehicle Parts/abilities/cooldown/CooldownMagazine.tscn")
 }
 
 func create_instance(arg_stat_calculator : StatCalculator, ability : Ability) -> CooldownInterface:

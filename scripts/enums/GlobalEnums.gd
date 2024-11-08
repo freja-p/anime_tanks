@@ -40,9 +40,3 @@ enum Hardpoint {
 	ULTIMATE,
 	ARTILLERY
 }
-
-enum CooldownType {
-	SIMPLE,
-	MAGAZINE,
-	OVERHEAT
-}
