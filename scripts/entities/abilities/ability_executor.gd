@@ -48,7 +48,6 @@ var _currentState : AbilityState
 
 @onready var sfxPlayer = %ActivateSFXPlayer as AudioStreamPlayer3D
 @onready var activeDurationTimer = %ActiveDurationTimer as Timer
-@onready var burstControlTimer = %BurstControlTimer as Timer	
 
 
 func _ready():
@@ -62,7 +61,11 @@ func construct(ability : Ability, arg_ownerEntity : Entity, stat_calculator : St
 	
 	cooldown = ability.cooldown_resource.create_instance(stat_calculator, ability)
 	add_child(cooldown)
-	cooldown.cooldown_ended.connect(_on_cooldown_timeout)
+	cooldown.cooldown_ended.connect(_on_ability_cooldown_timeout)
+	
+	# I don't like this pattern but I just want this to work
+	if cooldown.has_signal("reload_started"):
+		cooldown.reload_started.connect(_on_reloaded)
 
 
 func activate(toggle_on : bool = true) -> bool:
@@ -90,6 +93,7 @@ func activate(toggle_on : bool = true) -> bool:
 		ActivationType.BURST:
 			if not toggle_on:
 				return false
+			cooldown.start_cooldown()
 			_enter_active()
 			
 		ActivationType.TOGGLE:
@@ -130,31 +134,41 @@ func set_modifiers(arg_modifiers : Array[ModifierData]) -> void:
 func _enter_active() -> void:
 	_currentState = AbilityState.ACTIVE
 	activeDurationTimer.start(ability_resource.duration)
-	burstControlTimer.start(ability_resource.burst_delay)
 
 
 func _enter_cooldown() -> void:
 	cooldown.start_cooldown()
 	_currentState = AbilityState.COOLDOWN
 	ability_cooldown_started.emit(self)
-	
-	
-func _on_cooldown_timeout():
+
+
+func _enter_ready() -> void:
 	_currentState = AbilityState.READY
+	ability_ready.emit(self)
+	
+	
+func _on_ability_cooldown_timeout():
 	match ability_resource.activation_type:
-		ActivationType.SINGLE, ActivationType.BURST, ActivationType.TOGGLE:
-			ability_ready.emit(self)
+		ActivationType.SINGLE, ActivationType.TOGGLE:
+			_enter_ready()
+			
+		ActivationType.BURST:
+			if activeDurationTimer.is_stopped():
+				_enter_ready()
+			else:
+				_execute_logic()
+				cooldown.start_cooldown()
+				
 		ActivationType.AUTO:
 			if autofiring:
-				_enter_cooldown()
 				_execute_logic()
+				cooldown.start_cooldown()
+			else:
+				_enter_ready()
 			
 			
 func _on_active_duration_timer_timeout():
-	burstControlTimer.stop()
 	_enter_cooldown()
 
-
-func _on_burst_control_timer_timeout():
-	_execute_logic()
-	burstControlTimer.start(ability_resource.burst_delay)
+func _on_reloaded():
+	activeDurationTimer.stop()

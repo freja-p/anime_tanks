@@ -2,6 +2,7 @@ class_name CooldownMagazine
 extends CooldownInterface
 
 signal current_ammo_updated(count : int)
+signal reload_started
 
 var ammo_count : int
 var ammo_max : int
@@ -33,6 +34,7 @@ func start_cooldown() -> bool:
 	if ammo_count > 0:
 		timer.start(stat_calculator.get_hardpoint_stat(cooldown_resource.time_between_shots, ability_resource.default_hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
 	else:
+		reload_started.emit()
 		timer.start(stat_calculator.get_hardpoint_stat(cooldown_resource.time_to_reload, ability_resource.default_hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
 	return true
 	

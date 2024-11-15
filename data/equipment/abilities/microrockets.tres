@@ -1,19 +1,30 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://sruykpx7awph"]
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://sruykpx7awph"]
 
-[ext_resource type="Resource" uid="uid://6euxgey14p5q" path="res://data/equipment/abilities/test_abilities/test_cooldown_magazine.tres" id="1_ir4tx"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/cooldown_resource.gd" id="1_hw5pg"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_it142"]
 [ext_resource type="PackedScene" uid="uid://bjn8urkj1uugf" path="res://scenes/vehicles/Vehicle Parts/abilities/micro_rockets/projectile_microrocket.tscn" id="2_g3oka"]
-[ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="3_nb17b"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/ability.gd" id="3_nb17b"]
+
+[sub_resource type="Resource" id="Resource_s7c77"]
+script = ExtResource("1_hw5pg")
+cooldown_type = 1
+time_between_shots = 0.15
+time_to_reload = 3.0
+magazine_size = 32
+overheat_buildup = 5.0
+overheat_threshold = 100.0
+overheat_dropoff_per_second = 10.0
+overheat_dropoff_delay = 2.0
 
 [resource]
 script = ExtResource("3_nb17b")
 ability_name = "MicroRockets"
 default_hardpoint = 1
 base_damage = 10.0
-cooldown_resource = ExtResource("1_ir4tx")
+cooldown_resource = SubResource("Resource_s7c77")
 activation_type = 2
 duration = 2.0
-burst_delay = 0.1
+time_between_burst = 1.0
 max_duration = 1.0
 spawn_logic = 2
 projectile_scene = ExtResource("2_g3oka")

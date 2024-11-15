@@ -9,6 +9,7 @@ func _initialise() -> void:
 	for c in get_children():
 		if c is AiState:
 			c.root = self
+			c.parent_statemachine = self
 			c.navigator = navigator
 			c.entity = entity
 			c.threat_analyzer = threat_analyzer

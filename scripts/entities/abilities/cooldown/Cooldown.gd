@@ -1,5 +1,6 @@
 class_name CooldownInterface
 extends Node
+
 signal cooldown_ended 
 
 var stat_calculator : StatCalculator

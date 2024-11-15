@@ -12,8 +12,9 @@ func _ready() -> void:
 func initialise() -> void:
 	_initialise()
 	for c in get_children():
-		c.root_statemachine = root_statemachine
-		c.initialise()
+		if c is StateInterface:
+			c.root_statemachine = root_statemachine
+			c.initialise()
 	
 	
 func process_tick(_delta : float) -> void:

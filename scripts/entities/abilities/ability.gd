@@ -15,7 +15,7 @@ extends Resource
 @export_subgroup("Auto")
 @export_subgroup("Burst")
 @export var duration : float = 1.0
-@export var burst_delay : float = 1.0
+@export var time_between_burst : float = 1.0
 @export_subgroup("Toggle")
 @export var max_duration : float = 1.0
 

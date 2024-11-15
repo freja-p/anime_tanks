@@ -29,9 +29,13 @@ enum AimState {
 
 @export_category("Stats")
 @export var rotateSpeedDeg : float = 45
+
 @export var elevateSpeedDeg : float = 45
 @export var elevationMin : float = -3
 @export var elevationMax : float = 80
+
+@export var inaccuracy_tolerance_x_deg : float = 1
+@export var inaccuracy_tolerance_y_deg : float = 1
 
 @onready var parent : Node3D = get_parent()
 
@@ -45,6 +49,9 @@ var radToBarrelTarget : float
 var current_mode : TurretModes = TurretModes.ACTIVE
 var targetting_state : TargettingState = TargettingState.REACHED
 var aiming_state : AimState = AimState.NOTHING
+
+var rotation_limiter_ratio : float
+
 # Aiming Raycast
 var lookingAtEntity : Entity = null
 var entityWasAlive : bool = true
@@ -59,6 +66,7 @@ func _ready():
 	
 	elevationMin = deg_to_rad(elevationMin)
 	elevationMax = deg_to_rad(elevationMax)
+
 
 func _process(delta):
 	match current_mode:
@@ -92,11 +100,15 @@ func _update_turret_rotation(delta : float):
 	radToTurretTarget = turret.rotation.y - turretTargetRad
 	radToBarrelTarget = barrel.rotation.x - barrelTargetRad 
 	
-	if is_zero_approx(radToBarrelTarget) and is_zero_approx(radToTurretTarget):
-		_change_targetting_state(TargettingState.REACHED)
-		return
+	if radToTurretTarget < deg_to_rad(inaccuracy_tolerance_x_deg) and \
+		radToBarrelTarget < deg_to_rad(inaccuracy_tolerance_y_deg):
+			_change_targetting_state(TargettingState.REACHED)
 	else:
 		_change_targetting_state(TargettingState.TURNING)
+	
+	if is_zero_approx(radToBarrelTarget) and is_zero_approx(radToTurretTarget):
+		return
+		
 #	print("%s: (%f | %f)" % [get_node("../../").name, radToTurretTarget, radToBarrelTarget])
 	if not is_zero_approx(radToTurretTarget):
 		var to_rotate = deg_to_rad(rotateSpeedDeg) * delta
@@ -121,14 +133,14 @@ func _update_turret_rotation(delta : float):
 			barrel.rotate_x(-to_elevate)	
 
 
-func aim_at(target : Vector3) -> void:
+func aim_at(target : Vector3, rotate_speed_power : float = 1.0) -> void:
 	if current_mode == TurretModes.LOCK or current_mode == TurretModes.RESET:
 		return
 		
+	rotation_limiter_ratio = clampf(rotate_speed_power, 0.01, 1.0) 
 	var dir : Vector3 = turret.position.direction_to(parent.to_local(target))
 	
 	dir = dir.slide(parent.basis.y).normalized()
-	
 	
 	turretTargetRad = -dir.signed_angle_to(parent.basis.z, parent.basis.y)
 	virTurret.rotation.y = turretTargetRad
