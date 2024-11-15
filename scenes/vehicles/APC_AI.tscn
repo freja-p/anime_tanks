@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://bmhx1apw1smhr"]
 
 [ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_jh07m"]
-[ext_resource type="Resource" uid="uid://kefunhlgvb2c" path="res://data/equipment/loadouts/DefaultLoadout.tres" id="2_v24ml"]
+[ext_resource type="Resource" uid="uid://fl5y6qcgxlk1" path="res://data/equipment/loadouts/ai_apc.tres" id="2_7caaw"]
 [ext_resource type="Resource" uid="uid://c5b4ysl7lf04x" path="res://data/factions/FAC_Enemy.tres" id="3_xf1ct"]
 [ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Body_APC.tscn" id="5_8bnt6"]
 [ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Turret_APC.tscn" id="6_w47r0"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/Vehicle Parts/misc/health_manager.tscn" id="18_runbh"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/ai_state_machine.gd" id="19_87eym"]
 [ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="20_0l1ft"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/combat/attack_moving_state.gd" id="21_j3oir"]
+[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/combat/attack_state.gd" id="21_j3oir"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/state_interface.gd" id="21_t3unt"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/idle/idle_state.gd" id="23_0jt3e"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/flee/flee_state.gd" id="23_wdrws"]
@@ -44,9 +44,10 @@ size = Vector3(2.675, 1.49, 4.225)
 
 [node name="ApcAi" type="VehicleBody3D"]
 collision_layer = 2
+collision_mask = 3
 mass = 5000.0
 script = ExtResource("1_jh07m")
-defaultLoadout = ExtResource("2_v24ml")
+defaultLoadout = ExtResource("2_7caaw")
 faction = ExtResource("3_xf1ct")
 
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
@@ -202,6 +203,8 @@ owner_entity = NodePath("..")
 modifier_handler = NodePath("../ModifierHandler")
 
 [node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("20_0l1ft")
 ownerEntity = NodePath("..")
 health_manager = NodePath("../HealthManager")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Entity_Vehicle.gd" id="1_1ym0t"]
 [ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_e151r"]
-[ext_resource type="Script" path="res://scripts/entities/abilities/AbilityResource.gd" id="2_u6ig8"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/ability.gd" id="2_u6ig8"]
 [ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_1f5b1"]
 [ext_resource type="Resource" uid="uid://ck17a8oiovpk3" path="res://data/ai/static.tres" id="4_p1ap5"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AI_PatrolPathRegion_R.gd" id="5_jylig"]

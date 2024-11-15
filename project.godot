@@ -99,9 +99,9 @@ debug_f5={
 3d_render/layer_1="terrain"
 3d_render/layer_2="player"
 3d_physics/layer_1="terrain"
-3d_physics/layer_2="player"
+3d_physics/layer_2="entity_body"
 3d_physics/layer_3="projectile"
-3d_physics/layer_4="enemy"
+3d_physics/layer_4="entity_hitbox"
 3d_physics/layer_5="playerhitbox"
 3d_physics/layer_6="enemyhitbox"
 

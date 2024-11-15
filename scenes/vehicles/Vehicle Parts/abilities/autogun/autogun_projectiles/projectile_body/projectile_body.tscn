@@ -79,9 +79,9 @@ script = ExtResource("1_kjuov")
 [node name="Rigidbody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 4
-collision_mask = 49
-max_contacts_reported = 2
+collision_mask = 9
 contact_monitor = true
+max_contacts_reported = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rigidbody3D"]
 shape = SubResource("CapsuleShape3D_l6xva")
@@ -106,10 +106,10 @@ mesh = SubResource("SphereMesh_3yqvt")
 surface_material_override/0 = SubResource("StandardMaterial3D_fj4yi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_p5x1y")
 }
+autoplay = "RESET"
 
 [connection signal="body_entered" from="Rigidbody3D" to="." method="_on_rigidbody_3d_body_entered"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

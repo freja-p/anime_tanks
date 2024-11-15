@@ -191,10 +191,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_r2ji0")
 
 [node name="Apc" parent="." instance=ExtResource("9_gdvix")]
-transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952, -33.4067, 0.484735, -91.4566)
+transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952, -53.6628, 0.484735, -100.283)
 
 [node name="ApcAi" parent="." instance=ExtResource("10_876im")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.087, 0, -90.4781)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9952, 0, -97.39)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.453, -1.90735e-06, -89.8715)

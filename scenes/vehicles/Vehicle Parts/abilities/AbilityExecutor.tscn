@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://svmj3rp3ebyq"]
 
-[ext_resource type="Script" path="res://scripts/entities/abilities/AbilityExecutor.gd" id="1_xyxmn"]
+[ext_resource type="Script" path="res://scripts/entities/abilities/ability_executor.gd" id="1_xyxmn"]
 
 [node name="Ability" type="Node3D"]
 script = ExtResource("1_xyxmn")
@@ -13,8 +13,4 @@ bus = &"SFX"
 unique_name_in_owner = true
 one_shot = true
 
-[node name="BurstControlTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-
 [connection signal="timeout" from="ActiveDurationTimer" to="." method="_on_active_duration_timer_timeout"]
-[connection signal="timeout" from="BurstControlTimer" to="." method="_on_burst_control_timer_timeout"]
