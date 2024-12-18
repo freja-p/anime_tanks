@@ -25,8 +25,8 @@ var current_waypoint : Vector3
 
 var current_state : NAV_STATE
 
-func _ready():
-	CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
+#func _ready():
+	#CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
 
 
 func _physics_process(delta):
@@ -109,10 +109,10 @@ func _on_path_changed():
 	inputController.set_target_location(get_next_path_position())
 
 
-# TEMPORARY DEBUG CODE
-var lookpos : Vector3
-func _unhandled_input(event):
-	if event.is_action_pressed("primary_attack"):
-		navigate_to(lookpos, 15)
-func _on_player_cam_camera_rotated(worldPos : Vector3):
-	lookpos = worldPos
+## TEMPORARY DEBUG CODE
+#var lookpos : Vector3
+#func _unhandled_input(event):
+	#if event.is_action_pressed("primary_attack"):
+		#navigate_to(lookpos, 15)
+#func _on_player_cam_camera_rotated(worldPos : Vector3):
+	#lookpos = worldPos

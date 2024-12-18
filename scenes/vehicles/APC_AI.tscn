@@ -1,24 +1,25 @@
-[gd_scene load_steps=31 format=3 uid="uid://bmhx1apw1smhr"]
+[gd_scene load_steps=33 format=3 uid="uid://bmhx1apw1smhr"]
 
 [ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_jh07m"]
 [ext_resource type="Resource" uid="uid://fl5y6qcgxlk1" path="res://data/equipment/loadouts/ai_apc.tres" id="2_7caaw"]
 [ext_resource type="Resource" uid="uid://c5b4ysl7lf04x" path="res://data/factions/FAC_Enemy.tres" id="3_xf1ct"]
-[ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Body_APC.tscn" id="5_8bnt6"]
-[ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/Vehicle Parts/bodies/APC/VP_Turret_APC.tscn" id="6_w47r0"]
+[ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/vehicle_parts/bodies/APC/VP_Body_APC.tscn" id="5_8bnt6"]
+[ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/vehicle_parts/bodies/APC/VP_Turret_APC.tscn" id="6_w47r0"]
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="7_yqxe5"]
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="8_v88wp"]
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="9_rj1dr"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="10_xml00"]
-[ext_resource type="Curve" uid="uid://dqe5ogso62y8t" path="res://data/APC_engine_curve.tres" id="11_4crso"]
+[ext_resource type="Script" path="res://scripts/entities/vehicle_components/movement/VehicleController.gd" id="11_kftdn"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/input/InputController_AI.gd" id="11_rqjgl"]
-[ext_resource type="Script" path="res://scenes/vehicles/VehicleController.gd" id="12_fgaky"]
+[ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="12_6ofvh"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="13_yifmc"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/Navigator.gd" id="15_vwrf1"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="16_mkmm1"]
-[ext_resource type="Script" path="res://scenes/vehicles/Vehicle Parts/threatanalyzer/ThreatAnalyzer.gd" id="17_4o44x"]
+[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/threatanalyzer/ThreatAnalyzer.gd" id="17_4o44x"]
 [ext_resource type="Resource" uid="uid://dyd35bap17qm7" path="res://data/equipment/abilities/test_modifier/test_modifier_flatHP.tres" id="17_fomll"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="17_qc6pn"]
-[ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/Vehicle Parts/misc/health_manager.tscn" id="18_runbh"]
+[ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/vehicle_parts/misc/health_manager.tscn" id="18_runbh"]
+[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/detector/EntityDetector.gd" id="19_6ou3o"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/ai_state_machine.gd" id="19_87eym"]
 [ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="20_0l1ft"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/combat/attack_state.gd" id="21_j3oir"]
@@ -31,13 +32,16 @@ points = PackedVector3Array(1.55437, 0.812815, 1.5055, 1.11578, 0.79121, 3.12206
 
 [sub_resource type="BoxMesh" id="BoxMesh_3k6vw"]
 
-[sub_resource type="Curve" id="Curve_topfr"]
-_data = [Vector2(0, 1), 0.0, -2.43284, 0, 0, Vector2(1, 0.0526315), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_q74ma"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.202096), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_gprna"]
-_data = [Vector2(0, 1), 0.0, -1.68421, 0, 0, Vector2(1, 0.105263), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_bvggr"]
+_data = [Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.338323), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wqcgj"]
+radius = 5.245
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7fncc"]
 size = Vector3(2.675, 1.49, 4.225)
@@ -162,10 +166,10 @@ mesh = SubResource("BoxMesh_3k6vw")
 skeleton = NodePath("../../Navigator")
 
 [node name="VehicleController" type="Node" parent="."]
-script = ExtResource("12_fgaky")
-steerLimitCurve = SubResource("Curve_topfr")
-steerBrakeCurve = SubResource("Curve_gprna")
-engineForceCurve = ExtResource("11_4crso")
+script = ExtResource("11_kftdn")
+steerLimitCurve = SubResource("Curve_q74ma")
+steerBrakeCurve = SubResource("Curve_bvggr")
+engineForceCurve = ExtResource("12_6ofvh")
 
 [node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
 unique_name_in_owner = true
@@ -198,6 +202,17 @@ script = ExtResource("17_4o44x")
 health_manager = NodePath("../HealthManager")
 hitboxes = [NodePath("../BodyHitbox")]
 
+[node name="DetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_wqcgj")
+
+[node name="EntityDetector" type="Node" parent="."]
+script = ExtResource("19_6ou3o")
+
 [node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("18_runbh")]
 owner_entity = NodePath("..")
 modifier_handler = NodePath("../ModifierHandler")
@@ -220,6 +235,7 @@ navigator = NodePath("../Navigator")
 entity = NodePath("..")
 threat_analyzer = NodePath("../ThreatAnalyzer")
 starting_state = NodePath("Idle")
+autostart = false
 
 [node name="Idle" type="Node" parent="AiStateMachine" node_paths=PackedStringArray("attack_state", "flee_state")]
 script = ExtResource("23_0jt3e")
@@ -231,6 +247,8 @@ script = ExtResource("21_j3oir")
 idle_state = NodePath("../Idle")
 flee_state = NodePath("../Flee")
 turret = NodePath("../../Turret")
+lock_on_time = 2.0
+lock_turn_rate = 0.7
 
 [node name="Reposition" type="Node" parent="AiStateMachine"]
 script = ExtResource("21_t3unt")
@@ -241,3 +259,5 @@ script = ExtResource("23_wdrws")
 [connection signal="timeout" from="InputController/IterationTimer" to="InputController" method="_on_iteration_timer_timeout"]
 [connection signal="navigation_finished" from="Navigator" to="Navigator" method="_on_navigation_finished"]
 [connection signal="path_changed" from="Navigator" to="Navigator" method="_on_path_changed"]
+[connection signal="body_entered" from="DetectionArea" to="EntityDetector" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="EntityDetector" method="_on_detection_area_body_exited"]

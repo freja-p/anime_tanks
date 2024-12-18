@@ -1,17 +1,12 @@
 class_name Entity
 extends RigidBody3D
 
-@export_category("Stats") 
-@export var stat_sheet : StatSheet
+signal died(entity : Entity, killer : Entity)
 
 @export_category("Faction")
 @export var faction : Faction
 
-@export_category("Movement")
-@export var vehicleStats : VehicleParameters
-
 var dying : bool = false
-signal died(entity : Entity, killer : Entity)
 
 # Turret
 @onready var turretMesh : TurretComponent = $Turret as TurretComponent

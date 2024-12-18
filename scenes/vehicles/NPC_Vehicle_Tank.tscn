@@ -1,16 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://rs5vo0ryk123"]
+[gd_scene load_steps=21 format=3 uid="uid://rs5vo0ryk123"]
 
-[ext_resource type="Script" path="res://scripts/Entity_Vehicle.gd" id="1_1ym0t"]
-[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_e151r"]
-[ext_resource type="Script" path="res://scripts/entities/abilities/ability.gd" id="2_u6ig8"]
-[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_1f5b1"]
-[ext_resource type="Resource" uid="uid://ck17a8oiovpk3" path="res://data/ai/static.tres" id="4_p1ap5"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AI_PatrolPathRegion_R.gd" id="5_jylig"]
-[ext_resource type="Resource" uid="uid://c5b4ysl7lf04x" path="res://data/factions/FAC_Enemy.tres" id="5_tjtjo"]
-[ext_resource type="Resource" uid="uid://d3kysr0s4m433" path="res://data/vehicle_params.tres" id="6_rnjby"]
+[ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_yeh2p"]
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="7_d4xyd"]
-[ext_resource type="PackedScene" uid="uid://ds2orbq8mawhl" path="res://scenes/vehicles/Vehicle Parts/bodies/Basic/VP_BodyBasic_Enemy.tscn" id="8_d4mh7"]
-[ext_resource type="PackedScene" uid="uid://cegggm3e5yg4g" path="res://scenes/vehicles/Vehicle Parts/turrets/enemy_turret_base.tscn" id="9_utbqh"]
+[ext_resource type="PackedScene" uid="uid://ds2orbq8mawhl" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/VP_BodyBasic_Enemy.tscn" id="8_d4mh7"]
+[ext_resource type="PackedScene" uid="uid://cegggm3e5yg4g" path="res://scenes/vehicles/vehicle_parts/turrets/enemy_turret_base.tscn" id="9_utbqh"]
 [ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="10_13g83"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStateMachine.gd" id="11_50sik"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStats.gd" id="12_txqpe"]
@@ -20,16 +13,8 @@
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_patrol.gd" id="16_g57o4"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_overwatch.gd" id="17_6vq4v"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_idle.gd" id="18_858ui"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleStateMachine.gd" id="19_ypd7k"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleStats.gd" id="20_ipyek"]
-[ext_resource type="Curve" uid="uid://4o3elvp2wm0f" path="res://scripts/entities/statemachines/vehicles/accelVelocityCurve_default.tres" id="21_4j1co"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_turn.gd" id="22_7njlb"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_move.gd" id="23_dcejv"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_idle.gd" id="24_hus7p"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_brake.gd" id="25_dwvvt"]
-[ext_resource type="Script" path="res://scenes/vehicles/Vehicle Parts/threatanalyzer/ThreatAnalyzer.gd" id="26_ppxqv"]
-[ext_resource type="Script" path="res://scenes/vehicles/Vehicle Parts/detector/EntityDetector.gd" id="27_gaj42"]
-[ext_resource type="PackedScene" uid="uid://cjwrtbvi6cax0" path="res://scenes/vehicles/Vehicle Parts/detector/EntityDetectRays.tscn" id="28_4qnfc"]
+[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/threatanalyzer/ThreatAnalyzer.gd" id="26_ppxqv"]
+[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/detector/EntityDetector.gd" id="27_gaj42"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hl48d"]
 size = Vector3(3.60785, 1.42161, 7.03607)
@@ -46,17 +31,13 @@ radius = 50.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi8md"]
 size = Vector3(50, 15, 100)
 
-[node name="Enemy" type="RigidBody3D" groups=["enemy"]]
+[node name="Enemy" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.377973, 0)
 collision_layer = 8
 collision_mask = 11
 mass = 50000.0
 linear_damp_mode = 1
-script = ExtResource("1_1ym0t")
-abilitiesAvailable = Array[ExtResource("2_u6ig8")]([ExtResource("2_e151r"), ExtResource("3_1f5b1")])
-patrolBehaviours = Array[ExtResource("5_jylig")]([ExtResource("4_p1ap5")])
-faction = ExtResource("5_tjtjo")
-vehicleStats = ExtResource("6_rnjby")
+script = ExtResource("1_yeh2p")
 
 [node name="EventBus" type="Node" parent="."]
 script = ExtResource("7_d4xyd")
@@ -67,7 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.349)
 [node name="Turret" parent="." instance=ExtResource("9_utbqh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11464, 0.127033)
 
-[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity") groups=["hitbox"]]
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0769858, 0)
 visible = false
 collision_layer = 32
@@ -79,7 +60,7 @@ ownerEntity = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396235, -0.104433)
 shape = SubResource("BoxShape3D_hl48d")
 
-[node name="TurretHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity") groups=["hitbox"]]
+[node name="TurretHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47438, 0)
 collision_layer = 32
 collision_mask = 0
@@ -161,35 +142,6 @@ script = ExtResource("18_858ui")
 [node name="IdleTimer" type="Timer" parent="AIFSM/idle"]
 one_shot = true
 
-[node name="VehicleControllerFSM" type="Node" parent="." node_paths=PackedStringArray("startingState")]
-script = ExtResource("19_ypd7k")
-startingState = NodePath("idle")
-
-[node name="VehicleStats" type="Node" parent="VehicleControllerFSM"]
-script = ExtResource("20_ipyek")
-accelVelocityCurve = ExtResource("21_4j1co")
-
-[node name="turn" type="Node" parent="VehicleControllerFSM" node_paths=PackedStringArray("move_state", "idle_state", "brake_state")]
-script = ExtResource("22_7njlb")
-move_state = NodePath("../move")
-idle_state = NodePath("../idle")
-brake_state = NodePath("../brake")
-
-[node name="move" type="Node" parent="VehicleControllerFSM" node_paths=PackedStringArray("idle_state", "turn_state", "brake_state")]
-script = ExtResource("23_dcejv")
-idle_state = NodePath("../idle")
-turn_state = NodePath("../turn")
-brake_state = NodePath("../brake")
-
-[node name="idle" type="Node" parent="VehicleControllerFSM" node_paths=PackedStringArray("turn_state")]
-script = ExtResource("24_hus7p")
-turn_state = NodePath("../turn")
-
-[node name="brake" type="Node" parent="VehicleControllerFSM" node_paths=PackedStringArray("idle_state", "turn_state")]
-script = ExtResource("25_dwvvt")
-idle_state = NodePath("../idle")
-turn_state = NodePath("../turn")
-
 [node name="ThreatAnalyzer" type="Node" parent="." node_paths=PackedStringArray("detector")]
 script = ExtResource("26_ppxqv")
 detector = NodePath("../Detector")
@@ -197,8 +149,6 @@ detector = NodePath("../Detector")
 [node name="Detector" type="Node3D" parent="." node_paths=PackedStringArray("turret")]
 script = ExtResource("27_gaj42")
 turret = NodePath("../Turret")
-detectorRaysScene = ExtResource("28_4qnfc")
-detectionLifetime = 5.0
 
 [node name="DetectionAreas" type="Area3D" parent="Detector"]
 collision_layer = 0
@@ -213,13 +163,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 shape = SubResource("BoxShape3D_hi8md")
 
-[node name="Hardpoints" type="Node3D" parent="."]
-
-[node name="RearDeck" type="Node3D" parent="Hardpoints"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.12152, 2.35518)
-
-[node name="Internal" type="Node3D" parent="Hardpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601387, 0)
+[node name="Node" type="Node" parent="."]
 
 [connection signal="aiming_at_entity_state_changed" from="EventBus" to="." method="_on_event_bus_aiming_at_entity_state_changed"]
 [connection signal="turret_target_reach" from="EventBus" to="." method="_on_event_bus_turret_target_reach"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://cah3yi1owbyrt"]
 
 [ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="7_cwe31"]
-[ext_resource type="PackedScene" uid="uid://bkqw8v0xydhh6" path="res://scenes/vehicles/Vehicle Parts/bodies/Basic/VP_BodyBasic_Player.tscn" id="9_7nftt"]
+[ext_resource type="PackedScene" uid="uid://bkqw8v0xydhh6" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/VP_BodyBasic_Player.tscn" id="9_7nftt"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleStateMachine.gd" id="10_uxl2h"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleStats.gd" id="11_wdpji"]
 [ext_resource type="Curve" uid="uid://4o3elvp2wm0f" path="res://scripts/entities/statemachines/vehicles/accelVelocityCurve_default.tres" id="12_4t2sa"]
-[ext_resource type="PackedScene" uid="uid://ckr4nny1c1p1q" path="res://scenes/vehicles/Vehicle Parts/turrets/player_turret_base.tscn" id="13_1kn3u"]
+[ext_resource type="PackedScene" uid="uid://ckr4nny1c1p1q" path="res://scenes/vehicles/vehicle_parts/turrets/player_turret_base.tscn" id="13_1kn3u"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_move_player.gd" id="13_46ps5"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_stopped_player.gd" id="14_efmb8"]
 [ext_resource type="Script" path="res://scripts/entities/statemachines/vehicles/VehicleState_brake_player.gd" id="15_whivo"]

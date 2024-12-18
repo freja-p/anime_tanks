@@ -1,6 +1,7 @@
 class_name Entity_Vehicle
 extends Entity
 
+@export var health : float = 100
 @export var defaultLoadout : Loadout
 
 @onready var turret = %Turret
@@ -9,6 +10,7 @@ extends Entity
 @onready var modifier_handler: ModifierHandler = $ModifierHandler as ModifierHandler
 @onready var health_manager: HealthManager = $HealthManager
 @onready var stat_calculator: StatCalculator = $StatCalculator
+#@onready var entity_detector: EntityDetector = $EntityDetector
 
 func _ready():
 	equipmentLoadout.set_equipment_loadout(defaultLoadout)

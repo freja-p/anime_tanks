@@ -34,7 +34,7 @@ extends Resource
 @export var selection_weight : int = 10
 
 func create_executor(arg_ownerEntity : Entity, stat_calculator : StatCalculator) -> AbilityExecutor:
-	var executor : AbilityExecutor = preload("res://scenes/vehicles/Vehicle Parts/abilities/AbilityExecutor.tscn").instantiate()
+	var executor : AbilityExecutor = preload("res://scenes/vehicles/vehicle_parts/abilities/AbilityExecutor.tscn").instantiate()
 	executor.construct(self, arg_ownerEntity, stat_calculator)
 	executor.name = ability_name
 	return executor

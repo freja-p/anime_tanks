@@ -84,7 +84,7 @@ collision_mask = 9
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBox"]
 shape = SubResource("BoxShape3D_xv3pq")
 
-[node name="Overlay" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("4_due4o")]
+[node name="DebugOverlay" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("4_due4o")]
 entity = NodePath("../Apc")
 
 [node name="AimUI" parent="." node_paths=PackedStringArray("camera", "playerEntity") instance=ExtResource("5_crdyg")]
@@ -170,11 +170,9 @@ fill_mode = 3
 show_percentage = false
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-visible = false
 navigation_mesh = SubResource("NavigationMesh_payud")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-visible = false
 mesh = SubResource("PlaneMesh_scogn")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="NavigationRegion3D/MeshInstance3D"]
@@ -195,6 +193,9 @@ transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952
 
 [node name="ApcAi" parent="." instance=ExtResource("10_876im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9952, 0, -97.39)
+
+[node name="ApcAi2" parent="." instance=ExtResource("10_876im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9952, 0, -85.9824)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.453, -1.90735e-06, -89.8715)

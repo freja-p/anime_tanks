@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/cooldown_resource.gd" id="1_hw5pg"]
 [ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_it142"]
-[ext_resource type="PackedScene" uid="uid://bjn8urkj1uugf" path="res://scenes/vehicles/Vehicle Parts/abilities/micro_rockets/projectile_microrocket.tscn" id="2_g3oka"]
+[ext_resource type="PackedScene" uid="uid://bjn8urkj1uugf" path="res://scenes/vehicles/vehicle_parts/abilities/micro_rockets/projectile_microrocket.tscn" id="2_g3oka"]
 [ext_resource type="Script" path="res://scripts/entities/abilities/ability.gd" id="3_nb17b"]
 
 [sub_resource type="Resource" id="Resource_s7c77"]
@@ -22,7 +22,7 @@ ability_name = "MicroRockets"
 default_hardpoint = 1
 base_damage = 10.0
 cooldown_resource = SubResource("Resource_s7c77")
-activation_type = 2
+activation_type = 1
 duration = 2.0
 time_between_burst = 1.0
 max_duration = 1.0

@@ -9,12 +9,18 @@ var current_state : StateInterface
 
 
 func _ready() -> void:
+	if not autostart:
+		return
+		
 	super()
 	
 	if not parent_statemachine:
 		root_statemachine = self
 		initialise_statemachine_root()
 		
+
+func start() -> void:
+	_ready()
 
 func initialise_statemachine_root() -> void:
 	initialise()

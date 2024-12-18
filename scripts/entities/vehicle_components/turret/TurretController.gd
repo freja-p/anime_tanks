@@ -28,7 +28,7 @@ enum AimState {
 @export var barrelRay : RayCast3D
 
 @export_category("Stats")
-@export var rotateSpeedDeg : float = 45
+@export var rotateSpeedDeg : float = 120
 
 @export var elevateSpeedDeg : float = 45
 @export var elevationMin : float = -3

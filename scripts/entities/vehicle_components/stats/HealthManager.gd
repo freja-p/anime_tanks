@@ -10,7 +10,7 @@ const dot_timer_tick_rate : float = 0.25
 @export var health_restore_delay : float = 3
 @export var health_restore_rate : float = 10
 
-var max_health : float = 100
+var max_health : float
 var current_health : float = 100
 var dot_effects : Dictionary
 
@@ -21,6 +21,8 @@ var dot_effects : Dictionary
 func _ready() -> void:
 	modifier_handler.modifier_added.connect(_on_modifier_added)
 	modifier_handler.modifier_removed.connect(_on_modifier_removed)
+	max_health = get_parent().health
+	current_health = max_health
 	
 
 func hurt(damage_amount : float) -> float:
