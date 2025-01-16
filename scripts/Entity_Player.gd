@@ -42,7 +42,7 @@ func _ready():
 	fsmVars[VehicleState.VEHVARS.GROUNDED] = false
 	controller.start_fsm()
 	
-	vehicleBody.initialise(self, vehicleStats)
+	#vehicleBody.initialise(self, vehicleStats)
 
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = to_local(vehicleBody.centerVector)

@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://tiknftrqfhsv"]
+
+[ext_resource type="Script" path="res://scripts/entities/abilities/projectile/Projectile_Body.gd" id="1_3a4hq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l6xva"]
+radius = 0.1
+height = 0.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iyblq"]
+radius = 0.1
+height = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_3yqvt"]
+resource_local_to_scene = true
+height = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj4yi"]
+albedo_color = Color(0.858824, 0.623529, 0.145098, 1)
+
+[sub_resource type="Animation" id="Animation_iopal"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:mesh:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ibudg"]
+resource_name = "explode"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:mesh:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 1.50831, 1.5, -0.1, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion:mesh:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 3.01518, 3.01518, -0.1, 0, 0.1, 0.0151813),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.0776248, -0.706907, 0, -0.107054, 0.122962, 0.7, 0.00144047, 1, -0.1, 0.411094, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5x1y"]
+_data = {
+"RESET": SubResource("Animation_iopal"),
+"explode": SubResource("Animation_ibudg")
+}
+
+[node name="VP_projectile_body" type="Node3D"]
+script = ExtResource("1_3a4hq")
+
+[node name="Rigidbody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 9
+contact_monitor = true
+max_contacts_reported = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigidbody3D"]
+shape = SubResource("CapsuleShape3D_l6xva")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rigidbody3D"]
+mesh = SubResource("CapsuleMesh_iyblq")
+
+[node name="PenetrationRayChecker" type="RayCast3D" parent="Rigidbody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 0, 0)
+collision_mask = 49
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Explosion" type="MeshInstance3D" parent="."]
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("SphereMesh_3yqvt")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj4yi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p5x1y")
+}
+autoplay = "RESET"
+
+[connection signal="body_entered" from="Rigidbody3D" to="." method="_on_rigidbody_3d_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

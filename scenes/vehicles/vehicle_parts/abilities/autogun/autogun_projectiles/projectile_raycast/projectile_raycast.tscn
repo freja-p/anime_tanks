@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlvi34ij1dsbu"]
+
+[ext_resource type="Script" path="res://scripts/entities/abilities/projectile/Projectile_Raycast.gd" id="1_fply6"]
+[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vehicles/vehicle_parts/ability_vfx/explosion.tscn" id="2_10syy"]
+
+[node name="Projectile" type="Node3D" groups=["projectile"]]
+script = ExtResource("1_fply6")
+
+[node name="ExplosionVFX" parent="." instance=ExtResource("2_10syy")]
+radius = 0.4
+duration = 0.3
+
+[node name="ForwardRay" type="RayCast3D" parent="."]
+collision_mask = 9
+hit_from_inside = true
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)

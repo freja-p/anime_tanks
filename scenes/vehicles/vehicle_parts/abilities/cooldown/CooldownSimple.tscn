@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://druxofpay5dq4"]
+
+[ext_resource type="Script" path="res://scripts/entities/abilities/cooldown/cooldown_simple.gd" id="1_100ug"]
+
+[node name="CooldownSimple" type="Node"]
+script = ExtResource("1_100ug")

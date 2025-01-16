@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://uw0tm08or6a5"]
+
+[ext_resource type="PackedScene" uid="uid://dwpwshdj4ympu" path="res://raw_assets/vehicles/meshes/tank_wheels_L.glb" id="1_pxfq7"]
+[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/WheelSystem.gd" id="2_o7cs5"]
+[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/WheelArrays.gd" id="3_kibw7"]
+[ext_resource type="PackedScene" uid="uid://dbkwy7nmgv5w6" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/track_path.tscn" id="4_ok1fe"]
+[ext_resource type="PackedScene" uid="uid://t0oenpulh1lv" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/wheel_suspension.tscn" id="5_h4j6o"]
+
+[sub_resource type="Curve3D" id="Curve3D_wvruw"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(8.18545e-12, 0.000755399, -0.10272, 0, 0, 0, -1.14441e-05, 1.10456, 4.65269, 0, 0, 0, 0, 0, 0, -7.15256e-06, 1.15067, -1.02579, 0, 0.0482669, 0.0563114, 0, -0.0482669, -0.0563114, -1.14441e-05, 1.03645, -1.30141, 0, 0.0643558, 0.0140779, 0, -0.0643558, -0.0140779, -1.14441e-05, 0.841374, -1.39996, 0, 0.0603335, -0.034189, 0, -0.0603335, 0.034189, -1.14441e-05, 0.596018, -1.3718, -4.29153e-06, 0.0315105, -0.057934, 4.29153e-06, -0.0315105, 0.057934, -7.15256e-06, 0.441829, -1.19119, 0, 0.0187661, -0.0492611, 0, -0.0187661, 0.0492611, -1.14441e-05, 0.0423284, -0.222361, 4.29153e-06, -0.000607875, -0.0997275, -4.29153e-06, 0.000607875, 0.0997275, 0, 0, 0.003, 8.18545e-12, 0.000755399, -0.10272, -8.18545e-12, -0.000755399, 0.10272, -1.14441e-05, 0.000102848, 0.818056, 0, 0, 0, 0, 0, 0, -1.14441e-05, -0.00391522, 1.64306, 0, 0, 0, 0, 0, 0, -1.14441e-05, -0.00156942, 2.46409, 0, 0, 0, 0, 0, 0, -7.15256e-06, -0.0139489, 3.28679, 4.29153e-06, -0.000357479, -0.084352, -4.29153e-06, 0.000357479, 0.084352, -7.15256e-06, -0.0120655, 4.11324, -4.29153e-06, -0.0621481, -0.131117, 4.29153e-06, 0.0621481, 0.131117, -7.15256e-06, 0.021754, 4.28774, 0, -0.0789401, -0.0566649, 0, 0.0789401, 0.0566649, -1.14441e-05, 0.63181, 5.16927, 0, -0.0786271, 0.0150027, 0, 0.0786271, -0.0150027, -1.14441e-05, 0.855808, 5.22853, 0, -0.0539823, 0.0791936, 0, 0.0539823, -0.0791936, -1.14441e-05, 1.04466, 5.09655, 0, -0.00217295, 0.0977888, 0, 0.00217295, -0.0977888, -1.14441e-05, 1.10384, 4.87347, 0, 0, 0, 0, 0, 0, -1.14441e-05, 1.10657, 4.55616),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 19
+
+[node name="tank_wheels_L" node_paths=PackedStringArray("slopeRay") instance=ExtResource("1_pxfq7")]
+script = ExtResource("2_o7cs5")
+wheel_radius = 0.38
+slopeRay = NodePath("BaseOrigin/SuspensionAttachPoint_SingleL/SlopeRay")
+
+[node name="WheelArrays" type="Node" parent="." index="0" node_paths=PackedStringArray("susArms", "wheels", "suspensionHinges")]
+script = ExtResource("3_kibw7")
+susArms = [NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/SuspensionArmL1"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/SuspensionArmL2"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/SuspensionArmL3"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/SuspensionArmL4"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/SuspensionArmL5"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/SuspensionArmL6")]
+wheels = [NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/Wheel_SingleL1"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/Wheel_SingleL2"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/Wheel_SingleL3"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/Wheel_SingleL4"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/Wheel_SingleL5"), NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL/Wheel_SingleL6")]
+suspensionHinges = NodePath("../BaseOrigin/SuspensionAttachPoint_SingleL")
+
+[node name="TrackPath" parent="." index="1" instance=ExtResource("4_ok1fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57137, -0.374, -1.926)
+curve = SubResource("Curve3D_wvruw")
+
+[node name="BaseOrigin" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Wheel_SingleL1" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0561318, -0.282902, 0.606523)
+
+[node name="WheelSus1" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="12" instance=ExtResource("5_h4j6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280118, 0.59525)
+
+[node name="WheelSus2" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="13" instance=ExtResource("5_h4j6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280118, 0.59525)
+
+[node name="WheelSus3" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="14" instance=ExtResource("5_h4j6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280118, 0.59525)
+
+[node name="WheelSus4" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="15" instance=ExtResource("5_h4j6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280118, 0.59525)
+
+[node name="WheelSus5" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="16" instance=ExtResource("5_h4j6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280118, 0.59525)
+
+[node name="WheelSus6" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="17" instance=ExtResource("5_h4j6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280118, 4.70364)
+
+[node name="SlopeRay" type="RayCast3D" parent="BaseOrigin/SuspensionAttachPoint_SingleL" index="18"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -0.301783, 0.119581, -0.442378)
+
+[node name="WheelFrontL" parent="BaseOrigin" index="1"]
+transform = Transform3D(0.281527, 0, 0, 0, 0.281527, 0, 0, 0, 0.281527, -1.58341, 0.391208, -2.96574)
+
+[node name="WheelRearL" parent="BaseOrigin" index="2"]
+transform = Transform3D(0.281527, 0, 0, 0, 0.281527, 0, 0, 0, 0.281527, -1.56572, 0.419983, 3.00957)

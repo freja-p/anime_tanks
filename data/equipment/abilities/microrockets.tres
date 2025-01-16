@@ -21,6 +21,7 @@ script = ExtResource("3_nb17b")
 ability_name = "MicroRockets"
 default_hardpoint = 1
 base_damage = 10.0
+secondary_damage = 5.0
 cooldown_resource = SubResource("Resource_s7c77")
 activation_type = 1
 duration = 2.0

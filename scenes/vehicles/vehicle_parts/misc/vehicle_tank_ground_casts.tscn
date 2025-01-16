@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c103g8px64f8m"]
+
+[ext_resource type="Script" path="res://scripts/entities/GroundCasts.gd" id="1_gtsgt"]
+
+[node name="GroundCasts" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0166063, -0.121243, 1.31364)
+script = ExtResource("1_gtsgt")
+
+[node name="L1" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68194, 0.963996, 1.19574)
+
+[node name="L2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68194, 0.963996, -0.397)
+
+[node name="L3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68194, 0.963996, -2.75155)
+
+[node name="R1" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54482, 0.963996, 1.19574)
+
+[node name="R2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54482, 0.963996, -0.397)
+
+[node name="R3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54482, 0.963996, -2.75155)

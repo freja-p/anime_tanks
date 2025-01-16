@@ -7,6 +7,7 @@ extends Resource
 @export var activation_sfx : AudioStream
 @export var default_hardpoint : Enums.Hardpoint
 @export var base_damage : float = 10.0
+@export var secondary_damage : float = 5.0
 @export var cooldown_resource : CooldownResource
 
 @export_category("Activation")

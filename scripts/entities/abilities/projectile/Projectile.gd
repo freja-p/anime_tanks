@@ -3,6 +3,7 @@ extends Node3D
 
 var shooter : Entity
 var damage : float
+var secondary_damage : float
 var dying : bool = false
 var ability_resource : Ability
 
