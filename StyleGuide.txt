@@ -14,8 +14,7 @@ Signals			snake_case		always in past tense "door_opened"
 Constants		CONSTANT_CASE	
 enum names		PascalCase	
 enum members	CONSTANT_CASE	
-*Prepend a single underscore (_) to virtual methods functions the user must override,
-private functions, and private variables.
+*Prepend a single underscore (_) to private functions, and private variables.
 
 Class Names
 Class names should be omitted by default. They should be added only when other 
