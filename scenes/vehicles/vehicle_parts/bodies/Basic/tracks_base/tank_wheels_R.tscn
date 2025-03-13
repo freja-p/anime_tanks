@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dw1jeqvxfap7i"]
 
 [ext_resource type="PackedScene" uid="uid://cchpvc0kfv05b" path="res://raw_assets/vehicles/meshes/tank_wheels_R.glb" id="1_aa38u"]
-[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/WheelSystem.gd" id="2_a468g"]
-[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/WheelArrays.gd" id="3_2a2a2"]
+[ext_resource type="Script" uid="uid://b6f24l837qi4h" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/WheelSystem.gd" id="2_a468g"]
+[ext_resource type="Script" uid="uid://qah7ib340w2r" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/WheelArrays.gd" id="3_2a2a2"]
 [ext_resource type="PackedScene" uid="uid://dbkwy7nmgv5w6" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/track_path.tscn" id="4_7t4w6"]
 [ext_resource type="PackedScene" uid="uid://t0oenpulh1lv" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/wheel_suspension.tscn" id="5_pp1tr"]
 

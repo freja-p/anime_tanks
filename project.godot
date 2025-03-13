@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Anime Tanks"
 run/main_scene="res://scenes/MAP_TestingGrounds_First.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -112,3 +112,5 @@ debug_f5={
 [physics]
 
 common/physics_jitter_fix=0.0
+3d/physics_engine="Jolt Physics"
+common/physics_engine="DEFAULT"

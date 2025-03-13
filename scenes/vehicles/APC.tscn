@@ -1,25 +1,25 @@
 [gd_scene load_steps=26 format=3 uid="uid://w6x72hj4juyi"]
 
-[ext_resource type="Script" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
+[ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
 [ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_khb0o"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="3_67187"]
+[ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="3_67187"]
 [ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/vehicle_parts/bodies/APC/VP_Turret_APC.tscn" id="3_cpnh4"]
 [ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_jfctr"]
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="4_m78uk"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="5_q4hkq"]
 [ext_resource type="Resource" uid="uid://bhl3w22s6bj14" path="res://data/factions/FAC_Ally.tres" id="6_ux2hk"]
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="6_uxbq3"]
-[ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="6_yhege"]
+[ext_resource type="Script" uid="uid://cl83r772itde6" path="res://scripts/entities/hitbox.gd" id="6_yhege"]
 [ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/vehicles/vehicle_parts/bodies/APC/VP_Body_APC.tscn" id="9_qvub4"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="10_6gqms"]
-[ext_resource type="Script" path="res://scenes/vehicles/EntityEventBus.gd" id="10_dopfq"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/input/InputController_Player.gd" id="11_kntdl"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/movement/VehicleController.gd" id="14_fyjrq"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="15_tcejk"]
+[ext_resource type="Script" uid="uid://dckjko7vv63dp" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="10_6gqms"]
+[ext_resource type="Script" uid="uid://d3j7r28flcie7" path="res://scenes/vehicles/EntityEventBus.gd" id="10_dopfq"]
+[ext_resource type="Script" uid="uid://biwi8yne3jh2w" path="res://scripts/entities/vehicle_components/input/InputController_Player.gd" id="11_kntdl"]
+[ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/vehicle_components/movement/VehicleController.gd" id="14_fyjrq"]
+[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="15_tcejk"]
 [ext_resource type="Curve" uid="uid://df6rs8hiswgty" path="res://data/vehicles/movement/apc/steer_limit_default.tres" id="15_u0dit"]
 [ext_resource type="Curve" uid="uid://msl348f3c7qf" path="res://data/vehicles/movement/apc/steer_brake_default.tres" id="16_xit5x"]
 [ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="17_5tj02"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="18_letig"]
+[ext_resource type="Script" uid="uid://cxqtswwjvb237" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="18_letig"]
 [ext_resource type="Resource" uid="uid://d35ou6o38qs4l" path="res://data/equipment/abilities/test_modifier/test_modifier_attachmod.tres" id="18_msfhw"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/vehicles/vehicle_parts/misc/health_manager.tscn" id="20_t70pv"]
 
@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141454, 1.72315, -0.427929
 script = ExtResource("10_dopfq")
 
 [node name="Wheel_Steering_L" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, 0.888991)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, 1.05025)
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.0
@@ -85,7 +85,7 @@ suspension_max_force = 37500.0
 mesh = ExtResource("4_m78uk")
 
 [node name="Wheel_Steering_R" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.812038, 0.467202, 0.888991)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73393, 0.467, 1.05)
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.0
@@ -99,7 +99,7 @@ suspension_max_force = 37500.0
 mesh = ExtResource("6_uxbq3")
 
 [node name="Wheel_L1" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, -0.216302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.015, 0.467202, -0.216302)
 use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_rest_length = 0.075
@@ -112,7 +112,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
 mesh = ExtResource("5_q4hkq")
 
 [node name="Wheel_L2" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.467202, -1.3089)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.015, 0.467202, -1.27681)
 use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_rest_length = 0.075
@@ -125,7 +125,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
 mesh = ExtResource("5_q4hkq")
 
 [node name="Wheel_R1" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869938, 0.467202, -0.213682)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734, 0.467202, -0.213682)
 use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_rest_length = 0.075
@@ -138,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
 mesh = ExtResource("6_uxbq3")
 
 [node name="Wheel_R2" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869939, 0.467202, -1.3089)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734, 0.467202, -1.27681)
 use_as_traction = true
 wheel_roll_influence = 0.0
 wheel_rest_length = 0.075

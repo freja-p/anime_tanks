@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://cxmwt8vh2vcr8"]
 
 [ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_lnkwm"]
-[ext_resource type="Script" path="res://scripts/entities/abilities/ability.gd" id="1_vn308"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="2_y6j0f"]
+[ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_vn308"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="2_y6j0f"]
 
 [resource]
 script = ExtResource("1_vn308")
 ability_name = "Ability"
 default_hardpoint = 0
 base_damage = 10.0
-cooldown = 1.0
+secondary_damage = 5.0
 cooldown_resource = ExtResource("1_lnkwm")
 activation_type = 0
 duration = 1.0
-burst_delay = 1.0
+time_between_burst = 1.0
 max_duration = 1.0
 spawn_logic = 0
 lifeTime = 2.0

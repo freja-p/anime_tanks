@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dl45v3otaysol"]
 
-[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/bodies/VehicleBody.gd" id="1_cg4qr"]
+[ext_resource type="Script" uid="uid://c7ccl5oqpl3ft" path="res://scenes/vehicles/vehicle_parts/bodies/VehicleBody.gd" id="1_cg4qr"]
 [ext_resource type="PackedScene" uid="uid://beg8jfwjlb3n0" path="res://scenes/vehicles/meshes/tank_body_base_2.tscn" id="2_5ntme"]
 [ext_resource type="PackedScene" uid="uid://uw0tm08or6a5" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/tank_wheels_L.tscn" id="3_271mc"]
 [ext_resource type="PackedScene" uid="uid://dw1jeqvxfap7i" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/tank_wheels_R.tscn" id="4_llhc3"]

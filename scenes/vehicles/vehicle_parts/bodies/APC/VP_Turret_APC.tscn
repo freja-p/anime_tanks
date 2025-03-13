@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://drlr26ngvwmgu"]
 
 [ext_resource type="PackedScene" uid="uid://c8vl4ew4tissx" path="res://raw_assets/vehicles/meshes/apc/apc_turret.glb" id="1_dicm0"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/turret/TurretComponent.gd" id="2_ire4y"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/turret/TurretController.gd" id="3_tccxv"]
+[ext_resource type="Script" uid="uid://dmk1ria1iol3q" path="res://scripts/entities/vehicle_components/turret/TurretComponent.gd" id="2_ire4y"]
+[ext_resource type="Script" uid="uid://ibgl1mcdhi1o" path="res://scripts/entities/vehicle_components/turret/TurretController.gd" id="3_tccxv"]
 
 [node name="Turret" instance=ExtResource("1_dicm0")]
 script = ExtResource("2_ire4y")

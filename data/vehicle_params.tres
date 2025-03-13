@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="VehicleParameters" load_steps=2 format=3 uid="uid://d3kysr0s4m433"]
 
-[ext_resource type="Script" path="res://scripts/entities/VehicleParameters.gd" id="1_sjnto"]
+[ext_resource type="Script" uid="uid://cym0qjb7pgfi2" path="res://scripts/entities/VehicleParameters.gd" id="1_sjnto"]
 
 [resource]
 script = ExtResource("1_sjnto")

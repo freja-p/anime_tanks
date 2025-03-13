@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AI_PatrolPathRegion_R" load_steps=3 format=3 uid="uid://ck17a8oiovpk3"]
 
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AI_PatrolPathRegion_R.gd" id="1_lav0k"]
+[ext_resource type="Script" uid="uid://bh0alje31idmb" path="res://scripts/entities/statemachines/ai/AI_PatrolPathRegion_R.gd" id="1_lav0k"]
 [ext_resource type="Curve3D" uid="uid://c8ikfoj5ibo5h" path="res://data/ai/MP_Static.tres" id="1_sstl7"]
 
 [resource]

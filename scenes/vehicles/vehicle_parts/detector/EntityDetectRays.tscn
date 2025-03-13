@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjwrtbvi6cax0"]
 
-[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/detector/EntityDetectInfo.gd" id="1_fbowf"]
+[ext_resource type="Script" uid="uid://beyywedow1yi5" path="res://scenes/vehicles/vehicle_parts/detector/EntityDetectInfo.gd" id="1_fbowf"]
 
 [node name="DetectCasts" type="Node3D"]
 script = ExtResource("1_fbowf")

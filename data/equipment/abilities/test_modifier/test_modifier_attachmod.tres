@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ModifierData" load_steps=8 format=3 uid="uid://d35ou6o38qs4l"]
 
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect.gd" id="1_g1p08"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierContext.gd" id="1_wfq4a"]
+[ext_resource type="Script" uid="uid://ypqm2dm01tjs" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect.gd" id="1_g1p08"]
+[ext_resource type="Script" uid="uid://cj6c1ee0xyjta" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierContext.gd" id="1_wfq4a"]
 [ext_resource type="Resource" uid="uid://3bpd4g2xb6fn" path="res://data/equipment/abilities/test_modifier/test_modifier_dot.tres" id="2_pd1t1"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="2_y0tyj"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect_AttachModToProjectile.gd" id="3_dg1fl"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="2_y0tyj"]
+[ext_resource type="Script" uid="uid://c3bw847og33ai" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect_AttachModToProjectile.gd" id="3_dg1fl"]
 
 [sub_resource type="Resource" id="Resource_u73tn"]
 script = ExtResource("1_wfq4a")

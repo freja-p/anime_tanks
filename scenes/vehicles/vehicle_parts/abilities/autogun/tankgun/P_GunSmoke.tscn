@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bsaak8simh14"]
 
 [ext_resource type="Curve" uid="uid://b8mdm2c7na0ly" path="res://scenes/vehicles/vehicle_parts/abilities/autogun/tankgun/P_GunSmoke/R_GunSmoke_ScaleCurve.tres" id="1_8hb0t"]
-[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/abilities/autogun/tankgun/P_GunSmoke/GunSmoke.gd" id="2_ix8ar"]
+[ext_resource type="Script" uid="uid://dcigac23jkikq" path="res://scenes/vehicles/vehicle_parts/abilities/autogun/tankgun/P_GunSmoke/GunSmoke.gd" id="2_ix8ar"]
 
 [sub_resource type="Gradient" id="Gradient_0nmdo"]
 offsets = PackedFloat32Array(0, 0.335106, 1)

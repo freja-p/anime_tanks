@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk5x2txr6415f"]
 
 [ext_resource type="PackedScene" uid="uid://resebl0uhjlc" path="res://raw_assets/vehicles/meshes/tank_wheel_single.glb" id="1_tsnkb"]
-[ext_resource type="Script" path="res://scenes/vehicles/meshes/WheelMeshScript.gd" id="2_yudxe"]
+[ext_resource type="Script" uid="uid://dx46qumfpyyuv" path="res://scenes/vehicles/meshes/WheelMeshScript.gd" id="2_yudxe"]
 
 [node name="wheel" node_paths=PackedStringArray("susArm", "wheel") instance=ExtResource("1_tsnkb")]
 script = ExtResource("2_yudxe")

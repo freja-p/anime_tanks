@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dff3ycjh7cwq3"]
 
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStateMachine.gd" id="1_i56g7"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStats.gd" id="2_fuqyu"]
+[ext_resource type="Script" uid="uid://drpv2kfktauis" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStateMachine.gd" id="1_i56g7"]
+[ext_resource type="Script" uid="uid://bivxrenk2oh1" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStats.gd" id="2_fuqyu"]
 [ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_v4wdn"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_attack.gd" id="4_dbixu"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_overwatch.gd" id="5_tjkgx"]
+[ext_resource type="Script" uid="uid://b4goog42l8d0u" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_attack.gd" id="4_dbixu"]
+[ext_resource type="Script" uid="uid://bxjstvnm0apvd" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_overwatch.gd" id="5_tjkgx"]
 
 [node name="AIFSM" type="Node" node_paths=PackedStringArray("startingState")]
 script = ExtResource("1_i56g7")

@@ -1,14 +1,3 @@
-[gd_resource type="Resource" script_class="AI_PatrolPathRegion_R" load_steps=3 format=3 uid="uid://dluxq0dnma3u1"]
-
-[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="1_8a6xq"]
-[ext_resource type="Script" path="res://scripts/vehicles/statemachines/AI/AI_PatrolPathRegion_R.gd" id="1_u41hh"]
+[gd_resource type="Resource" format=3 uid="uid://dluxq0dnma3u1"]
 
 [resource]
-script = ExtResource("1_u41hh")
-patrolPoints = ExtResource("1_8a6xq")
-radius = -1.0
-patrolRelativeToPosition = false
-overwatchAngleDegrees = 30.0
-overwatchDuration = 5.0
-overwatchAfterEachPath = false
-overwatchAfterEndOfPath = false

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ModifierData" load_steps=6 format=3 uid="uid://3bpd4g2xb6fn"]
 
 [ext_resource type="Resource" uid="uid://1rmcs2guisy5" path="res://data/equipment/abilities/test_modifier/test_context.tres" id="1_easi2"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect.gd" id="2_x886p"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect_DamageOverTime.gd" id="3_wjmcd"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="4_mhato"]
+[ext_resource type="Script" uid="uid://ypqm2dm01tjs" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect.gd" id="2_x886p"]
+[ext_resource type="Script" uid="uid://cgn4754idasyq" path="res://scripts/entities/vehicle_components/modifiers/effects/ModifierEffect_DamageOverTime.gd" id="3_wjmcd"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="4_mhato"]
 
 [sub_resource type="Resource" id="Resource_yt3sy"]
 script = ExtResource("3_wjmcd")

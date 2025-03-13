@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cegggm3e5yg4g"]
 
 [ext_resource type="PackedScene" uid="uid://cmoon7jtawrun" path="res://raw_assets/vehicles/meshes/tank_turret_base.glb" id="1_saw2s"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/turret/TurretComponent.gd" id="2_7616i"]
-[ext_resource type="Script" path="res://scripts/entities/vehicle_components/turret/TurretController.gd" id="3_42hjp"]
+[ext_resource type="Script" uid="uid://dmk1ria1iol3q" path="res://scripts/entities/vehicle_components/turret/TurretComponent.gd" id="2_7616i"]
+[ext_resource type="Script" uid="uid://ibgl1mcdhi1o" path="res://scripts/entities/vehicle_components/turret/TurretController.gd" id="3_42hjp"]
 [ext_resource type="Material" uid="uid://cquewirsbeb3f" path="res://raw_assets/vehicles/enemy.tres" id="5_qog68"]
 
 [node name="Turret" instance=ExtResource("1_saw2s")]

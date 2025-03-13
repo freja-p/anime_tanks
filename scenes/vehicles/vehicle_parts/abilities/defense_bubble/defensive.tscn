@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://qlmdyrvgr7o3"]
 
-[ext_resource type="Script" path="res://scenes/vehicles/DefensiveBase.gd" id="1_rhyqe"]
-[ext_resource type="Script" path="res://scripts/entities/hitbox.gd" id="2_mtm5j"]
+[ext_resource type="Script" uid="uid://bmb8hsqpntfvy" path="res://scenes/vehicles/DefensiveBase.gd" id="1_rhyqe"]
+[ext_resource type="Script" uid="uid://cl83r772itde6" path="res://scripts/entities/hitbox.gd" id="2_mtm5j"]
 [ext_resource type="Shape3D" uid="uid://usc5xfv0o2ot" path="res://scenes/vehicles/vehicle_parts/abilities/defense_bubble/VAC_DefenseBubble_Shape.tres" id="3_d3sys"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikx8k"]

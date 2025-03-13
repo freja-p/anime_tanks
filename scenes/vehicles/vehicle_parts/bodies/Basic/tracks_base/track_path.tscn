@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbkwy7nmgv5w6"]
 
-[ext_resource type="Script" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/TrackPath.gd" id="1_wibix"]
+[ext_resource type="Script" uid="uid://ftuupwo78ib1" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/TrackPath.gd" id="1_wibix"]
 [ext_resource type="ArrayMesh" uid="uid://cbfvg4i54acfn" path="res://raw_assets/vehicles/meshes/tank_track_segment.obj" id="2_ij1ad"]
 [ext_resource type="Curve3D" uid="uid://ctxcdl38opl8u" path="res://scenes/vehicles/vehicle_parts/bodies/Basic/tracks_base/VPC_TrackPath_Curve.tres" id="2_nby6o"]
 [ext_resource type="ArrayMesh" uid="uid://c8e6rs0jrgoe7" path="res://raw_assets/vehicles/meshes/tank_track_link.obj" id="3_uygmq"]

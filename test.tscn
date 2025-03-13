@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ds7uns07wt4eb"]
 
-[ext_resource type="Script" path="res://scripts/entities/statemachines/variable_store.gd" id="1_fteb8"]
+[ext_resource type="Script" uid="uid://c5r3wwrl65t6g" path="res://scripts/entities/statemachines/variable_store.gd" id="1_fteb8"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_fteb8")

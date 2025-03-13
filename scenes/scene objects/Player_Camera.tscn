@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dl70ddkvvevkk"]
 
-[ext_resource type="Script" path="res://scripts/camera/PlayerCam.gd" id="1_2tvwt"]
-[ext_resource type="Script" path="res://scripts/CursorRay.gd" id="3_kw06v"]
+[ext_resource type="Script" uid="uid://cdmkmvidq30oc" path="res://scripts/camera/PlayerCam.gd" id="1_2tvwt"]
+[ext_resource type="Script" uid="uid://2hev0xl0ocss" path="res://scripts/CursorRay.gd" id="3_kw06v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7y421"]
 albedo_color = Color(0.909804, 0.027451, 0.231373, 1)

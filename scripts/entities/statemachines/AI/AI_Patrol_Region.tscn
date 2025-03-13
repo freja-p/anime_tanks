@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://i4hwdqd0am7w"]
 
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStateMachine.gd" id="1_hwa1r"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStats.gd" id="2_erk8n"]
+[ext_resource type="Script" uid="uid://drpv2kfktauis" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStateMachine.gd" id="1_hwa1r"]
+[ext_resource type="Script" uid="uid://bivxrenk2oh1" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStats.gd" id="2_erk8n"]
 [ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_ogy5u"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_think.gd" id="4_cey6y"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_move.gd" id="5_t20ah"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_attack.gd" id="6_vi48c"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_patrolregion.gd" id="7_s3hwt"]
-[ext_resource type="Script" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_patrolwait.gd" id="8_sr8o7"]
+[ext_resource type="Script" uid="uid://bswfow7ruxbuu" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_think.gd" id="4_cey6y"]
+[ext_resource type="Script" uid="uid://dpomlkv3466jv" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_move.gd" id="5_t20ah"]
+[ext_resource type="Script" uid="uid://b4goog42l8d0u" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_attack.gd" id="6_vi48c"]
+[ext_resource type="Script" uid="uid://itsu78apmhfn" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_patrolregion.gd" id="7_s3hwt"]
+[ext_resource type="Script" uid="uid://blan0bdtuap6b" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_patrolwait.gd" id="8_sr8o7"]
 
 [node name="AIFSM" type="Node" node_paths=PackedStringArray("startingState")]
 script = ExtResource("1_hwa1r")

@@ -1,14 +1,14 @@
 [gd_scene load_steps=19 format=3 uid="uid://cuwrm66qa2p5p"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_6shsj"]
-[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://scenes/map objects/MP_PatrolPath_First.tres" id="3_8ifb2"]
+[ext_resource type="Script" uid="uid://c1a0gxbap6rdx" path="res://scripts/main.gd" id="1_6shsj"]
+[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://data/ai/MP_PatrolPath_First.tres" id="3_8ifb2"]
 [ext_resource type="PackedScene" uid="uid://cy6l3637hlisq" path="res://scenes/ui/overlay.tscn" id="4_due4o"]
 [ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="5_crdyg"]
-[ext_resource type="Script" path="res://scripts/ui/CombatHUD.gd" id="6_2ljtv"]
+[ext_resource type="Script" uid="uid://codbg4xumg8gf" path="res://scripts/ui/CombatHUD.gd" id="6_2ljtv"]
 [ext_resource type="PackedScene" uid="uid://c04huqsd4ev74" path="res://scenes/MAP_First.tscn" id="7_fjcds"]
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="8_03k8j"]
 [ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="9_gdvix"]
-[ext_resource type="Script" path="res://scripts/DevTools.gd" id="9_lte1c"]
+[ext_resource type="Script" uid="uid://dso76wc3fatdk" path="res://scripts/DevTools.gd" id="9_lte1c"]
 [ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="10_876im"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv3pq"]
