@@ -25,6 +25,7 @@ enum StatMultiplierType {
 
 enum HardpointStat {
 	DAMAGE,
+	SECONDARY_DAMAGE,
 	MAX_AMMO,
 	FIRE_RATE,
 	COOLDOWN_TIME,

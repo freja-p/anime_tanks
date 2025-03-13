@@ -18,6 +18,7 @@ func _ready() -> void:
 	mesh_instance_3d.mesh.height = 2 * radius
 	shape_cast_3d.shape.radius = radius
 
+
 func explode(on_explode_end : Callable) -> void:
 	tween_scale = create_tween()
 	tween_scale.tween_property(mesh_instance_3d, "scale", Vector3(1.0, 1.0, 1.0), duration).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -36,7 +37,7 @@ func explode(on_explode_end : Callable) -> void:
 func calculate_hit():
 	shape_cast_3d.force_shapecast_update()
 	if shape_cast_3d.is_colliding():
-		var collisions : Array[Entity]
+		var collisions : Array[Hitbox]
 		for i in shape_cast_3d.get_collision_count():
 			var collider = shape_cast_3d.get_collider(i)
 			if collider is Hitbox:

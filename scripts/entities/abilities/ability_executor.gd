@@ -116,6 +116,10 @@ func _execute_logic():
 					ability_resource.base_damage, 
 					ability_resource.default_hardpoint, 
 					Enums.HardpointStat.DAMAGE),
+			stat_calculator.get_hardpoint_stat(
+				ability_resource.secondary_damage, 
+				ability_resource.default_hardpoint, 
+				Enums.HardpointStat.SECONDARY_DAMAGE),
 			modifiers)
 					
 	if sfxPlayer.has_stream_playback(): sfxPlayer.play()

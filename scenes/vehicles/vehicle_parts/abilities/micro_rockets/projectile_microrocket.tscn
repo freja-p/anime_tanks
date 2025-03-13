@@ -48,5 +48,6 @@ collision_mask = 8
 collide_with_areas = true
 
 [node name="ExplosionVFX" parent="." instance=ExtResource("2_fpf1a")]
+raycast_hits = true
 
 [connection signal="timeout" from="TurnDelay" to="." method="_on_turn_delay_timeout"]
