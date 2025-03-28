@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwwodqhgvgobh"]
+
+[ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="1_ug6bx"]
+[ext_resource type="Material" uid="uid://c0kldihsaqwhf" path="res://data/textures/road_placeholder.tres" id="2_wpy61"]
+[ext_resource type="Material" uid="uid://0ti1s767wycv" path="res://data/textures/building_placeholder.tres" id="3_ocfgb"]
+[ext_resource type="Material" uid="uid://favjxlbqn4og" path="res://data/textures/ground_placeholder.tres" id="4_8ilb4"]
+[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="5_bjpop"]
+[ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="7_wgoni"]
+
+[node name="MovementTestStage" type="Node3D"]
+
+[node name="AimUI" parent="." node_paths=PackedStringArray("camera", "playerEntity") instance=ExtResource("1_ug6bx")]
+camera = NodePath("../PlayerCam")
+playerEntity = NodePath("../Apc")
+
+[node name="Road" type="CSGBox3D" parent="." groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8427, 0.8591, -21.785)
+use_collision = true
+size = Vector3(8, 0.1, 150)
+material = ExtResource("2_wpy61")
+
+[node name="Slope" type="CSGPolygon3D" parent="." groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.21811, 0.770248, 24.1654)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 3, 5, 3, 15, 0)
+depth = 15.0
+material = ExtResource("3_ocfgb")
+
+[node name="Slope2" type="CSGPolygon3D" parent="." groups=["terrain"]]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -9.21811, 0.770248, 9.16536)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 3, 5, 3, 15, 0)
+depth = 15.0
+material = ExtResource("3_ocfgb")
+
+[node name="JumpRamp1" type="CSGPolygon3D" parent="." groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.6, -52)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 2, 0, 2, 15, 0)
+depth = 15.0
+material = ExtResource("3_ocfgb")
+
+[node name="JumpRamp2" type="CSGPolygon3D" parent="." groups=["terrain"]]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0.77, -67)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 2, 0, 2, 15, 0)
+depth = 15.0
+material = ExtResource("3_ocfgb")
+
+[node name="Hill" type="CSGPolygon3D" parent="." groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0488, 0.802968, -23.5436)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 3, 6.525, 3, 18, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 16
+material = ExtResource("3_ocfgb")
+
+[node name="Ground" type="CSGBox3D" parent="." groups=["terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5374, 0.208712, -22.1196)
+use_collision = true
+size = Vector3(150, 1.193, 150)
+material = ExtResource("4_8ilb4")
+metadata/_edit_lock_ = true
+
+[node name="Apc" parent="." instance=ExtResource("5_bjpop")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 20.6794, 1.45874, 14.3658)
+
+[node name="PlayerCam" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("7_wgoni")]
+playerNode = NodePath("../Apc")
+
+[node name="Lighting" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5719, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.090328, -0.75192, -0.653037, -0.551763, -0.583668, 0.595726, -0.829095, 0.306511, -0.467603, 1.53725, 4.9307, -5.74771)
+light_energy = 0.466
+shadow_enabled = true
+shadow_normal_bias = 5.434
+shadow_blur = 0.105
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.145763, -0.453961, 0.879018, 0.553492, 0.773862, 0.307871, -0.82, 0.441654, 0.364064, 4.29666, 2.26333, -2.10357)
+shadow_enabled = true
+shadow_normal_bias = 5.434
+shadow_blur = 0.105
+
+[node name="Slaloms" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.4814, 4.80521, 22.0173)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Slaloms"]
+height = 8.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+height = 8.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+height = 8.0
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+height = 8.0
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+height = 8.0
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+height = 8.0
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+height = 8.0
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Slaloms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -84)
+height = 8.0
