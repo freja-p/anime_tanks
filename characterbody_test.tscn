@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds7uns07wt4eb"]
+
+[ext_resource type="Material" uid="uid://favjxlbqn4og" path="res://data/textures/ground_placeholder.tres" id="1_54cgo"]
+[ext_resource type="Material" uid="uid://c0kldihsaqwhf" path="res://data/textures/road_placeholder.tres" id="2_mnx2y"]
+[ext_resource type="Script" uid="uid://dvhg0ast5bj0q" path="res://characterbody_test.gd" id="3_vdjwb"]
+[ext_resource type="Material" uid="uid://2tmt1slo1hc1" path="res://raw_assets/vehicles/black.tres" id="4_veo6i"]
+[ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="5_fv2f5"]
+[ext_resource type="Environment" uid="uid://bx5dj6xv7oj06" path="res://scenes/map objects/default_environment.tres" id="6_lkhpf"]
+
+[sub_resource type="Curve" id="Curve_g14j6"]
+_data = [Vector2(0, 0.233441), 0.0, 0.0, 0, 0, Vector2(0.930769, 0.968498), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppyta"]
+size = Vector3(1.4, 0.4, 2.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ykrsh"]
+material = ExtResource("4_veo6i")
+size = Vector3(1.4, 0.4, 2.3)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204254, 0, 3.42035)
+use_collision = true
+size = Vector3(13.3111, 1, 22.4799)
+material = ExtResource("1_54cgo")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.48238, 0.489624, 8.78085)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1, 0.663297, 0.995735, 6.16405, 0.0027411)
+depth = 4.95
+material = ExtResource("2_mnx2y")
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826422, 0)
+script = ExtResource("3_vdjwb")
+suspension_curve = SubResource("Curve_g14j6")
+
+[node name="collider" type="CollisionShape3D" parent="player"]
+shape = SubResource("BoxShape3D_ppyta")
+
+[node name="mesh" type="MeshInstance3D" parent="player"]
+mesh = SubResource("BoxMesh_ykrsh")
+
+[node name="Front" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.90966)
+
+[node name="Back" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.888819)
+
+[node name="PlayerCam" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("5_fv2f5")]
+transform = Transform3D(-1, 1.71583e-15, -8.9407e-08, 5.32907e-15, 1, 2.98023e-08, 8.9407e-08, 2.98023e-08, -1, 0, 2.6456, -3.54679)
+environment = ExtResource("6_lkhpf")
+camYoffset = 1.0
+camZoffset = 4.0
+playerNode = NodePath("../player")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.817064, 0.359153, -0.451016, -1.02857e-08, 0.782271, 0.622938, 0.576546, -0.50898, 0.639166, 0, 3.89339, 0)
+light_color = Color(0.78, 0.78, 0.78, 1)
+light_energy = 0.763
+light_angular_distance = 6.67

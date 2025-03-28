@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cd7v155jcy53j"]
+[gd_scene load_steps=12 format=3 uid="uid://cd7v155jcy53j"]
 
 [ext_resource type="Script" uid="uid://c1a0gxbap6rdx" path="res://scripts/main.gd" id="1_gdlb2"]
 [ext_resource type="PackedScene" uid="uid://b63xor6085hej" path="res://scenes/map objects/ground.tscn" id="1_xxvtx"]
@@ -7,13 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="11_6kh3d"]
 [ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="11_8qdwy"]
 
-[sub_resource type="Resource" id="Resource_ruwgi"]
-metadata/__load_path__ = "res://scenes/vehicles/Vehicle Parts/turrets/projectile.tscn"
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w0nnq"]
-
-[sub_resource type="Resource" id="Resource_bm146"]
-metadata/__load_path__ = "res://scripts/kick.gd"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_whpr7"]
 size = Vector3(1, 1, 3)
@@ -30,26 +24,17 @@ agent_radius = 3.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1cf18"]
 
-[sub_resource type="Resource" id="Resource_5pf3v"]
-metadata/__load_path__ = "res://scripts/showsuspension.gd"
-
 [node name="Main" type="Node"]
 script = ExtResource("1_gdlb2")
 
 [node name="Ground" parent="." instance=ExtResource("1_xxvtx")]
 collision_mask = 3
 
-[node name="Player" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35856, 10.3445)
-projectileScene = SubResource("Resource_ruwgi")
-
 [node name="Kickbox" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.08136, 3.72899, -9.25364)
 collision_mask = 7
-inertia = Vector3(1, 1, 1)
 physics_material_override = SubResource("PhysicsMaterial_w0nnq")
-script = SubResource("Resource_bm146")
-gravity = 30.0
+inertia = Vector3(1, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Kickbox"]
 shape = SubResource("BoxShape3D_whpr7")
@@ -63,9 +48,6 @@ light_color = Color(0.952941, 0.882353, 0.74902, 1)
 shadow_enabled = true
 
 [node name="Walls" parent="." instance=ExtResource("9_lgbkn")]
-
-[node name="Enemy" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.74236)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_axbvl")
@@ -84,7 +66,6 @@ anchor_right = 0.218
 anchor_bottom = 0.213
 offset_right = -0.136017
 offset_bottom = -0.0240021
-script = SubResource("Resource_5pf3v")
 
 [node name="FRLabel" type="Label" parent="Suspension"]
 layout_mode = 1
@@ -151,7 +132,6 @@ clip_text = true
 
 [node name="PlayerCam" parent="." instance=ExtResource("11_6kh3d")]
 
-[connection signal="camera_rotated" from="PlayerCam" to="Player" method="_on_player_cam_camera_rotated"]
 [connection signal="camera_rotated" from="PlayerCam" to="AimUI" method="_on_player_cam_camera_rotated"]
 
 [editable path="Ground"]

@@ -24,3 +24,12 @@ func get_target_aim() -> Vector3:
 	if input.has_method("get_current_aim"):
 		return input.get_current_aim()
 	return get_barrel_aim()
+
+func get_wheels() -> Array[VehicleWheel3D]:
+	var wheels : Array[VehicleWheel3D] = []
+	for c in get_children():
+		if c is VehicleWheel3D:
+			wheels.append(c)
+			
+	return wheels
+	

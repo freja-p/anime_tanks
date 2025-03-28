@@ -1,6 +1,8 @@
 class_name StatCalculator
 extends Node
-## Mantains and provide the most current values of entity stats
+## Entity component for providing up to date stat values
+##
+## Provides the most current values of entity stats
 
 @export var modifier_handler : ModifierHandler
 

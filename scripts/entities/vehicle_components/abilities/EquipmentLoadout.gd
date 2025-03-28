@@ -1,6 +1,11 @@
 class_name EquipmentLoadout
 extends Node
 
+## Entity component for ability management
+##
+## Maintains the list of active equipment abilities available to the vehicle
+## and allows other components to use the abilities
+
 signal equipment_set(executor : AbilityExecutor)
 
 @export var bodyComponent : Node3D

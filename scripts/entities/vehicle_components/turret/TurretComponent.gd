@@ -1,6 +1,8 @@
 class_name TurretComponent
 extends Node3D
 
+## Entity Component for turret movement and controls
+
 signal aiming_at_entity_state_changed(isAiming : bool, entity : Entity)
 signal turret_target_reached
 

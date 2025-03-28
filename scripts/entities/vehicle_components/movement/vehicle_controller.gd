@@ -1,12 +1,12 @@
 class_name VehicleController
 extends Node
 
-const STEER_HARD_LIMIT = deg_to_rad(30)
-const STEER_SPEED_LIMIT = 25.0
-const STEER_SPEED = 1.0
+const STEER_HARD_LIMIT : float = deg_to_rad(30)
+const STEER_SPEED_LIMIT : float = 25.0
+const STEER_SPEED : float = 1.0
 
-const ENGINE_SPEED_LIMIT = 35
-const BRAKE_FORCE = 60
+const ENGINE_SPEED_LIMIT : float = 35.0
+const BRAKE_FORCE : float = 60.0
 
 @export var steerLimitCurve : Curve
 @export var steerBrakeCurve : Curve
@@ -19,9 +19,9 @@ var velocity_angle : float
 
 var braking : bool = false
 
-var _force_ratio := 0.0
-var _brake_ratio := 0.0
-var _turn_ratio := 0.0
+var _force_ratio : float = 0.0
+var _brake_ratio : float = 0.0
+var _turn_ratio : float = 0.0
 
 func _physics_process(delta):
 	_body = get_parent() as VehicleBody3D
@@ -36,6 +36,7 @@ func _physics_process(delta):
 		#steer_speed_limiter = steerLimitCurve.sample(speed / STEER_SPEED_LIMIT)
 	var steer_speed_limiter = steerLimitCurve.sample(speed / STEER_SPEED_LIMIT)
 	var steer_target = min(_turn_ratio,steer_speed_limiter) * STEER_HARD_LIMIT
+	steer_target = _turn_ratio * STEER_HARD_LIMIT
 	_body.steering = move_toward(_body.steering, steer_target, STEER_SPEED * delta)
 	
 	_body.engine_force = 25 * engineForceCurve.sample(speed / ENGINE_SPEED_LIMIT) * _force_ratio

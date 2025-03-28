@@ -1,5 +1,7 @@
 extends IInputController
 
+## Entity Component for controlling vehicle movement
+
 @export var body : RigidBody3D
 @export var vehicleController : Node
 @export var turretComponent : TurretComponent

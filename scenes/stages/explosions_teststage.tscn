@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://c0kldihsaqwhf" path="res://data/textures/road_placeholder.tres" id="2_vahen"]
 [ext_resource type="Material" uid="uid://0ti1s767wycv" path="res://data/textures/building_placeholder.tres" id="3_ii0mq"]
 [ext_resource type="Material" uid="uid://favjxlbqn4og" path="res://data/textures/ground_placeholder.tres" id="4_cxdv4"]
-[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="5_0umsw"]
+[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="5_ocnk7"]
 [ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="6_nqo74"]
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="7_1wu5r"]
 
@@ -24,6 +24,7 @@ playerEntity = NodePath("../Apc")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." groups=["terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8427, 0.84958, -21.785)
+use_collision = true
 size = Vector3(5.33496, 0.0888672, 91.1985)
 material = ExtResource("2_vahen")
 
@@ -46,8 +47,8 @@ size = Vector3(77.0747, 1.19287, 92.3052)
 material = ExtResource("4_cxdv4")
 metadata/_edit_lock_ = true
 
-[node name="Apc" parent="." instance=ExtResource("5_0umsw")]
-transform = Transform3D(-0.987546, 0, -0.157331, 0, 1, 0, 0.157331, 0, -0.987546, 18.5366, 0.805148, 19.4597)
+[node name="Apc" parent="." instance=ExtResource("5_ocnk7")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 20.6794, 1.32677, 14.3658)
 
 [node name="ApcAi" parent="." instance=ExtResource("6_nqo74")]
 transform = Transform3D(-0.182287, 0, -0.983245, 0, 1, 0, 0.983245, 0, -0.182287, -11.2006, 0.805148, -4.7521)

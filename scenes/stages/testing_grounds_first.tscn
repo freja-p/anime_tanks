@@ -1,15 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://cuwrm66qa2p5p"]
+[gd_scene load_steps=17 format=3 uid="uid://cuwrm66qa2p5p"]
 
-[ext_resource type="Script" uid="uid://c1a0gxbap6rdx" path="res://scripts/main.gd" id="1_6shsj"]
-[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://data/ai/MP_PatrolPath_First.tres" id="3_8ifb2"]
-[ext_resource type="PackedScene" uid="uid://cy6l3637hlisq" path="res://scenes/ui/overlay.tscn" id="4_due4o"]
-[ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="5_crdyg"]
-[ext_resource type="Script" uid="uid://codbg4xumg8gf" path="res://scripts/ui/CombatHUD.gd" id="6_2ljtv"]
-[ext_resource type="PackedScene" uid="uid://c04huqsd4ev74" path="res://scenes/MAP_First.tscn" id="7_fjcds"]
-[ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="8_03k8j"]
-[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="9_gdvix"]
-[ext_resource type="Script" uid="uid://dso76wc3fatdk" path="res://scripts/DevTools.gd" id="9_lte1c"]
-[ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="10_876im"]
+[ext_resource type="Script" uid="uid://c1a0gxbap6rdx" path="res://scripts/main.gd" id="1_ssmlc"]
+[ext_resource type="Script" uid="uid://dso76wc3fatdk" path="res://scripts/DevTools.gd" id="2_u5frx"]
+[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://data/ai/MP_PatrolPath_First.tres" id="3_llxvm"]
+[ext_resource type="PackedScene" uid="uid://cy6l3637hlisq" path="res://scenes/ui/overlay.tscn" id="4_grtf3"]
+[ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="5_8ts6t"]
+[ext_resource type="Script" uid="uid://codbg4xumg8gf" path="res://scripts/ui/CombatHUD.gd" id="6_yfjev"]
+[ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="7_vbuww"]
+[ext_resource type="Environment" uid="uid://bx5dj6xv7oj06" path="res://scenes/map objects/default_environment.tres" id="8_ixq3o"]
+[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="9_1808j"]
+[ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="10_6ip3w"]
+[ext_resource type="PackedScene" uid="uid://c04huqsd4ev74" path="res://scenes/stages/testing_grounds_3d_map.tscn" id="11_6wg8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv3pq"]
 size = Vector3(303.221, 20.5594, 252.592)
@@ -29,34 +30,18 @@ size = Vector2(100, 100)
 vertices = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50)
 polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r41df"]
-sky_top_color = Color(0.439216, 0.615686, 0.858824, 1)
-ground_bottom_color = Color(0.223529, 0.4, 0.235294, 1)
-ground_horizon_color = Color(0.65098, 0.658824, 0.67451, 1)
-sun_angle_max = 36.37
-
-[sub_resource type="Sky" id="Sky_bdke5"]
-sky_material = SubResource("ProceduralSkyMaterial_r41df")
-
-[sub_resource type="Environment" id="Environment_0dimq"]
-background_mode = 2
-background_color = Color(0.337255, 0.545098, 0.803922, 1)
-sky = SubResource("Sky_bdke5")
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
-
 [sub_resource type="BoxMesh" id="BoxMesh_r2ji0"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("hud", "player")]
-script = ExtResource("1_6shsj")
+script = ExtResource("1_ssmlc")
 hud = NodePath("HUD")
 player = NodePath("Apc")
 
 [node name="DevTools" type="Node" parent="."]
-script = ExtResource("9_lte1c")
+script = ExtResource("2_u5frx")
 
 [node name="Path3D" type="Path3D" parent="."]
-curve = ExtResource("3_8ifb2")
+curve = ExtResource("3_llxvm")
 
 [node name="Spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.54544, 0)
@@ -84,15 +69,15 @@ collision_mask = 9
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBox"]
 shape = SubResource("BoxShape3D_xv3pq")
 
-[node name="DebugOverlay" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("4_due4o")]
+[node name="DebugOverlay" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("4_grtf3")]
 entity = NodePath("../Apc")
 
-[node name="AimUI" parent="." node_paths=PackedStringArray("camera", "playerEntity") instance=ExtResource("5_crdyg")]
+[node name="AimUI" parent="." node_paths=PackedStringArray("camera", "playerEntity") instance=ExtResource("5_8ts6t")]
 camera = NodePath("../PlayerCam")
 playerEntity = NodePath("../Apc")
 
 [node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player_entity")]
-script = ExtResource("6_2ljtv")
+script = ExtResource("6_yfjev")
 player_entity = NodePath("../Apc")
 
 [node name="Control" type="Control" parent="HUD"]
@@ -178,23 +163,23 @@ mesh = SubResource("PlaneMesh_scogn")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="NavigationRegion3D/MeshInstance3D"]
 navigation_mesh = SubResource("NavigationMesh_bo7gk")
 
-[node name="PlayerCam" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("8_03k8j")]
+[node name="PlayerCam" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("7_vbuww")]
 playerNode = NodePath("../Apc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="PlayerCam"]
-environment = SubResource("Environment_0dimq")
+environment = ExtResource("8_ixq3o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_r2ji0")
 
-[node name="Apc" parent="." instance=ExtResource("9_gdvix")]
+[node name="Apc" parent="." instance=ExtResource("9_1808j")]
 transform = Transform3D(0.0941952, 0, 0.995554, 0, 1, 0, -0.995554, 0, 0.0941952, -53.6628, 0.484735, -100.283)
 
-[node name="ApcAi" parent="." instance=ExtResource("10_876im")]
+[node name="ApcAi" parent="." instance=ExtResource("10_6ip3w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9952, 0, -97.39)
 
-[node name="ApcAi2" parent="." instance=ExtResource("10_876im")]
+[node name="ApcAi2" parent="." instance=ExtResource("10_6ip3w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9952, 0, -85.9824)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -202,6 +187,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.453, -1.90735e-06, -89.87
 use_collision = true
 size = Vector3(7.11735, 1.88504, 7.60901)
 
-[node name="Map" parent="." groups=["terrain"] instance=ExtResource("7_fjcds")]
+[node name="Map" parent="." groups=["terrain"] instance=ExtResource("11_6wg8o")]
 
 [connection signal="body_entered" from="DeathBox" to="." method="_on_death_box_body_entered"]

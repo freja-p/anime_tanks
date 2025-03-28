@@ -1,7 +1,8 @@
 class_name ModifierHandler
 extends Node
+## Entity Component for tracking active modifiers
+## 
 ## Collects and maintains the list of active [Modifier]s on an [Entity]
-##
 ## This class is the first object that will receive any _modifiers applied to it 
 ## from any source, regardless if it comes from an external source or the entity
 ## itself. 

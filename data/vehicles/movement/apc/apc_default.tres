@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="APCData" load_steps=2 format=3 uid="uid://cyr80os6pan33"]
+
+[ext_resource type="Script" uid="uid://cpfsykw5xbodt" path="res://scripts/entities/vehicle_components/movement/apc_data.gd" id="1_lu388"]
+
+[resource]
+script = ExtResource("1_lu388")
+mass = 5000.0
+STEER_HARD_LIMIT = 0.523599
+STEER_SPEED_LIMIT = 25.0
+STEER_SPEED = 1.0
+ENGINE_SPEED_LIMIT = 35.0
+BRAKE_FORCE = 60.0
+roll_influence = 0.5
+rest_length = 0.075
+stiffness = 40.0
+max_force = 37500.0
+compression = 0.5
+relaxation = 0.6
+sw_friction_slip = 10.5
+dw_friction_slip = 10.5
+metadata/_custom_type_script = "uid://cpfsykw5xbodt"

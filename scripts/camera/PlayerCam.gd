@@ -1,12 +1,13 @@
 extends Camera3D
 
-var raycast_result : Dictionary
 
+@export var camYoffset : float = 3
+@export var camZoffset : float = 8
+
+var raycast_result : Dictionary
 var anchorPoint : Vector3
 var anchorBasis : Basis
 var lookTarget : Node3D
-var camYoffset : float = 3
-var camZoffset : float = 8
 
 var cursorTarget : Vector3
 var targetRot : Vector3
@@ -24,6 +25,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	anchorBasis = playerNode.basis
+	anchorBasis.z = -anchorBasis.z
 	targetRot = anchorBasis.get_euler()
 	
 	

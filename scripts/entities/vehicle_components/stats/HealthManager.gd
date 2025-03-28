@@ -1,6 +1,8 @@
 class_name HealthManager
 extends Node
 
+## Entity Component for tracking and applying damage taken
+
 signal damage_taken(damage : float)
 
 const dot_timer_tick_rate : float = 0.25
