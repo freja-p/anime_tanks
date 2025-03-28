@@ -2,7 +2,8 @@ class_name Entity_Vehicle
 extends Entity
 
 @export var health : float = 100
-@export var defaultLoadout : Loadout
+@export var loadout : Loadout
+@export var vehicle_data : APCData
 
 @onready var turret = %Turret
 @onready var input = %InputController
@@ -13,7 +14,8 @@ extends Entity
 #@onready var entity_detector: EntityDetector = $EntityDetector
 
 func _ready():
-	equipmentLoadout.set_equipment_loadout(defaultLoadout)
+	equipmentLoadout.set_equipment_loadout(loadout)
+	load_vehicle_data(vehicle_data)
 
 
 func get_barrel_aim() -> Vector3:
@@ -32,4 +34,9 @@ func get_wheels() -> Array[VehicleWheel3D]:
 			wheels.append(c)
 			
 	return wheels
+
+func load_vehicle_data(vehicle_data : APCData) -> void:
+	return
 	
+func save_vehicle_data(vehicle_data : APCData) -> void:
+	ResourceSaver.save(vehicle_data)

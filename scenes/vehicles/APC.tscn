@@ -1,10 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://w6x72hj4juyi"]
+[gd_scene load_steps=24 format=3 uid="uid://w6x72hj4juyi"]
 
 [ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
-[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_khb0o"]
-[ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="3_67187"]
+[ext_resource type="Resource" uid="uid://cyr80os6pan33" path="res://data/vehicles/movement/apc/apc_default.tres" id="2_1l833"]
 [ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/vehicles/vehicle_parts/bodies/APC/VP_Turret_APC.tscn" id="3_cpnh4"]
-[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_jfctr"]
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="4_m78uk"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="5_q4hkq"]
 [ext_resource type="Resource" uid="uid://bhl3w22s6bj14" path="res://data/factions/FAC_Ally.tres" id="6_ux2hk"]
@@ -25,11 +23,6 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_irkgx"]
 
-[sub_resource type="Resource" id="Resource_yi2k5"]
-script = ExtResource("3_67187")
-primary = ExtResource("2_khb0o")
-secondary = ExtResource("3_jfctr")
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nsq0u"]
 points = PackedVector3Array(1.55437, 0.812815, 1.5055, 1.11578, 0.79121, 3.12206, 1.10787, -1.65173e-07, 2.33352, 1.55437, 0.812815, -2.048, 1.23053, 1.13178, -1.32222, 1.18548, 1.17499, 0.556008, 1.00865, 1.30603, 0.857659, -1.11552, 0.79121, 3.12257, 0.943816, -1.65173e-07, 2.33402, 1.10787, -1.65173e-07, 1.82891, 1.04791, -1.65173e-07, -1.83341, -1.55472, 0.812815, -2.048, 1.00834, 1.30603, -1.83341, 1.18518, 1.17499, -1.32222, -2.09808e-05, 1.30603, 0.852091, -1.00869, 1.3059, 0.857659, -1.55472, 0.812815, 1.506, -1.10791, -1.65173e-07, 2.33402, -1.04856, -1.65173e-07, -1.83341, -1.23118, 1.13178, -1.32222, -1.18583, 1.17499, -1.32222, -1.00899, 1.3059, -1.83341, -0.000325322, 1.30603, -1.83341, -1.10791, -1.65173e-07, 1.82891, -1.00899, 1.3059, -1.32222, -1.18552, 1.17499, 0.556514)
 
@@ -43,7 +36,7 @@ mass = 5000.0
 physics_material_override = SubResource("PhysicsMaterial_irkgx")
 center_of_mass_mode = 1
 script = ExtResource("1_lpcwq")
-defaultLoadout = SubResource("Resource_yi2k5")
+vehicle_data = ExtResource("2_1l833")
 faction = ExtResource("6_ux2hk")
 
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
