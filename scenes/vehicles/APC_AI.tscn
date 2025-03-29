@@ -9,7 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="8_v88wp"]
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="9_rj1dr"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="10_xml00"]
-[ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/vehicle_components/movement/vehicle_controller.gd" id="11_kftdn"]
+[ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/vehicle_components/movement/vehicle_controller_apc.gd" id="11_kftdn"]
 [ext_resource type="Script" uid="uid://bhby2wa46uakr" path="res://scripts/entities/vehicle_components/input/InputController_AI.gd" id="11_rqjgl"]
 [ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="12_6ofvh"]
 [ext_resource type="Script" uid="uid://dckjko7vv63dp" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="13_yifmc"]

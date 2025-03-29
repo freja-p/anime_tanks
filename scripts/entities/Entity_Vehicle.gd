@@ -3,7 +3,7 @@ extends Entity
 
 @export var health : float = 100
 @export var loadout : Loadout
-@export var vehicle_data : APCData
+@export var vehicle_data_override : APCData
 
 @onready var turret = %Turret
 @onready var input = %InputController
@@ -15,7 +15,6 @@ extends Entity
 
 func _ready():
 	equipmentLoadout.set_equipment_loadout(loadout)
-	load_vehicle_data(vehicle_data)
 
 
 func get_barrel_aim() -> Vector3:
@@ -26,17 +25,3 @@ func get_target_aim() -> Vector3:
 	if input.has_method("get_current_aim"):
 		return input.get_current_aim()
 	return get_barrel_aim()
-
-func get_wheels() -> Array[VehicleWheel3D]:
-	var wheels : Array[VehicleWheel3D] = []
-	for c in get_children():
-		if c is VehicleWheel3D:
-			wheels.append(c)
-			
-	return wheels
-
-func load_vehicle_data(vehicle_data : APCData) -> void:
-	return
-	
-func save_vehicle_data(vehicle_data : APCData) -> void:
-	ResourceSaver.save(vehicle_data)

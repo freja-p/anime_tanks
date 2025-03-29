@@ -13,7 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="11_27y6j"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="12_7tsnh"]
 [ext_resource type="Script" uid="uid://biwi8yne3jh2w" path="res://scripts/entities/vehicle_components/input/InputController_Player.gd" id="13_wb8t1"]
-[ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/vehicle_components/movement/vehicle_controller.gd" id="14_eyjcx"]
+[ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/vehicle_components/movement/vehicle_controller_apc.gd" id="14_eyjcx"]
 [ext_resource type="Curve" uid="uid://df6rs8hiswgty" path="res://data/vehicles/movement/apc/steer_limit_default.tres" id="15_m7730"]
 [ext_resource type="Curve" uid="uid://msl348f3c7qf" path="res://data/vehicles/movement/apc/steer_brake_default.tres" id="16_paqet"]
 [ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="17_klq6q"]
