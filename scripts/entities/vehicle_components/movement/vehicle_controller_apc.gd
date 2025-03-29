@@ -17,9 +17,11 @@ var _force_ratio : float = 0.0
 var _brake_ratio : float = 0.0
 var _turn_ratio : float = 0.0
 
+
 func _ready() -> void:
 	if vehicle_data:
 		update_vehicle_data(vehicle_data)
+		
 		
 func _physics_process(delta) -> void:
 	_body = get_parent() as VehicleBody3D
@@ -42,6 +44,7 @@ func _physics_process(delta) -> void:
 	_body.engine_force = _body.mass * vehicle_data.enginePowerCurve.sample(speed) * ENGINE_ACCELERATION_FACTOR * _force_ratio
 	_body.brake = vehicle_data.BRAKE_FORCE * _brake_ratio
 	
+	
 func get_wheels() -> Array[VehicleWheel3D]:
 	var wheels : Array[VehicleWheel3D] = []
 	for c in get_children():
@@ -49,6 +52,7 @@ func get_wheels() -> Array[VehicleWheel3D]:
 			wheels.append(c)
 			
 	return wheels
+	
 	
 func apply_forward(forward_ratio : float):
 	if is_zero_approx(forward_ratio):
@@ -82,7 +86,7 @@ func apply_brake(brake_ratio : float):
 func turn(turn_ratio : float):
 	_turn_ratio = -clampf(turn_ratio, -1.0, 1.0)
 	
-
+	
 func update_vehicle_data(new_vehicle_data : APCData) -> void:
 	var wheels : Array[VehicleWheel3D] = get_wheels()
 	

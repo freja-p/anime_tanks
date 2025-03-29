@@ -3,7 +3,7 @@ extends Entity
 
 @export var health : float = 100
 @export var loadout : Loadout
-@export var vehicle_data_override : APCData
+# @export var vehicle_data_override : APCData
 
 @onready var turret = %Turret
 @onready var input = %InputController
@@ -12,6 +12,7 @@ extends Entity
 @onready var health_manager: HealthManager = $HealthManager
 @onready var stat_calculator: StatCalculator = $StatCalculator
 #@onready var entity_detector: EntityDetector = $EntityDetector
+@onready var vehicle_controller: VehicleControllerAPC = $VehicleController
 
 func _ready():
 	equipmentLoadout.set_equipment_loadout(loadout)
