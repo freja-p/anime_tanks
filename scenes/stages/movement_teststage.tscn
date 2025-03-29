@@ -36,14 +36,14 @@ material = ExtResource("3_ocfgb")
 [node name="JumpRamp1" type="CSGPolygon3D" parent="." groups=["terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.6, -52)
 use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 2, 0, 2, 15, 0)
+polygon = PackedVector2Array(0, 0, 0, 3, 0, 3, 15, 0)
 depth = 15.0
 material = ExtResource("3_ocfgb")
 
 [node name="JumpRamp2" type="CSGPolygon3D" parent="." groups=["terrain"]]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0.77, -67)
 use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 2, 0, 2, 15, 0)
+polygon = PackedVector2Array(0, 0, 0, 3, 0, 3, 15, 0)
 depth = 15.0
 material = ExtResource("3_ocfgb")
 
@@ -90,32 +90,40 @@ shadow_blur = 0.105
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.4814, 4.80521, 22.0173)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Slaloms"]
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72)
+use_collision = true
 height = 8.0
 
 [node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Slaloms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -84)
+use_collision = true
 height = 8.0
