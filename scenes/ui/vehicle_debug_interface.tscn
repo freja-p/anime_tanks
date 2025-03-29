@@ -9,7 +9,7 @@
 script = ExtResource("1_qf773")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -305.0
@@ -46,6 +46,7 @@ text = "Current Value"
 [node name="TextEdit" type="SpinBox" parent="PanelContainer/Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+min_value = -100.0
 
 [node name="HSlider" type="CheckButton" parent="PanelContainer/Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
