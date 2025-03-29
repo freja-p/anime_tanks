@@ -6,7 +6,7 @@ signal cooldown_ended
 var stat_calculator : StatCalculator
 var cooldown_resource : CooldownResource
 var ability_resource : Ability
-	
+var hardpoint : Enums.Hardpoint
 	
 func ready_to_activate() -> bool:
 	return true

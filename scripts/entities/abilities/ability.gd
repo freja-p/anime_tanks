@@ -5,7 +5,6 @@ extends Resource
 @export var ability_name : String = "Ability"
 @export var icon : Image
 @export var activation_sfx : AudioStream
-@export var default_hardpoint : Enums.Hardpoint
 @export var base_damage : float = 10.0
 @export var secondary_damage : float = 5.0
 @export var cooldown_resource : CooldownResource
@@ -33,9 +32,3 @@ extends Resource
 
 @export_category("AI")
 @export var selection_weight : int = 10
-
-func create_executor(arg_ownerEntity : Entity, stat_calculator : StatCalculator) -> AbilityExecutor:
-	var executor : AbilityExecutor = preload("res://scenes/vehicles/vehicle_parts/abilities/AbilityExecutor.tscn").instantiate()
-	executor.construct(self, arg_ownerEntity, stat_calculator)
-	executor.name = ability_name
-	return executor

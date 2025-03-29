@@ -16,8 +16,8 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 	
-	ammo_count = stat_calculator.get_hardpoint_stat(cooldown_resource.magazine_size, ability_resource.default_hardpoint, Enums.HardpointStat.MAX_AMMO)
-	ammo_max = stat_calculator.get_hardpoint_stat(cooldown_resource.magazine_size, ability_resource.default_hardpoint, Enums.HardpointStat.MAX_AMMO)
+	ammo_count = stat_calculator.get_hardpoint_stat(cooldown_resource.magazine_size, hardpoint, Enums.HardpointStat.MAX_AMMO)
+	ammo_max = stat_calculator.get_hardpoint_stat(cooldown_resource.magazine_size, hardpoint, Enums.HardpointStat.MAX_AMMO)
 
 
 func ready_to_activate() -> bool:
@@ -32,16 +32,16 @@ func start_cooldown() -> bool:
 
 	current_ammo_updated.emit(ammo_count)
 	if ammo_count > 0:
-		timer.start(stat_calculator.get_hardpoint_stat(cooldown_resource.time_between_shots, ability_resource.default_hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
+		timer.start(stat_calculator.get_hardpoint_stat(cooldown_resource.time_between_shots, hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
 	else:
 		reload_started.emit()
-		timer.start(stat_calculator.get_hardpoint_stat(cooldown_resource.time_to_reload, ability_resource.default_hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
+		timer.start(stat_calculator.get_hardpoint_stat(cooldown_resource.time_to_reload, hardpoint, Enums.HardpointStat.COOLDOWN_TIME))
 	return true
 	
 	
 func _on_timer_timeout() -> void:
 	if ammo_count <= 0:
-		ammo_max = stat_calculator.get_hardpoint_stat(cooldown_resource.magazine_size, ability_resource.default_hardpoint, Enums.HardpointStat.MAX_AMMO)
+		ammo_max = stat_calculator.get_hardpoint_stat(cooldown_resource.magazine_size, hardpoint, Enums.HardpointStat.MAX_AMMO)
 		ammo_count = ammo_max
 	cooldown_ended.emit()
 	

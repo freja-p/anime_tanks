@@ -20,12 +20,15 @@ func _ready():
 	modifierHandler.modifier_removed.connect(_on_modifier_removed)
 
 
-func set_equipment(hardPoint : Enums.Hardpoint, ability : Ability):
-	var executor = ability.create_executor(get_parent() as Entity, stat_calculator)
+func set_equipment(hardpoint : Enums.Hardpoint, ability : Ability):
+	var executor : AbilityExecutor = preload("res://scenes/vehicles/vehicle_parts/abilities/AbilityExecutor.tscn").instantiate()
+	executor.construct(ability, hardpoint, get_parent() as Entity, stat_calculator)
+	executor.name = ability.ability_name
 	executor.stat_calculator = stat_calculator
-	_equipped[hardPoint] = executor
+	_equipped[hardpoint] = executor
 	add_child(executor)
 
+	return executor
 
 func set_equipment_loadout(loadout : Loadout):
 	for hardpoint in Enums.Hardpoint.values():

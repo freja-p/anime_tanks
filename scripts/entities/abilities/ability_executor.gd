@@ -23,7 +23,8 @@ var ability_resource : Ability
 var cooldown_resource : CooldownResource
 var cooldown : CooldownInterface
 var ownerEntity : Entity
-var hardPoint : Node3D
+var hardpoint : Enums.Hardpoint
+var hardpointNode : Node3D
 var stat_calculator : StatCalculator
 var logic : Callable
 
@@ -54,9 +55,10 @@ func _ready():
 	_currentState = AbilityState.READY
 
 
-func construct(ability : Ability, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
+func construct(ability : Ability, arg_hardpoint : Enums.Hardpoint, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
 	ownerEntity = arg_ownerEntity
-	hardPoint = arg_ownerEntity.get_hardpoint(ability.default_hardpoint)
+	hardpoint = arg_hardpoint
+	hardpointNode = arg_ownerEntity.get_hardpoint(arg_hardpoint)
 	ability_resource = ability
 	
 	cooldown = ability.cooldown_resource.create_instance(stat_calculator, ability)
@@ -110,15 +112,15 @@ func activate(toggle_on : bool = true) -> bool:
 func _execute_logic():
 	AbilityLogicManager.execute_logic(
 			ability_resource, 
-			hardPoint, 
+			hardpointNode,
 			ownerEntity, 
 			stat_calculator.get_hardpoint_stat(
 					ability_resource.base_damage, 
-					ability_resource.default_hardpoint, 
+					hardpoint, 
 					Enums.HardpointStat.DAMAGE),
 			stat_calculator.get_hardpoint_stat(
 				ability_resource.secondary_damage, 
-				ability_resource.default_hardpoint, 
+				hardpoint, 
 				Enums.HardpointStat.SECONDARY_DAMAGE),
 			modifiers)
 					

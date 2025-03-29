@@ -21,7 +21,7 @@ func start_cooldown() -> bool:
 	if not timer.is_stopped():
 		return false
 	
-	current_cooldown = stat_calculator.get_hardpoint_stat(cooldown_resource.time_between_shots, ability_resource.default_hardpoint, Enums.HardpointStat.COOLDOWN_TIME)
+	current_cooldown = stat_calculator.get_hardpoint_stat(cooldown_resource.time_between_shots, hardpoint, Enums.HardpointStat.COOLDOWN_TIME)
 	timer.start(current_cooldown)
 
 	return true

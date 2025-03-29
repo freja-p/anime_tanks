@@ -73,7 +73,7 @@ _data = {
 &"explode": SubResource("Animation_ibudg")
 }
 
-[node name="VP_projectile_body" type="Node3D"]
+[node name="ProjectileBody" type="Node3D"]
 script = ExtResource("1_3a4hq")
 
 [node name="Rigidbody3D" type="RigidBody3D" parent="."]
