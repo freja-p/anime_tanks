@@ -10,6 +10,7 @@ extends Projectile
 var initial_velocity : float = 0.0
 var lastFramePosition : Vector3
 
+
 func initialise(worldPos : Vector3, worldRot : Basis):
 	global_position = worldPos
 	global_transform.basis = worldRot
@@ -17,7 +18,7 @@ func initialise(worldPos : Vector3, worldRot : Basis):
 	lastFramePosition = worldPos
 	
 	life_timer.start(ability_resource.lifeTime)
-	projectileBody.apply_impulse(-worldRot.z * ability_resource.initial_velocity * projectileBody.mass)
+	projectileBody.apply_impulse(worldRot.z * ability_resource.initial_velocity * projectileBody.mass)
 
 func _physics_process(_delta):
 	if dying:
@@ -32,14 +33,15 @@ func _physics_process(_delta):
 		else:
 			_start_dying(penetration_ray_checker.get_collision_point())
 		
-	
 	penetration_ray_checker.global_position = lastFramePosition
 	penetration_ray_checker.target_position = projectileBody.global_position - lastFramePosition
 	lastFramePosition = projectileBody.global_position
 
+
 func _start_dying(deathPosition : Vector3):
 	if dying:
 		return
+	projectileBody.process_mode = Node.PROCESS_MODE_DISABLED
 	projectileBody.visible = false 
 	explosion.global_position = deathPosition
 	animation_player.play("explode")
