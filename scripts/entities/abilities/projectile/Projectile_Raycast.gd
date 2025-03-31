@@ -22,10 +22,7 @@ func _physics_process(delta):
 	if checkCount < 1 and not dying:
 		_die()
 
-func initialise(worldPos : Vector3, worldRot : Basis):
-	global_position = worldPos
-	global_transform.basis = worldRot
-	
+func start():
 	var targetVector = Vector3.ZERO
 	targetVector.z = 100
 	ray.target_position = targetVector

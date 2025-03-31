@@ -9,8 +9,11 @@ var ability_resource : Ability
 
 var modifier_payload : Array[ModifierData] = []
 
-func _die():
+func start() -> void:
+	return
+
+func _die() -> void:
 	dying = true
 
-func hitbox_intersected(hitbox : Hitbox):
+func hitbox_intersected(hitbox : Hitbox) -> void:
 	hitbox.hit(damage, shooter, modifier_payload)

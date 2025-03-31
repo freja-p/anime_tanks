@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 		dying = true
 		explosion_vfx.explode(queue_free)
 
-func initialise(worldPos : Vector3, rot : Basis) -> void:
-	global_transform.origin = worldPos
-	global_transform.basis = Basis(rot.x, -rot.z, rot.y)
+func start() -> void:
+	var rot : Basis = global_basis
+	global_basis = Basis(rot.x, -rot.z, rot.y)
 	target = shooter.get_target_point()
 	$TurnDelay.start(randf_range(0.1, 0.5))
 

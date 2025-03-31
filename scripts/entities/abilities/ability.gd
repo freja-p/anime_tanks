@@ -20,7 +20,6 @@ extends Resource
 @export var max_duration : float = 1.0
 
 @export_category("Projectile")
-@export var spawn_logic : AbilityLogic.SPAWNLOGIC
 @export var projectile_scene : PackedScene
 @export var lifeTime : float = 2.0
 @export_subgroup("RigidBody")

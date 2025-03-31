@@ -11,19 +11,17 @@ var initial_velocity : float = 0.0
 var lastFramePosition : Vector3
 
 
-func initialise(worldPos : Vector3, worldRot : Basis):
-	global_position = worldPos
-	global_transform.basis = worldRot
-	
-	lastFramePosition = worldPos
+func start() -> void:
+	lastFramePosition = global_position
 	
 	life_timer.start(ability_resource.lifeTime)
-	projectileBody.apply_impulse(worldRot.z * ability_resource.initial_velocity * projectileBody.mass)
+	projectileBody.apply_impulse(basis.z * ability_resource.initial_velocity * projectileBody.mass)
 
 func _physics_process(_delta):
 	if dying:
 		return
-		
+	
+	
 	if penetration_ray_checker.is_colliding():
 		var collider = penetration_ray_checker.get_collider()
 		if collider is Hitbox:
@@ -32,7 +30,7 @@ func _physics_process(_delta):
 			_start_dying(penetration_ray_checker.get_collision_point())
 		else:
 			_start_dying(penetration_ray_checker.get_collision_point())
-		
+
 	penetration_ray_checker.global_position = lastFramePosition
 	penetration_ray_checker.target_position = projectileBody.global_position - lastFramePosition
 	lastFramePosition = projectileBody.global_position
@@ -41,7 +39,7 @@ func _physics_process(_delta):
 func _start_dying(deathPosition : Vector3):
 	if dying:
 		return
-	projectileBody.process_mode = Node.PROCESS_MODE_DISABLED
+		
 	projectileBody.visible = false 
 	explosion.global_position = deathPosition
 	animation_player.play("explode")
