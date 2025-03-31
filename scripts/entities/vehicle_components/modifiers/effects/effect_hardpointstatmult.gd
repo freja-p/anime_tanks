@@ -1,4 +1,4 @@
-class_name ModifierEffect_HardpointStatMult
+class_name Effect_HardpointStatMult
 extends EffectData
 
 @export var hardpoint_affected : Enums.Hardpoint = Enums.Hardpoint.PRIMARY

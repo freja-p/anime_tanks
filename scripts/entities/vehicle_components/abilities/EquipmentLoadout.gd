@@ -49,7 +49,7 @@ func activate_equipment(hardpoint: Enums.Hardpoint, toggle_on : bool = true) -> 
 
 func _on_modifier_added(modifier : ModifierData):
 	for effect in modifier.effects:
-		if effect is ModifierEffect_AttachModToProjectile:
+		if effect is Effect_AttachModToProjectile:
 			_equipped[effect.hardpoint_affected].modifiers.append(effect.modifier_attached)
 		elif effect is EffectData_OnHit:
 			pass
@@ -57,5 +57,5 @@ func _on_modifier_added(modifier : ModifierData):
 
 func _on_modifier_removed(modifier : ModifierData):
 	for effect in modifier.effects:
-		if effect is ModifierEffect_AttachModToProjectile:
+		if effect is Effect_AttachModToProjectile:
 			_equipped[effect.hardpoint_affected].modifiers.erase(effect.modifier_attached)

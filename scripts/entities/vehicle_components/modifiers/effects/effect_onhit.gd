@@ -1,4 +1,4 @@
-class_name EffectData_OnHit
+class_name Effect_OnHit
 extends EffectData
 
 @export var affects_hardpoints : bool = false

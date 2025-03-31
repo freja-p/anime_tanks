@@ -54,7 +54,7 @@ func _on_modifier_added(modifier : ModifierData):
 		if dot_effects.has(effect):
 			dot_effects[effect] += 1
 			print("Health manager added stack to current dot effect")
-		elif effect is ModifierEffect_DoT:
+		elif effect is Effect_DoT:
 			dot_effects[effect] = 1
 			if dot_ticker.is_stopped():
 				dot_ticker.start(dot_timer_tick_rate)

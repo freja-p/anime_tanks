@@ -63,14 +63,14 @@ func _calculate_stat(
 	
 func _on_new_modifier_added(modifier : ModifierData):
 	for effect in modifier.effects:
-		if effect is ModifierEffect_StatMult:
+		if effect is Effect_StatMult:
 			var stat_effects_dict : Dictionary = _stat_effects[effect.stat_affected]
 			if stat_effects_dict.has(effect):
 				stat_effects_dict[effect] += 1
 			else:
 				stat_effects_dict[effect] = 1
 		
-		elif effect is ModifierEffect_HardpointStatMult:
+		elif effect is Effect_HardpointStatMult:
 			var hardpoint_stat_effects_dict : Dictionary = _hardpoint_effects[effect.hardpoint_affected][effect.stat_affected]
 			if hardpoint_stat_effects_dict.has(effect):
 				hardpoint_stat_effects_dict[effect] += 1
@@ -80,7 +80,7 @@ func _on_new_modifier_added(modifier : ModifierData):
 				
 func _on_modifier_removed(modifier : ModifierData):
 	for effect in modifier.effects:
-		if effect is ModifierEffect_StatMult:
+		if effect is Effect_StatMult:
 			var stat_effects_dict : Dictionary = _stat_effects[effect.stat_affected]
 			if stat_effects_dict.has(effect):
 				stat_effects_dict[effect] -= 1
@@ -89,7 +89,7 @@ func _on_modifier_removed(modifier : ModifierData):
 			else:
 				printerr("Error: %s tried to remove non-existent effect %s" % [self, effect])
 		
-		elif effect is ModifierEffect_HardpointStatMult:
+		elif effect is Effect_HardpointStatMult:
 			var hardpoint_stat_effects_dict : Dictionary = _hardpoint_effects[effect.hardpoint_affected][effect.stat_affected]
 			if hardpoint_stat_effects_dict.has(effect):
 				hardpoint_stat_effects_dict[effect] -= 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://w6x72hj4juyi"]
+[gd_scene load_steps=22 format=3 uid="uid://dx2ebwl28gts4"]
 
 [ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
 [ext_resource type="Resource" uid="uid://cyr80os6pan33" path="res://data/vehicles/movement/apc/apc_default.tres" id="2_1l833"]

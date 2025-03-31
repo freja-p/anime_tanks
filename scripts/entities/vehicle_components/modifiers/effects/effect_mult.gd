@@ -1,4 +1,4 @@
-class_name ModifierEffect_StatMult
+class_name Effect_StatMult
 extends EffectData
 
 @export var stat_affected : Enums.Stat = Enums.Stat.MAX_HP

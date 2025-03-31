@@ -1,4 +1,4 @@
-class_name ModifierEffect_AttachModToProjectile
+class_name Effect_AttachModToProjectile
 extends EffectData
 
 @export var modifier_attached : ModifierData
