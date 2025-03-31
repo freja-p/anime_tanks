@@ -92,7 +92,7 @@ mesh = SubResource("CapsuleMesh_iyblq")
 [node name="PenetrationRayChecker" type="RayCast3D" parent="Rigidbody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, 0, 0)
-collision_mask = 49
+collision_mask = 9
 hit_from_inside = true
 collide_with_areas = true
 
