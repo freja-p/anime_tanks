@@ -21,8 +21,8 @@ var _turn_ratio : float = 0.0
 func _ready() -> void:
 	if vehicle_data:
 		update_vehicle_data(vehicle_data)
-		
-		
+	
+	
 func _physics_process(delta) -> void:
 	_body = get_parent() as VehicleBody3D
 	
