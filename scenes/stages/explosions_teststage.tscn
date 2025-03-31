@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://c0kldihsaqwhf" path="res://data/textures/road_placeholder.tres" id="2_vahen"]
 [ext_resource type="Material" uid="uid://0ti1s767wycv" path="res://data/textures/building_placeholder.tres" id="3_ii0mq"]
 [ext_resource type="Material" uid="uid://favjxlbqn4og" path="res://data/textures/ground_placeholder.tres" id="4_cxdv4"]
-[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="5_ocnk7"]
+[ext_resource type="PackedScene" uid="uid://dx2ebwl28gts4" path="res://scenes/vehicles/apc.tscn" id="5_ocnk7"]
 [ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="6_nqo74"]
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="7_1wu5r"]
 
