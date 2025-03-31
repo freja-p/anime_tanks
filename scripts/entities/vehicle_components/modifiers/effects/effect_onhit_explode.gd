@@ -1,5 +1,5 @@
-class_name ModifierEffectData_OnHit_Explode
-extends ModifierEffectData_OnHit
+class_name EffectData_OnHit_Explode
+extends EffectData_OnHit
 
 @export_category("Explosion Stats")
 @export var radius : float = 2.0

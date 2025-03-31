@@ -51,7 +51,7 @@ func _on_modifier_added(modifier : ModifierData):
 	for effect in modifier.effects:
 		if effect is ModifierEffect_AttachModToProjectile:
 			_equipped[effect.hardpoint_affected].modifiers.append(effect.modifier_attached)
-		elif effect is ModifierEffectData_OnHit:
+		elif effect is EffectData_OnHit:
 			pass
 
 

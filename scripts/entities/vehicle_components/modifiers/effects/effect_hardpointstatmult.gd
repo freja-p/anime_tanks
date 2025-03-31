@@ -1,5 +1,5 @@
 class_name ModifierEffect_HardpointStatMult
-extends ModifierEffectData
+extends EffectData
 
 @export var hardpoint_affected : Enums.Hardpoint = Enums.Hardpoint.PRIMARY
 @export var stat_affected : Enums.HardpointStat = Enums.HardpointStat.MAX_AMMO

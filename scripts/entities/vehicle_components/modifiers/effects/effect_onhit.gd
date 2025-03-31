@@ -1,5 +1,5 @@
-class_name ModifierEffectData_OnHit
-extends ModifierEffectData
+class_name EffectData_OnHit
+extends EffectData
 
 @export var affects_hardpoints : bool = false
 @export var hardpoint_affected : Enums.Hardpoint = Enums.Hardpoint.PRIMARY

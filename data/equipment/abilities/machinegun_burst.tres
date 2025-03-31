@@ -19,7 +19,6 @@ overheat_dropoff_delay = 2.0
 [resource]
 script = ExtResource("4_80yls")
 ability_name = "MachineGun"
-default_hardpoint = 0
 base_damage = 10.0
 secondary_damage = 5.0
 cooldown_resource = SubResource("Resource_dlm82")

@@ -81,8 +81,8 @@ func _unhandled_input(event):
 	#return
 	#
 	#
-#func get_abilty_stat_effects_on(hardpoint) -> Array[ModifierEffectData]:
-	#var effects : Array[ModifierEffectData] = []
+#func get_abilty_stat_effects_on(hardpoint) -> Array[EffectData]:
+	#var effects : Array[EffectData] = []
 	#for modifier in _modifiers:
 		#for effect in modifier.effects:
 			#if effect.affects_ability_on(hardpoint):
@@ -90,8 +90,8 @@ func _unhandled_input(event):
 	#return effects
 #
 #
-#func get_effects_of_type(effect_type : Enums.EffectType) -> Array[ModifierEffectData]:
-	#var effects : Array[ModifierEffectData] = []
+#func get_effects_of_type(effect_type : Enums.EffectType) -> Array[EffectData]:
+	#var effects : Array[EffectData] = []
 	#for mod in _modifiers:
 		#mod.append_effects_of_type(effect_type, effects)
 	#return effects
