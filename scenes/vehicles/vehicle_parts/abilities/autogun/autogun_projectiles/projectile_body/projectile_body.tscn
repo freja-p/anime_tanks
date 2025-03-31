@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://tiknftrqfhsv"]
 
-[ext_resource type="Script" uid="uid://df6dlf18iy6me" path="res://scripts/entities/abilities/projectile/Projectile_Body.gd" id="1_3a4hq"]
+[ext_resource type="Script" uid="uid://df6dlf18iy6me" path="res://scripts/entities/abilities/projectile/projectile_body.gd" id="1_3a4hq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l6xva"]
 radius = 0.1

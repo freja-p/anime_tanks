@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlvi34ij1dsbu"]
 
-[ext_resource type="Script" uid="uid://d0trcbrrrkc0c" path="res://scripts/entities/abilities/projectile/Projectile_Raycast.gd" id="1_fply6"]
+[ext_resource type="Script" uid="uid://d0trcbrrrkc0c" path="res://scripts/entities/abilities/projectile/projectile_raycast.gd" id="1_fply6"]
 [ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vehicles/vehicle_parts/ability_vfx/explosion.tscn" id="2_10syy"]
 
 [node name="Projectile" type="Node3D" groups=["projectile"]]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bjn8urkj1uugf"]
 
-[ext_resource type="Script" uid="uid://cfx6x81bljb5w" path="res://scripts/entities/abilities/projectile/Projectile_Microrocket.gd" id="1_3ekqn"]
+[ext_resource type="Script" uid="uid://cfx6x81bljb5w" path="res://scripts/entities/abilities/projectile/projectile_microrocket.gd" id="1_3ekqn"]
 [ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vehicles/vehicle_parts/ability_vfx/explosion.tscn" id="2_fpf1a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_48tac"]
