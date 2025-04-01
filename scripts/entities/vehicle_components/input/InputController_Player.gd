@@ -13,10 +13,6 @@ func _ready():
 	CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
 
 func _unhandled_input(event : InputEvent):
-#	if event.is_action("move_forward"):
-#		vehicleController.apply_forward(1.0)
-#	elif event.is_action("move_backward"):
-#		vehicleController.apply_forward(-1.0)
 	if event.is_action("primary_attack"):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.PRIMARY, event.is_pressed())
 	elif event.is_action("secondary_attack"):
