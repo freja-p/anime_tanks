@@ -23,8 +23,8 @@ enum CooldownType {
 @export var overheat_modifier : ModifierData
 
 var cooldown_type_map : Dictionary = {
-	CooldownType.SIMPLE : preload("res://scenes/vehicles/vehicle_parts/abilities/cooldown/CooldownSimple.tscn"),
-	CooldownType.MAGAZINE : preload("res://scenes/vehicles/vehicle_parts/abilities/cooldown/CooldownMagazine.tscn")
+	CooldownType.SIMPLE : preload("res://scenes/entities/vehicle_parts/abilities/cooldown/CooldownSimple.tscn"),
+	CooldownType.MAGAZINE : preload("res://scenes/entities/vehicle_parts/abilities/cooldown/CooldownMagazine.tscn")
 }
 
 func create_instance(arg_stat_calculator : StatCalculator, ability : Ability) -> CooldownInterface:

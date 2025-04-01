@@ -21,7 +21,7 @@ func _ready():
 
 
 func set_equipment(hardpoint : Enums.Hardpoint, ability : Ability):
-	var executor : AbilityExecutor = preload("res://scenes/vehicles/vehicle_parts/abilities/AbilityExecutor.tscn").instantiate()
+	var executor : AbilityExecutor = preload("res://scenes/entities/vehicle_parts/abilities/AbilityExecutor.tscn").instantiate()
 	executor.construct(ability, hardpoint, get_parent() as Entity, stat_calculator)
 	executor.name = ability.ability_name
 	executor.stat_calculator = stat_calculator
