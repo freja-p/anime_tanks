@@ -26,7 +26,6 @@ activation_type = 1
 duration = 2.0
 time_between_burst = 1.0
 max_duration = 1.0
-spawn_logic = 2
 projectile_scene = ExtResource("2_g3oka")
 lifeTime = 2.0
 initial_velocity = 100.0

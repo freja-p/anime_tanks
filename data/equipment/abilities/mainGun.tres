@@ -15,7 +15,6 @@ activation_type = 0
 duration = 1.0
 time_between_burst = 1.0
 max_duration = 1.0
-spawn_logic = 0
 projectile_scene = ExtResource("3_brei6")
 lifeTime = 2.0
 initial_velocity = 100.0
