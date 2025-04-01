@@ -7,6 +7,7 @@ var modifier_timer : Timer = null
 var modifier_handler : ModifierHandler = null
 
 
+# WARNING: Need to redo this constructor, as Godot should not have args without defaults in _init()
 func _init(arg_modifier_resource : ModifierData, arg_modifier_handler : ModifierHandler):
 	modifier_resource = arg_modifier_resource
 	modifier_handler = arg_modifier_handler
