@@ -1,0 +1,183 @@
+[gd_scene load_steps=21 format=3 uid="uid://rs5vo0ryk123"]
+
+[ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_yeh2p"]
+[ext_resource type="Script" uid="uid://d3j7r28flcie7" path="res://scenes/entities/EntityEventBus.gd" id="7_d4xyd"]
+[ext_resource type="PackedScene" uid="uid://ds2orbq8mawhl" path="res://scenes/entities/vehicle_parts/bodies/Basic/VP_BodyBasic_Enemy.tscn" id="8_d4mh7"]
+[ext_resource type="PackedScene" uid="uid://cegggm3e5yg4g" path="res://scenes/entities/vehicle_parts/turrets/enemy_turret_base.tscn" id="9_utbqh"]
+[ext_resource type="Script" uid="uid://cl83r772itde6" path="res://scripts/entities/hitbox.gd" id="10_13g83"]
+[ext_resource type="Script" uid="uid://drpv2kfktauis" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStateMachine.gd" id="11_50sik"]
+[ext_resource type="Script" uid="uid://bivxrenk2oh1" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIStats.gd" id="12_txqpe"]
+[ext_resource type="Curve3D" uid="uid://dapnj7ay5wnp7" path="res://data/ai/MP_PatrolPath_First.tres" id="13_gw6h4"]
+[ext_resource type="Script" uid="uid://b0vtr34lcrpp8" path="res://scripts/entities/statemachines/ai/AIStateMachine/investigate.gd" id="14_12br7"]
+[ext_resource type="Script" uid="uid://b4goog42l8d0u" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_attack.gd" id="15_mtrbh"]
+[ext_resource type="Script" uid="uid://cxsmdcxs5n33" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_patrol.gd" id="16_g57o4"]
+[ext_resource type="Script" uid="uid://bxjstvnm0apvd" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_overwatch.gd" id="17_6vq4v"]
+[ext_resource type="Script" uid="uid://cpmyr5xko225m" path="res://scripts/entities/statemachines/ai/AIStateMachine/AIState_idle.gd" id="18_858ui"]
+[ext_resource type="Script" uid="uid://55oj7t0cilgf" path="res://scenes/entities/vehicle_parts/threatanalyzer/ThreatAnalyzer.gd" id="26_ppxqv"]
+[ext_resource type="Script" uid="uid://dgojvbs2vr7lc" path="res://scenes/entities/vehicle_parts/detector/EntityDetector.gd" id="27_gaj42"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hl48d"]
+size = Vector3(3.60785, 1.42161, 7.03607)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lylep"]
+size = Vector3(2.64273, 0.782476, 4.34402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_niyvq"]
+size = Vector3(3.59349, 1.7884, 4.93023)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6v54j"]
+radius = 50.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hi8md"]
+size = Vector3(50, 15, 100)
+
+[node name="Enemy" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.377973, 0)
+collision_layer = 8
+collision_mask = 11
+mass = 50000.0
+linear_damp_mode = 1
+script = ExtResource("1_yeh2p")
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("7_d4xyd")
+
+[node name="Body" parent="." instance=ExtResource("8_d4mh7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.349)
+
+[node name="Turret" parent="." instance=ExtResource("9_utbqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11464, 0.127033)
+
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0769858, 0)
+visible = false
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("10_13g83")
+ownerEntity = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396235, -0.104433)
+shape = SubResource("BoxShape3D_hl48d")
+
+[node name="TurretHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47438, 0)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("10_13g83")
+ownerEntity = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurretHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107586, -0.359713)
+shape = SubResource("BoxShape3D_lylep")
+
+[node name="CollisionBox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965623, -0.19916)
+shape = SubResource("BoxShape3D_niyvq")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Navigator" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 5.0
+path_max_distance = 3.01
+avoidance_enabled = true
+radius = 5.0
+max_speed = 20.0
+
+[node name="AIFSM" type="Node" parent="." node_paths=PackedStringArray("startingState")]
+script = ExtResource("11_50sik")
+startingState = NodePath("patrol")
+
+[node name="AIStats" type="Node" parent="AIFSM"]
+script = ExtResource("12_txqpe")
+patrolCurve = ExtResource("13_gw6h4")
+
+[node name="investigate" type="Node" parent="AIFSM" node_paths=PackedStringArray("patrol_state", "attack_state")]
+script = ExtResource("14_12br7")
+patrol_state = NodePath("../patrol")
+attack_state = NodePath("../attack")
+
+[node name="CombatTimeout" type="Timer" parent="AIFSM/investigate"]
+unique_name_in_owner = true
+
+[node name="attack" type="Node" parent="AIFSM" node_paths=PackedStringArray("patrol_state", "attack_state", "investigate_state", "entityEventBus")]
+script = ExtResource("15_mtrbh")
+patrol_state = NodePath("../patrol")
+attack_state = NodePath(".")
+investigate_state = NodePath("../investigate")
+entityEventBus = NodePath("../../EventBus")
+
+[node name="RepositionTimer" type="Timer" parent="AIFSM/attack"]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="AIFSM/attack"]
+one_shot = true
+
+[node name="patrol" type="Node" parent="AIFSM" node_paths=PackedStringArray("attack_state", "patrol_state", "overwatch_state")]
+script = ExtResource("16_g57o4")
+attack_state = NodePath("../attack")
+patrol_state = NodePath(".")
+overwatch_state = NodePath("../overwatch")
+
+[node name="overwatch" type="Node" parent="AIFSM" node_paths=PackedStringArray("attack_state", "overwatch_state", "patrol_state")]
+script = ExtResource("17_6vq4v")
+attack_state = NodePath("../attack")
+overwatch_state = NodePath(".")
+patrol_state = NodePath("../patrol")
+
+[node name="OverwatchTimeout" type="Timer" parent="AIFSM/overwatch"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AimSwingTimer" type="Timer" parent="AIFSM/overwatch"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="idle" type="Node" parent="AIFSM"]
+script = ExtResource("18_858ui")
+
+[node name="IdleTimer" type="Timer" parent="AIFSM/idle"]
+one_shot = true
+
+[node name="ThreatAnalyzer" type="Node" parent="." node_paths=PackedStringArray("detector")]
+script = ExtResource("26_ppxqv")
+detector = NodePath("../Detector")
+
+[node name="Detector" type="Node3D" parent="." node_paths=PackedStringArray("turret")]
+script = ExtResource("27_gaj42")
+turret = NodePath("../Turret")
+
+[node name="DetectionAreas" type="Area3D" parent="Detector"]
+collision_layer = 0
+collision_mask = 48
+monitorable = false
+
+[node name="Proximity" type="CollisionShape3D" parent="Detector/DetectionAreas"]
+shape = SubResource("SphereShape3D_6v54j")
+
+[node name="Looking" type="CollisionShape3D" parent="Detector/DetectionAreas"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+shape = SubResource("BoxShape3D_hi8md")
+
+[node name="Node" type="Node" parent="."]
+
+[connection signal="aiming_at_entity_state_changed" from="EventBus" to="." method="_on_event_bus_aiming_at_entity_state_changed"]
+[connection signal="turret_target_reach" from="EventBus" to="." method="_on_event_bus_turret_target_reach"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="path_changed" from="Navigator" to="." method="_on_navigator_path_changed"]
+[connection signal="target_reached" from="Navigator" to="." method="_on_navigator_target_reached"]
+[connection signal="timeout" from="AIFSM/investigate/CombatTimeout" to="AIFSM/investigate" method="_on_combat_timeout_timeout"]
+[connection signal="timeout" from="AIFSM/attack/RepositionTimer" to="AIFSM/attack" method="_on_reposition_timer_timeout"]
+[connection signal="timeout" from="AIFSM/attack/AttackTimer" to="AIFSM/attack" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AIFSM/overwatch/OverwatchTimeout" to="AIFSM/overwatch" method="_on_overwatch_timeout_timeout"]
+[connection signal="timeout" from="AIFSM/overwatch/AimSwingTimer" to="AIFSM/overwatch" method="_on_aim_swing_timer_timeout"]
+[connection signal="timeout" from="AIFSM/idle/IdleTimer" to="AIFSM/idle" method="_on_idle_timer_timeout"]
+[connection signal="threat_target_changed" from="ThreatAnalyzer" to="." method="_on_threat_analyzer_threat_target_changed"]
+[connection signal="entityDied" from="Detector" to="ThreatAnalyzer" method="_on_detector_entity_died"]
+[connection signal="visibleEntitiesAdded" from="Detector" to="ThreatAnalyzer" method="_on_detector_visible_entities_added"]
+[connection signal="visibleEntitiesRemoved" from="Detector" to="ThreatAnalyzer" method="_on_detector_visible_entities_removed"]
+[connection signal="area_entered" from="Detector/DetectionAreas" to="Detector" method="_on_detection_areas_area_entered"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjn8urkj1uugf"]
+
+[ext_resource type="Script" uid="uid://cfx6x81bljb5w" path="res://scripts/entities/abilities/projectile/projectile_microrocket.gd" id="1_3ekqn"]
+[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/entities/vehicle_parts/ability_vfx/explosion.tscn" id="2_fpf1a"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_48tac"]
+seed = 453454
+frequency = 0.7752
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xqj8c"]
+noise = SubResource("FastNoiseLite_48tac")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2u0k"]
+albedo_color = Color(0.0705882, 0.109804, 0.341176, 1)
+metallic = 0.93
+metallic_texture = SubResource("NoiseTexture2D_xqj8c")
+metallic_texture_channel = 4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ws8k4"]
+material = SubResource("StandardMaterial3D_d2u0k")
+radius = 0.05
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_evtts"]
+radius = 4.0
+
+[node name="MicroRocket" type="Node3D"]
+script = ExtResource("1_3ekqn")
+
+[node name="HitRay" type="RayCast3D" parent="."]
+collision_mask = 9
+collide_with_areas = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ws8k4")
+
+[node name="TurnDelay" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("SphereShape3D_evtts")
+target_position = Vector3(0, 0, 0)
+collision_mask = 8
+collide_with_areas = true
+
+[node name="ExplosionVFX" parent="." instance=ExtResource("2_fpf1a")]
+raycast_hits = true
+
+[connection signal="timeout" from="TurnDelay" to="." method="_on_turn_delay_timeout"]

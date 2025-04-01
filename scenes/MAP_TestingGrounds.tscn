@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://sep8yi1qvnof"]
 
 [ext_resource type="Script" uid="uid://c1a0gxbap6rdx" path="res://scripts/main.gd" id="1_g3708"]
-[ext_resource type="PackedScene" uid="uid://cah3yi1owbyrt" path="res://scenes/vehicles/PC_Player_Tank.tscn" id="2_itgbh"]
+[ext_resource type="PackedScene" uid="uid://cah3yi1owbyrt" path="res://scenes/entities/PC_Player_Tank.tscn" id="2_itgbh"]
 [ext_resource type="PackedScene" uid="uid://b63xor6085hej" path="res://scenes/map objects/ground.tscn" id="3_32ekt"]
 [ext_resource type="PackedScene" uid="uid://cy6l3637hlisq" path="res://scenes/ui/overlay.tscn" id="4_xle1q"]
 [ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="5_xyg1x"]
-[ext_resource type="PackedScene" uid="uid://rs5vo0ryk123" path="res://scenes/vehicles/NPC_Vehicle_Tank.tscn" id="6_q2au7"]
+[ext_resource type="PackedScene" uid="uid://rs5vo0ryk123" path="res://scenes/entities/NPC_Vehicle_Tank.tscn" id="6_q2au7"]
 [ext_resource type="PackedScene" uid="uid://df01qr23npkut" path="res://scenes/map objects/walls.tscn" id="7_hqgp8"]
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="8_m0jcm"]
 

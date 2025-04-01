@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk5x2txr6415f"]
+
+[ext_resource type="PackedScene" uid="uid://resebl0uhjlc" path="res://raw_assets/vehicles/meshes/tank_wheel_single.glb" id="1_tsnkb"]
+[ext_resource type="Script" uid="uid://dx46qumfpyyuv" path="res://scenes/entities/meshes/WheelMeshScript.gd" id="2_yudxe"]
+
+[node name="wheel" node_paths=PackedStringArray("susArm", "wheel") instance=ExtResource("1_tsnkb")]
+script = ExtResource("2_yudxe")
+susArm = NodePath("SuspensionArm")
+wheel = NodePath("Wheel_Single")
+
+[node name="SuspensionArm" parent="." index="0"]
+transform = Transform3D(-1, 1.91618e-08, -8.29989e-08, -1.91618e-08, 0.898794, 0.438371, 8.29989e-08, 0.438371, -0.898794, 0.003, 0.286, -0.604)
+
+[node name="SuspensionAttachPoint_Single" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057, 0.286, -0.604)
+
+[node name="Wheel_Single" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

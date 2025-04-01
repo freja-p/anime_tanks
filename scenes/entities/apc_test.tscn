@@ -1,0 +1,182 @@
+[gd_scene load_steps=26 format=3 uid="uid://dkcargodj46o2"]
+
+[ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_3d1gd"]
+[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_vgpd5"]
+[ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="3_u6af0"]
+[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="4_fensk"]
+[ext_resource type="Resource" uid="uid://bhl3w22s6bj14" path="res://data/factions/FAC_Ally.tres" id="5_vjlr5"]
+[ext_resource type="Script" uid="uid://cl83r772itde6" path="res://scripts/entities/hitbox.gd" id="6_p5ypg"]
+[ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/entities/vehicle_parts/bodies/APC/VP_Body_APC.tscn" id="7_oq1c5"]
+[ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/entities/vehicle_parts/bodies/APC/VP_Turret_APC.tscn" id="8_113iu"]
+[ext_resource type="Script" uid="uid://d3j7r28flcie7" path="res://scenes/entities/EntityEventBus.gd" id="9_t3ow8"]
+[ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="10_o0tsu"]
+[ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="11_27y6j"]
+[ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="12_7tsnh"]
+[ext_resource type="Script" uid="uid://biwi8yne3jh2w" path="res://scripts/entities/vehicle_components/input/InputController_Player.gd" id="13_wb8t1"]
+[ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/vehicle_components/movement/vehicle_controller_apc.gd" id="14_eyjcx"]
+[ext_resource type="Curve" uid="uid://df6rs8hiswgty" path="res://data/vehicles/movement/apc/steer_limit_default.tres" id="15_m7730"]
+[ext_resource type="Curve" path="res://data/vehicles/movement/apc/steer_brake_default.tres" id="16_paqet"]
+[ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="17_klq6q"]
+[ext_resource type="Script" uid="uid://dckjko7vv63dp" path="res://scripts/entities/vehicle_components/abilities/EquipmentLoadout.gd" id="18_g8yl2"]
+[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/vehicle_components/modifiers/ModifierHandler.gd" id="19_fyebw"]
+[ext_resource type="Resource" uid="uid://d35ou6o38qs4l" path="res://data/equipment/abilities/test_modifier/test_modifier_attachmod.tres" id="20_kn0fl"]
+[ext_resource type="Script" uid="uid://cxqtswwjvb237" path="res://scripts/entities/vehicle_components/stats/StatCalculator.gd" id="21_45fbm"]
+[ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/entities/vehicle_parts/misc/health_manager.tscn" id="22_f0lqa"]
+
+[sub_resource type="Resource" id="Resource_yi2k5"]
+script = ExtResource("3_u6af0")
+primary = ExtResource("2_vgpd5")
+secondary = ExtResource("4_fensk")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3d1gd"]
+points = PackedVector3Array(1.55437, 0.812815, 1.5055, 1.11578, 0.79121, 3.12206, 1.10787, -1.65173e-07, 2.33352, 1.55437, 0.812815, -2.048, 1.23053, 1.13178, -1.32222, 1.18548, 1.17499, 0.556008, 1.00865, 1.30603, 0.857659, -1.11552, 0.79121, 3.12257, 0.943816, -1.65173e-07, 2.33402, 1.10787, -1.65173e-07, 1.82891, 1.04791, -1.65173e-07, -1.83341, -1.55472, 0.812815, -2.048, 1.00834, 1.30603, -1.83341, 1.18518, 1.17499, -1.32222, -2.09808e-05, 1.30603, 0.852091, -1.00869, 1.3059, 0.857659, -1.55472, 0.812815, 1.506, -1.10791, -1.65173e-07, 2.33402, -1.04856, -1.65173e-07, -1.83341, -1.23118, 1.13178, -1.32222, -1.18583, 1.17499, -1.32222, -1.00899, 1.3059, -1.83341, -0.000325322, 1.30603, -1.83341, -1.10791, -1.65173e-07, 1.82891, -1.00899, 1.3059, -1.32222, -1.18552, 1.17499, 0.556514)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3g2n7"]
+size = Vector3(2.38, 1.765, 4.69)
+
+[node name="ApcTest" type="VehicleBody3D"]
+collision_layer = 2
+collision_mask = 3
+mass = 5000.0
+script = ExtResource("1_3d1gd")
+defaultLoadout = SubResource("Resource_yi2k5")
+faction = ExtResource("5_vjlr5")
+
+[node name="BodyCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137054, -0.0261055, -0.14358)
+shape = SubResource("ConvexPolygonShape3D_3d1gd")
+
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106862, -0.432148, 0)
+visible = false
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("6_p5ypg")
+ownerEntity = NodePath("..")
+health_manager = NodePath("../HealthManager")
+modifier_handler = NodePath("../ModifierHandler")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881894, 0.133577)
+shape = SubResource("BoxShape3D_3g2n7")
+
+[node name="Body" parent="." node_paths=PackedStringArray("wheels", "turret") instance=ExtResource("7_oq1c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.432148, 0)
+wheels = [NodePath("../Wheel_Steering_L"), NodePath("../Wheel_Steering_R"), NodePath("../Wheel_L1"), NodePath("../Wheel_L2"), NodePath("../Wheel_R1"), NodePath("../Wheel_R1")]
+turret = NodePath("../Turret")
+
+[node name="Turret" parent="." instance=ExtResource("8_113iu")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141454, 1.291, -0.427929)
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("9_t3ow8")
+
+[node name="Wheel_Steering_L" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01505, 0.15686, 1.05025)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.835
+wheel_friction_slip = 5.0
+suspension_travel = 0.1
+suspension_stiffness = 16.22
+suspension_max_force = 20000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_Steering_L"]
+mesh = ExtResource("10_o0tsu")
+
+[node name="Wheel_Steering_R" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73393, 0.156658, 1.05)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.835
+wheel_friction_slip = 5.0
+suspension_travel = 0.1
+suspension_stiffness = 16.22
+suspension_max_force = 20000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_Steering_R"]
+mesh = ExtResource("11_27y6j")
+
+[node name="Wheel_L1" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.015, 0.15686, -0.216302)
+use_as_traction = true
+wheel_roll_influence = 0.835
+wheel_friction_slip = 2.0
+suspension_stiffness = 16.22
+suspension_max_force = 20000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_L1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("12_7tsnh")
+
+[node name="Wheel_L2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.015, 0.15686, -1.27681)
+use_as_traction = true
+wheel_roll_influence = 0.835
+wheel_friction_slip = 2.0
+suspension_stiffness = 16.22
+suspension_max_force = 20000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("12_7tsnh")
+
+[node name="Wheel_R1" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734, 0.15686, -0.213682)
+use_as_traction = true
+wheel_roll_influence = 0.835
+wheel_friction_slip = 2.0
+suspension_stiffness = 16.22
+suspension_max_force = 20000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_R1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("11_27y6j")
+
+[node name="Wheel_R2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734, 0.15686, -1.27681)
+use_as_traction = true
+wheel_roll_influence = 0.835
+wheel_friction_slip = 2.0
+suspension_stiffness = 16.22
+suspension_max_force = 20000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel_R2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
+mesh = ExtResource("11_27y6j")
+
+[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("body", "vehicleController", "turretComponent", "equipmentLoadout")]
+unique_name_in_owner = true
+script = ExtResource("13_wb8t1")
+body = NodePath("..")
+vehicleController = NodePath("../VehicleController")
+turretComponent = NodePath("../Turret")
+equipmentLoadout = NodePath("../EquipmentLoadout")
+
+[node name="VehicleController" type="Node" parent="."]
+script = ExtResource("14_eyjcx")
+steerLimitCurve = ExtResource("15_m7730")
+steerBrakeCurve = ExtResource("16_paqet")
+engineForceCurve = ExtResource("17_klq6q")
+
+[node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
+unique_name_in_owner = true
+script = ExtResource("18_g8yl2")
+bodyComponent = NodePath("../Body")
+modifierHandler = NodePath("../ModifierHandler")
+stat_calculator = NodePath("../StatCalculator")
+
+[node name="ModifierHandler" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]
+unique_name_in_owner = true
+script = ExtResource("19_fyebw")
+owner_entity = NodePath("..")
+test_mod = ExtResource("20_kn0fl")
+
+[node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
+script = ExtResource("21_45fbm")
+modifier_handler = NodePath("../ModifierHandler")
+
+[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("22_f0lqa")]
+owner_entity = NodePath("..")
+modifier_handler = NodePath("../ModifierHandler")

@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 DebugAutoload="*res://scripts/DebugAutoload.gd"
 CameraEventBus="*res://scripts/game_state/CameraEventBus.gd"
 PlayerEventBus="*res://scripts/game_state/PlayerEventBus.gd"
-AbilityLogicManager="*res://scenes/vehicles/vehicle_parts/abilities/AbilityLogic.tscn"
+AbilityLogicManager="*res://scenes/entities/vehicle_parts/abilities/AbilityLogic.tscn"
 
 [global_group]
 

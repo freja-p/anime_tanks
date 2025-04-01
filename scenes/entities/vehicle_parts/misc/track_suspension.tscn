@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0ajitu8q4ns8"]
+
+[ext_resource type="Script" uid="uid://cw287k0j6ajhb" path="res://scenes/entities/vehicle_parts/misc/TrackSuspension.gd" id="1_pdnx4"]
+[ext_resource type="Curve" uid="uid://cyb31sjgpuyk6" path="res://scenes/entities/vehicle_parts/misc/suspension_curve.tres" id="2_nsfyv"]
+[ext_resource type="PackedScene" uid="uid://dk5x2txr6415f" path="res://scenes/entities/meshes/tank_wheel_base.tscn" id="3_kc3lh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vcnau"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="TrackSuspension" type="Node3D" node_paths=PackedStringArray("wheel")]
+script = ExtResource("1_pdnx4")
+wheel_radius = 0.32
+spring_stiffness_curve = ExtResource("2_nsfyv")
+wheel = NodePath("wheel")
+
+[node name="GroundRay" type="RayCast3D" parent="."]
+
+[node name="wheel" parent="." instance=ExtResource("3_kc3lh")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vcnau")

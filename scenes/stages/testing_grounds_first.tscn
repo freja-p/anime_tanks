@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://codbg4xumg8gf" path="res://scripts/ui/CombatHUD.gd" id="6_yfjev"]
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="7_vbuww"]
 [ext_resource type="Environment" uid="uid://bx5dj6xv7oj06" path="res://scenes/map objects/default_environment.tres" id="8_ixq3o"]
-[ext_resource type="PackedScene" uid="uid://w6x72hj4juyi" path="res://scenes/vehicles/apc.tscn" id="9_1808j"]
-[ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="10_6ip3w"]
+[ext_resource type="PackedScene" uid="uid://dx2ebwl28gts4" path="res://scenes/entities/apc.tscn" id="9_1808j"]
+[ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/entities/apc_ai.tscn" id="10_6ip3w"]
 [ext_resource type="PackedScene" uid="uid://c04huqsd4ev74" path="res://scenes/stages/testing_grounds_3d_map.tscn" id="11_6wg8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv3pq"]
