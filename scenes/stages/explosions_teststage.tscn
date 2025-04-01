@@ -1,12 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://co7cpvijnjwwy"]
+[gd_scene load_steps=13 format=3 uid="uid://co7cpvijnjwwy"]
 
 [ext_resource type="PackedScene" uid="uid://cg4130t4le47p" path="res://scenes/ui/aim_ui.tscn" id="1_6pydf"]
 [ext_resource type="Material" uid="uid://c0kldihsaqwhf" path="res://data/textures/road_placeholder.tres" id="2_vahen"]
 [ext_resource type="Material" uid="uid://0ti1s767wycv" path="res://data/textures/building_placeholder.tres" id="3_ii0mq"]
 [ext_resource type="Material" uid="uid://favjxlbqn4og" path="res://data/textures/ground_placeholder.tres" id="4_cxdv4"]
 [ext_resource type="PackedScene" uid="uid://dx2ebwl28gts4" path="res://scenes/vehicles/apc.tscn" id="5_ocnk7"]
+[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="6_76670"]
 [ext_resource type="PackedScene" uid="uid://bmhx1apw1smhr" path="res://scenes/vehicles/apc_ai.tscn" id="6_nqo74"]
 [ext_resource type="PackedScene" uid="uid://dl70ddkvvevkk" path="res://scenes/scene objects/Player_Camera.tscn" id="7_1wu5r"]
+[ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="7_vvlln"]
+[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="8_iv3i7"]
+
+[sub_resource type="Resource" id="Resource_hoseo"]
+script = ExtResource("7_vvlln")
+primary = ExtResource("6_76670")
+secondary = ExtResource("8_iv3i7")
+metadata/_custom_type_script = "uid://d18womvihy6h0"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dyc1k"]
 vertices = PackedVector3Array(-48.0747, 1.11228, -25.2722, -22.3247, 1.11228, -25.0222, -22.3247, 1.11228, -26.5222, -20.5747, 1.11228, -29.2722, -18.5747, 1.11228, -30.2722, -16.5747, 1.11228, -64.2722, -48.0747, 1.11228, -64.2722, -16.5747, 1.11228, -30.2722, -2.57475, 1.11228, -30.2722, -2.57475, 1.11228, -64.2722, 3.17525, 1.11228, -26.5222, 3.17525, 1.11228, -25.0222, 20.9253, 1.36228, -25.2722, 1.42525, 1.11228, -29.2722, -0.574749, 1.11228, -30.2722, 20.9253, 1.36228, -64.2722, -48.0747, 1.11228, -13.5222, -22.3247, 1.11228, -13.7722, 3.17525, 1.11228, -13.7722, 20.9253, 1.36228, -13.5222, -14.3247, 27.6123, -22.2722, -14.3247, 27.6123, -16.5222, -4.82475, 27.6123, -16.5222, -4.82475, 27.6123, -22.2722, -14.0747, 1.11228, -22.0222, -14.0747, 1.11228, -16.7722, -5.07475, 1.11228, -16.7722, -5.07475, 1.11228, -22.0222, -48.0747, 1.11228, 11.9778, -38.8247, 1.11228, 12.2278, -38.8247, 1.11228, 10.7278, -37.8247, 1.11228, 8.7278, -35.0747, 1.11228, 6.9778, -22.3247, 1.11228, -12.2722, -16.5747, 1.11228, 6.9778, -16.5747, 1.11228, -8.5222, -18.5747, 1.11228, -8.5222, -20.5747, 1.11228, -9.5222, 19.6753, 1.36228, 10.7278, 19.6753, 1.36228, 12.4778, 20.9253, 1.36228, 11.9778, 18.6753, 1.36228, 8.7278, -0.574749, 1.11228, -8.5222, -2.57475, 1.11228, -8.5222, -2.57475, 1.11228, 6.9778, 1.42525, 1.11228, -9.5222, 3.17525, 1.11228, -12.2722, 15.9253, 1.11228, 6.9778, -38.8247, 1.11228, 16.2278, -48.0747, 1.11228, 19.9778, -37.8247, 1.11228, 18.2278, -35.0747, 1.11228, 19.9778, 18.6753, 1.36228, 18.2278, 15.9253, 1.11228, 19.9778, 20.9253, 1.36228, 19.9778, 19.6753, 1.36228, 16.2278)
@@ -49,6 +58,7 @@ metadata/_edit_lock_ = true
 
 [node name="Apc" parent="." instance=ExtResource("5_ocnk7")]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 20.6794, 1.32677, 14.3658)
+loadout = SubResource("Resource_hoseo")
 
 [node name="ApcAi" parent="." instance=ExtResource("6_nqo74")]
 transform = Transform3D(-0.182287, 0, -0.983245, 0, 1, 0, 0.983245, 0, -0.182287, -11.2006, 0.805148, -4.7521)
