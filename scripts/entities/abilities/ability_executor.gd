@@ -1,6 +1,8 @@
 class_name AbilityExecutor
 extends Node
 
+# TODO: Refactor this? Should Cooldown be integrated into this? 
+# How to get data into this script if so, and manage Timers at the same time?
 signal ability_ready(ability : AbilityExecutor)
 signal ability_activated(ability : AbilityExecutor)
 signal ability_cooldown_started(ability : AbilityExecutor)
@@ -26,7 +28,6 @@ var ownerEntity : Entity
 var hardpoint : Enums.Hardpoint
 var hardpointNode : Node3D
 var stat_calculator : StatCalculator
-var logic : Callable
 
 var modifiers : Array[ModifierData] = []
 var target : Vector3 = Vector3.ZERO
@@ -54,7 +55,7 @@ var _currentState : AbilityState
 func _ready():
 	_currentState = AbilityState.READY
 
-
+# TODO: Make this like a builder pattern? Maybe make Ability.build() return an AbilityExecutor instead?
 func construct(ability : Ability, arg_hardpoint : Enums.Hardpoint, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
 	ownerEntity = arg_ownerEntity
 	hardpoint = arg_hardpoint

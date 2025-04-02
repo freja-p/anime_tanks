@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cxmwt8vh2vcr8"]
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://cxmwt8vh2vcr8"]
 
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_grwm7"]
 [ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_lnkwm"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_vn308"]
 [ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="2_y6j0f"]
@@ -16,6 +17,7 @@ duration = 1.0
 time_between_burst = 1.0
 max_duration = 1.0
 projectile_scene = ExtResource("3_brei6")
+behaviours = Array[ExtResource("1_grwm7")]([])
 lifeTime = 2.0
 initial_velocity = 100.0
 modifiers_on_activation = Array[ExtResource("2_y6j0f")]([])

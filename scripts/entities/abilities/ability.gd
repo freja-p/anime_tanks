@@ -21,6 +21,7 @@ extends Resource
 
 @export_category("Projectile")
 @export var projectile_scene : PackedScene
+@export var behaviours : Array[ProjectileBehaviourData]
 @export var lifeTime : float = 2.0
 @export_subgroup("RigidBody")
 @export var initial_velocity : float = 100.0
@@ -31,3 +32,10 @@ extends Resource
 
 @export_category("AI")
 @export var selection_weight : int = 10
+
+# TODO: When should this be called?
+func build() -> ProjectileBase:
+	var new_projectile = ProjectileBase.new()
+	for b in behaviours:
+		new_projectile.add_behaviour(b)
+	return new_projectile

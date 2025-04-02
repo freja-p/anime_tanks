@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://sruykpx7awph"]
+[gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://sruykpx7awph"]
 
 [ext_resource type="Script" uid="uid://s4xukmmhoamr" path="res://scripts/entities/abilities/cooldown/cooldown_resource.gd" id="1_hw5pg"]
 [ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="1_it142"]
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_yqswk"]
 [ext_resource type="PackedScene" uid="uid://bjn8urkj1uugf" path="res://scenes/entities/vehicle_parts/abilities/micro_rockets/projectile_microrocket.tscn" id="2_g3oka"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_nb17b"]
 
@@ -27,6 +28,7 @@ duration = 2.0
 time_between_burst = 1.0
 max_duration = 1.0
 projectile_scene = ExtResource("2_g3oka")
+behaviours = Array[ExtResource("1_yqswk")]([])
 lifeTime = 2.0
 initial_velocity = 100.0
 modifiers_on_activation = Array[ExtResource("1_it142")]([])
