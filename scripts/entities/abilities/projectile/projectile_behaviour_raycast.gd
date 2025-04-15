@@ -1,38 +1,69 @@
 class_name ProjectileBehaviourRaycast
 extends ProjectileBehaviour
 
-var collided : bool = false
+signal projectile_collided(collision_point : Vector3, collision_normal : Vector3)
+
+const COLLISION_MASK_TERRAIN = 1
+const COLLISION_MASK_HITBOX = 8
+
+@export var vfx : VFXData
+
 var checkCount : int = 3
-var additional_ray_collision_checks : int = 1
+var ray_collision_checks : int = 1
+var ray_target : Vector3
 
 @onready var ray : RayCast3D = $ForwardRay
-@onready var explosion_vfx: ExplosionVFX = $ExplosionVFX
 
 func _ready_behaviour():
-	var targetVector = Vector3.ZERO
-	targetVector.z = 100
-	ray.target_position = targetVector
-	explosion_vfx.position = targetVector
+	ray_target = global_position + global_basis.z * 100
 	
 func _physics_process_behaviour(delta):
-	var collider = ray.get_collider()
-	if collider:
-		explosion_vfx.global_position = ray.get_collision_point()
+	var query_params : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+		global_position, 
+		ray_target)
+	query_params.collide_with_areas = true
+	query_params.collision_mask = COLLISION_MASK_TERRAIN + COLLISION_MASK_HITBOX
+	
+	var worldspace : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	
+	var rid_exclusions : Array[RID]
+	var i = 0
+	
+	while i < ray_collision_checks:
+		query_params.exclude = rid_exclusions
+		var result : Dictionary = worldspace.intersect_ray(query_params)
 		
-		if collider is Hitbox:
-			if collider.ownerEntity != projectile_origin.shooter:
-				collider.hit(
+		if result.is_empty():
+			var vfx_pos = global_position + ray_target
+			create_vfx(vfx_pos)
+			break
+		
+		if result.collider is Hitbox:
+			print("Hit: {0}".format([result.collider.get_entity()]))
+			
+			if result.collider.ownerEntity == projectile_origin.shooter:
+				i = i - 1
+			else:
+				result.collider.hit(
 					projectile_origin.damage, 
 					projectile_origin.shooter, 
 					projectile_origin.modifier_payload
 					)
-		if additional_ray_collision_checks > 0:
-			additional_ray_collision_checks -= 1
-			ray.global_position = ray.get_collision_point()
+				create_vfx(result.position)
+				projectile_collided.emit(result.position, result.normal)
+			rid_exclusions.append(result.rid)
+			
 		else:
-			explosion_vfx.explode(queue_free)
-			behaviour_ended.emit(self)
+			create_vfx(result.position)
+			projectile_collided.emit(result.position, result.normal)
+			
+		i = i + 1
 
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "explode":
-		queue_free()
+	behaviour_ended.emit(self)
+
+func create_vfx(world_pos : Vector3):
+	var new_vfx : VFX = vfx.build()
+	get_tree().root.add_child(new_vfx)
+	new_vfx.global_position = world_pos
+	new_vfx.play()
+	

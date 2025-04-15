@@ -33,9 +33,14 @@ extends Resource
 @export_category("AI")
 @export var selection_weight : int = 10
 
+const PROJECTILE = preload("res://scenes/entities/vehicle_parts/abilities/projectile.tscn")
+
 # TODO: When should this be called?
-func build() -> ProjectileBase:
+func build(shooter_entity : Entity) -> ProjectileBase:
 	var new_projectile = ProjectileBase.new()
+	new_projectile.shooter = shooter_entity
+	new_projectile.ability_data = self
 	for b in behaviours:
 		new_projectile.add_behaviour(b)
+		
 	return new_projectile

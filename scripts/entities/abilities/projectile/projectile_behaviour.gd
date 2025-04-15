@@ -8,7 +8,7 @@ signal behaviour_ended(behaviour : ProjectileBehaviour)
 
 var projectile_behaviour_data : ProjectileBehaviourData
 var projectile_origin : ProjectileBase
-		
+
 func _ready_behaviour() -> void:
 	return
 	

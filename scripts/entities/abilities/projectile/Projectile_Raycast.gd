@@ -1,10 +1,12 @@
 class_name Projectile_Raycast
 extends Projectile
 
-@onready var ray : RayCast3D = $ForwardRay
+@export var vfx : VFXData
+
 var collided : bool = false
 var checkCount : int = 3
-@onready var explosion_vfx: ExplosionVFX = $ExplosionVFX
+
+@onready var ray : RayCast3D = $ForwardRay
 
 func _physics_process(delta):
 	if checkCount < 1 or dying:
@@ -12,7 +14,7 @@ func _physics_process(delta):
 	
 	var collider = ray.get_collider()
 	if collider:
-		explosion_vfx.global_position = ray.get_collision_point()
+		#explosion_vfx.global_position = ray.get_collision_point()
 		if collider is Hitbox:
 			if collider.ownerEntity != shooter:
 				hitbox_intersected(collider)
@@ -26,12 +28,9 @@ func start():
 	var targetVector = Vector3.ZERO
 	targetVector.z = 100
 	ray.target_position = targetVector
-	explosion_vfx.position = targetVector
+	#explosion_vfx.position = targetVector
+	#explosion_vfx.end_animation_callback = queue_free
 
 func _die():
 	dying = true
-	explosion_vfx.explode(queue_free)
-
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "explode":
-		queue_free()
+	#explosion_vfx.play()

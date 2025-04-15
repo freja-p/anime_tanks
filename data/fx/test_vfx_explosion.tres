@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VFXData" load_steps=3 format=3 uid="uid://bcw8td85ukfu7"]
+
+[ext_resource type="Script" uid="uid://c1gc4emnyhjkn" path="res://scripts/vfx/vfx_data.gd" id="1_4y524"]
+[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vfx/explosion.tscn" id="2_ianqk"]
+
+[resource]
+script = ExtResource("1_4y524")
+radius = 0.3
+duration = 0.4
+vfx_scene = ExtResource("2_ianqk")
+metadata/_custom_type_script = "uid://c1gc4emnyhjkn"

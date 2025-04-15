@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bjn8urkj1uugf"]
 
 [ext_resource type="Script" uid="uid://cfx6x81bljb5w" path="res://scripts/entities/abilities/projectile/projectile_microrocket.gd" id="1_3ekqn"]
-[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/entities/vehicle_parts/ability_vfx/explosion.tscn" id="2_fpf1a"]
+[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vfx/explosion.tscn" id="2_fpf1a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_48tac"]
 seed = 453454
@@ -48,6 +48,5 @@ collision_mask = 8
 collide_with_areas = true
 
 [node name="ExplosionVFX" parent="." instance=ExtResource("2_fpf1a")]
-raycast_hits = true
 
 [connection signal="timeout" from="TurnDelay" to="." method="_on_turn_delay_timeout"]

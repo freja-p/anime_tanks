@@ -10,19 +10,20 @@ var damage : float
 var modifier_payload : Array[ModifierData]
 
 enum ProjectileState {
+	INACTIVE,
 	ACTIVE,
 	DEAD
 }
 
-var current_state : ProjectileState = ProjectileState.ACTIVE
+var current_state : ProjectileState = ProjectileState.INACTIVE
 var ability_data : Ability
 var shooter : Entity
 var behaviours : Array[ProjectileBehaviour]
 
-# TODO: Distinguish between active and inactive behaviours
-func _ready() -> void:
+func start_behaviours() -> void:
 	for behaviour in behaviours:
 		behaviour._ready_behaviour()
+	current_state = ProjectileState.ACTIVE
 		
 func _process(delta: float) -> void:
 	match current_state:
@@ -46,7 +47,9 @@ func add_behaviour(behaviour_data : ProjectileBehaviourData):
 	behaviours.append(behaviour)
 	behaviour.behaviour_ended.connect(_on_behaviour_ended)
 	add_child(behaviour)
-	behaviour._ready_behaviour()
+	
+	if is_inside_tree():
+		behaviour._ready_behaviour()
 
 func _on_behaviour_ended(behaviour : ProjectileBehaviour) -> void:
 	for i in range(behaviours.size()):
