@@ -68,30 +68,3 @@ func _create_timer(context : ModifierContext) -> Timer:
 func _modifier_context_duration_timeout(modifier : Modifier):
 	remove_modifier(modifier.modifier_resource)
 	
-	
-	# TEMPORARY DEBUG CODE
-func _unhandled_input(event):
-	if event.is_action_pressed("debug_f3"):
-		add_modifier(test_mod)
-	elif event.is_action_pressed("debug_f4"):
-		remove_modifier(test_mod)
-		
-		
-#func get_hardpoint_stat_effects(hardpoint : Enums.Hardpoint, hardpoint_stat : Enums.HardpointStat):
-	#return
-	#
-	#
-#func get_abilty_stat_effects_on(hardpoint) -> Array[EffectData]:
-	#var effects : Array[EffectData] = []
-	#for modifier in _modifiers:
-		#for effect in modifier.effects:
-			#if effect.affects_ability_on(hardpoint):
-				#effects.append(effect)
-	#return effects
-#
-#
-#func get_effects_of_type(effect_type : Enums.EffectType) -> Array[EffectData]:
-	#var effects : Array[EffectData] = []
-	#for mod in _modifiers:
-		#mod.append_effects_of_type(effect_type, effects)
-	#return effects

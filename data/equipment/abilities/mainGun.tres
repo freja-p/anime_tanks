@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_grwm7"]
 [ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_lnkwm"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_vn308"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/ModifierData.gd" id="2_y6j0f"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="2_y6j0f"]
 [ext_resource type="PackedScene" uid="uid://tiknftrqfhsv" path="res://scenes/entities/vehicle_parts/abilities/autogun/autogun_projectiles/projectile_body/projectile_body.tscn" id="3_brei6"]
 
 [resource]

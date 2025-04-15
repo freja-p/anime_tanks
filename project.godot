@@ -25,6 +25,7 @@ AbilityLogicManager="*res://scenes/entities/vehicle_parts/abilities/AbilityLogic
 [global_group]
 
 terrain=""
+player=""
 
 [input]
 

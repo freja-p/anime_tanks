@@ -29,7 +29,7 @@ region_merge_size = 10.0
 
 [node name="AimUI" parent="." node_paths=PackedStringArray("camera", "playerEntity") instance=ExtResource("1_6pydf")]
 camera = NodePath("../PlayerCam")
-playerEntity = NodePath("../Apc")
+playerEntity = NodePath("../Player")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." groups=["terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8427, 0.84958, -21.785)
@@ -56,7 +56,7 @@ size = Vector3(77.0747, 1.19287, 92.3052)
 material = ExtResource("4_cxdv4")
 metadata/_edit_lock_ = true
 
-[node name="Apc" parent="." instance=ExtResource("5_ocnk7")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("5_ocnk7")]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 20.6794, 1.32677, 14.3658)
 loadout = SubResource("Resource_hoseo")
 
@@ -85,7 +85,7 @@ transform = Transform3D(0.950396, 0, 0.311041, 0, 1, 0, -0.311041, 0, 0.950396, 
 transform = Transform3D(0.498987, 0, -0.866609, 0, 1, 0, 0.866609, 0, 0.498987, -3.57406, 0.805148, -2.50572)
 
 [node name="PlayerCam" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("7_1wu5r")]
-playerNode = NodePath("../Apc")
+playerNode = NodePath("../Player")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_dyc1k")
