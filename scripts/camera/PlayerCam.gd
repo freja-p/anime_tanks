@@ -29,7 +29,6 @@ func _ready():
 	targetRot = anchorBasis.get_euler()
 	
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	cursorRay.global_rotation = targetRot
 	CameraEventBus.player_cam_camera_rotated.emit(cursorRay.get_world_collision())

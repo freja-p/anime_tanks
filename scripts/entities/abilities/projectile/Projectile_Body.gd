@@ -21,7 +21,6 @@ func _physics_process(_delta):
 	if dying:
 		return
 	
-	
 	if penetration_ray_checker.is_colliding():
 		var collider = penetration_ray_checker.get_collider()
 		if collider is Hitbox:

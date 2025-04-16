@@ -3,24 +3,24 @@ class_name Enums
 enum Tag {
 	ON_FIRE,
 	IS_NANO,
-	IS_DYING
+	IS_DYING,
 }
 
 enum EffectType {
 	DAMAGE_OVER_TIME,
 	PROJECTILE,
 	STAT_MULTIPLIER,
-	COOLDOWN_RESET
+	COOLDOWN_RESET,
 }
 
 enum Stat {
-	MAX_HP
+	MAX_HP,
 }
 
 enum StatMultiplierType {
 	FLAT,
 	ADDITIVE,
-	MULTIPLICATIVE
+	MULTIPLICATIVE,
 }
 
 enum HardpointStat {
@@ -30,7 +30,9 @@ enum HardpointStat {
 	FIRE_RATE,
 	COOLDOWN_TIME,
 	OVERHEAT_GAIN,
-	OVERHEAT_LOSS
+	OVERHEAT_LOSS,
+	RADIUS,
+	PROJECTILE_COUNT,
 }
 
 enum Hardpoint {
@@ -39,5 +41,5 @@ enum Hardpoint {
 	INTERNAL,
 	SPECIAL,
 	ULTIMATE,
-	ARTILLERY
+	ARTILLERY,
 }
