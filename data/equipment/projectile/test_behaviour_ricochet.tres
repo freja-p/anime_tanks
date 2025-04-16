@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectileBehaviourData" load_steps=2 format=3 uid="uid://cmik524opt7br"]
+
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_r2w77"]
+
+[resource]
+script = ExtResource("1_r2w77")
+behaviour_logic = 3
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"

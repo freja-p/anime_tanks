@@ -26,3 +26,10 @@ func get_target_aim() -> Vector3:
 	if input.has_method("get_current_aim"):
 		return input.get_current_aim()
 	return get_barrel_aim()
+
+func get_hitboxes() -> Array[Hitbox]:
+	var hitboxes : Array[Hitbox] = []
+	for child in get_children():
+		if child is Hitbox:
+			hitboxes.append(child)
+	return hitboxes

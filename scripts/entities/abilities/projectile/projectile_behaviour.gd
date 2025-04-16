@@ -8,6 +8,11 @@ signal behaviour_ended(behaviour : ProjectileBehaviour)
 
 var projectile_behaviour_data : ProjectileBehaviourData
 var projectile_origin : ProjectileBase
+var stat_calculator : StatCalculator :
+	get:
+		return projectile_origin.stat_calculator
+	set(_val):
+		projectile_origin.stat_calculator = _val
 
 func _ready_behaviour() -> void:
 	return
@@ -17,3 +22,6 @@ func _process_behaviour(delta: float) -> void:
 	
 func _physics_process_behaviour(delta: float) -> void:
 	return
+
+func _end_behaviour() -> void:
+	behaviour_ended.emit()

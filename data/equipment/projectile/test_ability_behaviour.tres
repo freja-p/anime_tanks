@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://bk8co1jvy2k1h"]
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://bk8co1jvy2k1h"]
 
 [ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_xxkbu"]
 [ext_resource type="Resource" uid="uid://vkgb2tdxvlo8" path="res://data/equipment/projectile/test_raycast.tres" id="2_fh83h"]
 [ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="2_fpafv"]
+[ext_resource type="Resource" uid="uid://cmik524opt7br" path="res://data/equipment/projectile/test_behaviour_ricochet.tres" id="3_78r5s"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_fh83h"]
 
 [resource]
@@ -14,7 +15,7 @@ activation_type = 1
 duration = 1.0
 time_between_burst = 1.0
 max_duration = 1.0
-behaviours = Array[ExtResource("1_xxkbu")]([ExtResource("2_fh83h")])
+behaviours = Array[ExtResource("1_xxkbu")]([ExtResource("2_fh83h"), ExtResource("3_78r5s")])
 lifeTime = 2.0
 initial_velocity = 100.0
 modifiers_on_activation = Array[ExtResource("2_fpafv")]([])
