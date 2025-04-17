@@ -13,6 +13,7 @@ extends Entity
 @onready var stat_calculator: StatCalculator = $StatCalculator
 #@onready var entity_detector: EntityDetector = $EntityDetector
 @onready var vehicle_controller: VehicleControllerAPC = $VehicleController
+@onready var center : Node3D = $Center
 
 func _ready():
 	equipmentLoadout.set_equipment_loadout(loadout)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo33rbhwettw5"]
 
-[ext_resource type="Script" uid="uid://cxyejx76wwlj7" path="res://scripts/entities/abilities/projectile/explosion.gd" id="1_tctup"]
+[ext_resource type="Script" uid="uid://cxyejx76wwlj7" path="res://scripts/vfx/explosion.gd" id="1_tctup"]
 [ext_resource type="Material" uid="uid://73hoeyrsidcq" path="res://data/equipment/explosion_material.tres" id="2_76ymx"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_amg4p"]

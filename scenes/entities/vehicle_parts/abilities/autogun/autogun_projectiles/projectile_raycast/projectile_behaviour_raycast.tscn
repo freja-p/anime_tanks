@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b74c3dxh0in4x"]
+[gd_scene load_steps=2 format=3 uid="uid://b74c3dxh0in4x"]
 
 [ext_resource type="Script" uid="uid://bowlpey6m8nps" path="res://scripts/entities/abilities/projectile/projectile_behaviour_raycast.gd" id="1_i77kn"]
-[ext_resource type="Resource" uid="uid://bcw8td85ukfu7" path="res://data/fx/test_vfx_explosion.tres" id="2_yr7g4"]
 
 [node name="ProjectileBehaviourRaycast" type="Node3D" groups=["projectile"]]
 script = ExtResource("1_i77kn")
-vfx = ExtResource("2_yr7g4")
 
 [node name="ForwardRay" type="RayCast3D" parent="."]
 collision_mask = 9

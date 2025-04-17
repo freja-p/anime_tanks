@@ -13,11 +13,13 @@ func _input(event):
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("debug_f4"):
-		var player = get_tree().get_first_node_in_group("player") as Entity
+		var player = get_tree().get_first_node_in_group("player") as Entity_Vehicle
 		var proj : ProjectileBase = TEST_ABILITY_BEHAVIOUR.build(player)
 
 		get_tree().get_root().add_child(proj)
 		proj.global_position = player.get_hardpoint(Enums.Hardpoint.PRIMARY).global_position
 		proj.global_basis = player.get_hardpoint(Enums.Hardpoint.PRIMARY).global_basis
+		proj.stat_calculator = player.find_child("StatCalculator")
+		proj.hardpoint = Enums.Hardpoint.PRIMARY
 		proj.start_behaviours()
 		
