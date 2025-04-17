@@ -37,13 +37,15 @@ script = ExtResource("1_lpcwq")
 loadout = ExtResource("2_1vi6e")
 faction = ExtResource("6_ux2hk")
 
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106862, 0.581662, 0)
+
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, -0.0204543, -0.147787)
 shape = SubResource("ConvexPolygonShape3D_nsq0u")
 
 [node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106862, -0.432148, 0)
-visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("6_yhege")

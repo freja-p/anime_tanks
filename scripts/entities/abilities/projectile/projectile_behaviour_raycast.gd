@@ -4,9 +4,6 @@ extends ProjectileBehaviour
 const COLLISION_MASK_TERRAIN = 1
 const COLLISION_MASK_HITBOX = 8
 
-@export var vfx : VFXData
-
-var checkCount : int = 3
 var ray_collision_checks : int = 1
 var ray_target : Vector3
 
@@ -37,7 +34,7 @@ func _physics_process_behaviour(delta):
 			break
 		
 		if result.collider is Hitbox:
-			print("Hit: {0}".format([result.collider.get_entity()]))
+			print("Raycast Hit: {0}".format([result.collider.get_entity()]))
 			
 			if result.collider.ownerEntity == projectile_origin.shooter:
 				i = i - 1
@@ -60,7 +57,7 @@ func _physics_process_behaviour(delta):
 	behaviour_ended.emit()
 
 func create_vfx(world_pos : Vector3):
-	var new_vfx : VFX = vfx.build()
+	var new_vfx : VFX = projectile_behaviour_data.vfx.build()
 	get_tree().root.add_child(new_vfx)
 	new_vfx.global_position = world_pos
 	new_vfx.play()

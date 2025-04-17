@@ -46,6 +46,9 @@ script = ExtResource("1_jh07m")
 loadout = ExtResource("2_7caaw")
 faction = ExtResource("3_xf1ct")
 
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03126, 0)
+
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, 0.411694, -0.147787)
 shape = SubResource("ConvexPolygonShape3D_nsq0u")

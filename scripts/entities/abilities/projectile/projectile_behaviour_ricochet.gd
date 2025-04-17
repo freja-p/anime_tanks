@@ -1,12 +1,14 @@
 class_name ProjectileBehaviourRicochet
 extends ProjectileBehaviour
 
+const COLLISION_MASK_TERRAIN = 1
 const COLLISION_MASK_HITBOX = 8
 
 var ricochets_left : int
 var queried_shape : SphereShape3D = SphereShape3D.new()
 var _shape_query : PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
 var _rid_exclusions : Array[RID]
+var _shooter_rids : Array[RID]
 var _world_space : PhysicsDirectSpaceState3D
 
 func _ready_behaviour() -> void:
@@ -19,7 +21,7 @@ func _ready_behaviour() -> void:
 	_shape_query.shape = queried_shape
 	_shape_query.collide_with_areas = true
 	_shape_query.collision_mask = COLLISION_MASK_HITBOX
-	_rid_exclusions.append_array(projectile_origin.shooter.get_hitboxes().map(
+	_shooter_rids.append_array(projectile_origin.shooter.get_hitboxes().map(
 		func (x): return x.get_rid())
 		)
 	_shape_query.exclude = _rid_exclusions
@@ -27,11 +29,17 @@ func _ready_behaviour() -> void:
 	return
 
 func reproject_projectile(collision_result : Dictionary, behaviour : ProjectileBehaviour) -> void:
-	var target_results : Array[Dictionary] = _world_space.intersect_shape(_shape_query, 16)
+	_shape_query.transform = Transform3D(Basis.IDENTITY, collision_result.position)
+	_rid_exclusions.clear()
+	_rid_exclusions.append_array(_shooter_rids)
+	_rid_exclusions.append(collision_result.rid)
+	_shape_query.exclude = _rid_exclusions
+		
+	var target_results : Array[Dictionary] = _world_space.intersect_shape(_shape_query)
+	
 	if target_results.is_empty() or ricochets_left == 0:
 		ricochets_left = 0
-		get_tree().create_timer(1.0).timeout.connect(_end_behaviour)
-		#behaviour_ended.emit()
+		behaviour_ended.emit()
 		return
 	
 	var nearest_target : Dictionary = target_results[0]
@@ -51,10 +59,11 @@ func reproject_projectile(collision_result : Dictionary, behaviour : ProjectileB
 	projectile_origin.add_child(new_behaviour)
 	new_behaviour.global_position = collision_result.position
 	new_behaviour.global_basis = Basis.looking_at(
-		nearest_target.collider.global_position - collision_result.position, 
+		nearest_target.collider.get_entity().center.global_position - collision_result.position, 
 		Vector3.UP, 
 		true)
-	new_behaviour.rid_exclusions.append(nearest_target.rid)
+	new_behaviour.rid_exclusions.append(collision_result.rid)
+	
 	new_behaviour._ready_behaviour()
 	projectile_origin.add_active_behaviour(new_behaviour)
 	ricochets_left -= 1
