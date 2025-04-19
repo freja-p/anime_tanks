@@ -17,7 +17,7 @@ var current_state : ProjectileState = ProjectileState.INACTIVE
 var ability_data : Ability
 
 var behaviours : Array[ProjectileBehaviour]
-var listener_behaviours : Array[ProjectileBehaviour]
+var listener_behaviours : Array[ProjectileListenerBehaviour]
 
 var shooter : Entity_Vehicle
 var stat_calculator : StatCalculator
@@ -60,7 +60,7 @@ func add_behaviour(behaviour_data : ProjectileBehaviourData):
 	var behaviour = behaviour_data.build()
 	behaviour.projectile_origin = self
 	
-	if behaviour_data.is_listener:
+	if behaviour is ProjectileListenerBehaviour:
 		listener_behaviours.append(behaviour)
 	else:
 		behaviours.append(behaviour)
@@ -77,8 +77,7 @@ func add_active_behaviour(behaviour : ProjectileBehaviour) -> void:
 	behaviour.behaviour_ended.connect(_on_behaviour_ended.bind(behaviour))
 
 func _on_behaviour_ended(behaviour : ProjectileBehaviour) -> void:
-	
-	if behaviour.projectile_behaviour_data.is_listener:
+	if behaviour is ProjectileListenerBehaviour:
 		for i in range(listener_behaviours.size()):
 			if behaviour == listener_behaviours[i]:
 				listener_behaviours.remove_at(i)

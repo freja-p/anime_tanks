@@ -36,9 +36,10 @@ extends Resource
 const PROJECTILE = preload("res://scenes/entities/vehicle_parts/abilities/projectile.tscn")
 
 # TODO: When should this be called?
-func build(shooter_entity : Entity, hardpoint : Enums.Hardpoint) -> ProjectileBase:
+func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:
 	var new_projectile = ProjectileBase.new()
 	new_projectile.shooter = shooter_entity
+	new_projectile.stat_calculator = shooter_entity.stat_calculator
 	new_projectile.hardpoint = hardpoint
 	new_projectile.ability_data = self
 	

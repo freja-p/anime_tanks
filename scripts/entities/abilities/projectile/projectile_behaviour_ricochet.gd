@@ -1,5 +1,5 @@
 class_name ProjectileBehaviourRicochet
-extends ProjectileBehaviour
+extends ProjectileListenerBehaviour
 
 const COLLISION_MASK_TERRAIN = 1
 const COLLISION_MASK_HITBOX = 8

@@ -9,11 +9,12 @@ var ray_target : Vector3
 
 var rid_exclusions : Array[RID]
 
-@onready var ray : RayCast3D = $ForwardRay
+#@onready var ray : RayCast3D = $ForwardRay
+
 
 func _ready_behaviour():
 	ray_target = global_position + global_basis.z * 100
-	ray.target_position = Vector3(0, 0, 100)
+	#ray.target_position = Vector3(0, 0, 100)
 	
 func _physics_process_behaviour(delta):
 	var query_params : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
@@ -39,11 +40,11 @@ func _physics_process_behaviour(delta):
 			if result.collider.ownerEntity == projectile_origin.shooter:
 				i = i - 1
 			else:
-				result.collider.hit(
-					projectile_origin.damage, 
-					projectile_origin.shooter, 
-					projectile_origin.modifier_payload
-					)
+				#result.collider.hit(
+					#projectile_origin.damage, 
+					#projectile_origin.shooter, 
+					#projectile_origin.modifier_payload
+					#)
 				create_vfx(result.position)
 				projectile_origin.projectile_collided.emit(result, self)
 			rid_exclusions.append(result.rid)

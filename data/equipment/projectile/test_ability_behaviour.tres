@@ -1,10 +1,30 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://bk8co1jvy2k1h"]
+[gd_resource type="Resource" script_class="Ability" load_steps=8 format=3 uid="uid://bk8co1jvy2k1h"]
 
 [ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_xxkbu"]
 [ext_resource type="Resource" uid="uid://vkgb2tdxvlo8" path="res://data/equipment/projectile/test_raycast.tres" id="2_fh83h"]
 [ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="2_fpafv"]
 [ext_resource type="Resource" uid="uid://cmik524opt7br" path="res://data/equipment/projectile/test_behaviour_ricochet.tres" id="3_78r5s"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_fh83h"]
+
+[sub_resource type="Resource" id="Resource_fh83h"]
+script = ExtResource("1_xxkbu")
+behaviour_logic = 0
+damage_damage = 10.0
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+penetrate_additional_penetrations = 1
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
+
+[sub_resource type="Resource" id="Resource_78r5s"]
+script = ExtResource("1_xxkbu")
+behaviour_logic = 5
+damage_damage = 10.0
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+penetrate_additional_penetrations = 3
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
 
 [resource]
 script = ExtResource("3_fh83h")
@@ -15,7 +35,7 @@ activation_type = 1
 duration = 1.0
 time_between_burst = 1.0
 max_duration = 1.0
-behaviours = Array[ExtResource("1_xxkbu")]([ExtResource("2_fh83h"), ExtResource("3_78r5s")])
+behaviours = Array[ExtResource("1_xxkbu")]([ExtResource("2_fh83h"), ExtResource("3_78r5s"), SubResource("Resource_fh83h"), SubResource("Resource_78r5s")])
 lifeTime = 2.0
 initial_velocity = 100.0
 modifiers_on_activation = Array[ExtResource("2_fpafv")]([])
