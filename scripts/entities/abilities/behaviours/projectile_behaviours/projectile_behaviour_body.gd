@@ -13,7 +13,7 @@ var last_frame_position : Vector3
 
 
 func _ready_behaviour() -> void:
-	#get_tree().create_timer(projectile_behaviour_data.body_lifetime_sec).timeout.connect(_end_behaviour)
+	get_tree().create_timer(projectile_behaviour_data.body_lifetime_sec).timeout.connect(_end_behaviour)
 	last_frame_position = body.global_position
 	body.apply_impulse(global_basis.z * projectile_behaviour_data.body_initial_velocity * body.mass)
 	ray_cast_3d.reparent(get_tree().root)

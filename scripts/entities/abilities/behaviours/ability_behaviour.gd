@@ -1,0 +1,2 @@
+class_name AbilityBehaviour
+extends Node3D

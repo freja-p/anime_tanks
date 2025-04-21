@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b74c3dxh0in4x"]
 
-[ext_resource type="Script" uid="uid://bowlpey6m8nps" path="res://scripts/entities/abilities/projectile_behaviours/projectile_behaviour_raycast.gd" id="1_vcfpa"]
+[ext_resource type="Script" uid="uid://bowlpey6m8nps" path="res://scripts/entities/abilities/behaviours/projectile_behaviours/projectile_behaviour_raycast.gd" id="1_vcfpa"]
 
 [node name="ProjectileBehaviourRaycast" type="Node3D" groups=["projectile"]]
 script = ExtResource("1_vcfpa")

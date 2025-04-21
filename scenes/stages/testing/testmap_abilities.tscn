@@ -85,7 +85,7 @@ material = ExtResource("4_didow")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("5_kuhmj")]
-transform = Transform3D(-0.938854, 0, 0.344315, 0, 1, 0, -0.344315, 0, -0.938854, -41.9128, 0.482754, 40.2244)
+transform = Transform3D(-0.938854, 0, 0.344315, 0, 1, 0, -0.344315, 0, -0.938854, -40.9405, 0.482754, 40.2244)
 loadout = SubResource("Resource_hoseo")
 
 [node name="ApcAi" parent="." instance=ExtResource("9_maow5")]

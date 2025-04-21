@@ -14,8 +14,8 @@ var lastFramePosition : Vector3
 func start() -> void:
 	lastFramePosition = global_position
 	
-	life_timer.start(ability_resource.lifeTime)
-	projectileBody.apply_impulse(basis.z * ability_resource.initial_velocity * projectileBody.mass)
+	life_timer.start(ability_resource.proj_lifeTime)
+	projectileBody.apply_impulse(basis.z * ability_resource.projbody_initial_velocity * projectileBody.mass)
 
 func _physics_process(_delta):
 	if dying:

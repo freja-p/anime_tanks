@@ -1,7 +1,6 @@
 class_name Ability
 extends Resource
 
-@export_category("Parameters")
 @export var ability_name : String = "Ability"
 @export var icon : Image
 @export var activation_sfx : AudioStream
@@ -19,21 +18,25 @@ extends Resource
 @export_subgroup("Toggle")
 @export var max_duration : float = 1.0
 
-@export_category("Projectile")
-@export var projectile_scene : PackedScene
-@export var behaviours : Array[ProjectileBehaviourData]
-@export var lifeTime : float = 2.0
-@export_subgroup("RigidBody")
-@export var initial_velocity : float = 100.0
 
-@export_category("Modifiers")
-@export var modifiers_on_activation : Array[ModifierData]
-@export var remove_modifiers_on_deactivation : bool = true
+@export_category("Behaviours")
+@export_subgroup("Projectile", "proj_")
+@export var proj_scene : PackedScene
+@export var proj_behaviours : Array[ProjectileBehaviourData]
+@export var proj_lifeTime : float = 60.0
+
+@export_subgroup("RigidBody", "projbody_")
+@export var projbody_initial_velocity : float = 100.0
+
+@export_subgroup("Modifiers", "modifier_")
+@export var modifier_apply_on_activate : Array[ModifierData]
+@export var modifier_remove_on_activate : Array[ModifierData]
+@export var modifier_apply_on_deactivate : Array[ModifierData]
+@export var modifier_remove_on_deactivate : Array[ModifierData]
+
 
 @export_category("AI")
 @export var selection_weight : int = 10
-
-const PROJECTILE = preload("res://scenes/entities/components/abilities/projectile.tscn")
 
 # TODO: When should this be called?
 func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:
@@ -43,7 +46,10 @@ func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> Proj
 	new_projectile.hardpoint = hardpoint
 	new_projectile.ability_data = self
 	
-	for b in behaviours:
+	for b in proj_behaviours:
 		new_projectile.add_behaviour(b)
 		
 	return new_projectile
+
+func build_projectile(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:
+	return null

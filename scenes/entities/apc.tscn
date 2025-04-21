@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dx2ebwl28gts4"]
+[gd_scene load_steps=21 format=3 uid="uid://dx2ebwl28gts4"]
 
 [ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
 [ext_resource type="Resource" uid="uid://cyr80os6pan33" path="res://data/vehicles/movement/apc/apc_default.tres" id="2_1l833"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/components/movement/vehicle_controller_apc.gd" id="14_fyjrq"]
 [ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/modifier_handler.gd" id="15_tcejk"]
 [ext_resource type="Script" uid="uid://cxqtswwjvb237" path="res://scripts/entities/components/stats/StatCalculator.gd" id="18_letig"]
-[ext_resource type="Resource" uid="uid://d35ou6o38qs4l" path="res://data/equipment/abilities/test_modifier/test_modifier_attachmod.tres" id="18_msfhw"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/entities/components/misc/health_manager.tscn" id="20_t70pv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_irkgx"]
@@ -178,7 +177,6 @@ stat_calculator = NodePath("../StatCalculator")
 unique_name_in_owner = true
 script = ExtResource("15_tcejk")
 owner_entity = NodePath("..")
-test_mod = ExtResource("18_msfhw")
 
 [node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
 script = ExtResource("18_letig")

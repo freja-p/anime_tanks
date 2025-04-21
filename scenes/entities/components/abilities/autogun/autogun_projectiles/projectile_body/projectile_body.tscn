@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://tiknftrqfhsv"]
 
-[ext_resource type="Script" uid="uid://hso552duveao" path="res://scripts/entities/abilities/projectile_behaviours/projectile_behaviour_body.gd" id="1_0y65o"]
+[ext_resource type="Script" uid="uid://hso552duveao" path="res://scripts/entities/abilities/behaviours/projectile_behaviours/projectile_behaviour_body.gd" id="1_0y65o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l6xva"]
 radius = 0.1
