@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=9 format=3 uid="uid://ub2qcgba0psx"]
+
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_8qo0e"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="2_a5i7k"]
+[ext_resource type="Script" uid="uid://c1gc4emnyhjkn" path="res://scripts/vfx/vfx_data.gd" id="2_kmqwi"]
+[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vfx/explosion.tscn" id="3_gkroi"]
+[ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_kmqwi"]
+
+[sub_resource type="Resource" id="Resource_gt5ik"]
+script = ExtResource("2_kmqwi")
+radius = 8.0
+duration = 0.4
+vfx_scene = ExtResource("3_gkroi")
+metadata/_custom_type_script = "uid://c1gc4emnyhjkn"
+
+[sub_resource type="Resource" id="Resource_0xvvj"]
+script = ExtResource("1_8qo0e")
+behaviour_logic = 3
+vfx = SubResource("Resource_gt5ik")
+damage_damage = 10.0
+aoe_radius = 4.0
+body_lifetime_sec = 60.0
+body_initial_velocity = 100.0
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+penetrate_additional_penetrations = 1
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
+
+[sub_resource type="Resource" id="Resource_kmqwi"]
+script = ExtResource("1_8qo0e")
+behaviour_logic = 1
+damage_damage = 10.0
+aoe_radius = 4.0
+body_lifetime_sec = 60.0
+body_initial_velocity = 10.0
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+penetrate_additional_penetrations = 1
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
+
+[resource]
+script = ExtResource("3_kmqwi")
+ability_name = "Ability"
+base_damage = 10.0
+secondary_damage = 5.0
+activation_type = 0
+duration = 1.0
+time_between_burst = 1.0
+max_duration = 1.0
+behaviours = Array[ExtResource("1_8qo0e")]([SubResource("Resource_0xvvj"), SubResource("Resource_kmqwi")])
+lifeTime = 2.0
+initial_velocity = 100.0
+modifiers_on_activation = Array[ExtResource("2_a5i7k")]([])
+remove_modifiers_on_deactivation = true
+selection_weight = 10
+metadata/_custom_type_script = "uid://btyjs1b5ygr3v"
