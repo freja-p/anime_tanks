@@ -112,7 +112,7 @@ func _on_path_changed():
 ## TEMPORARY DEBUG CODE
 #var lookpos : Vector3
 #func _unhandled_input(event):
-	#if event.is_action_pressed("primary_attack"):
+	#if event.is_action_pressed("primary_ability"):
 		#navigate_to(lookpos, 15)
 #func _on_player_cam_camera_rotated(worldPos : Vector3):
 	#lookpos = worldPos

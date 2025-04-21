@@ -13,9 +13,9 @@ func _ready():
 	CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
 
 func _unhandled_input(event : InputEvent):
-	if event.is_action("primary_attack"):
+	if event.is_action("primary_ability"):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.PRIMARY, event.is_pressed())
-	elif event.is_action("secondary_attack"):
+	elif event.is_action("secondary_ability"):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.SECONDARY, event.is_pressed())
 	elif event.is_action("defensive_ability"):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.INTERNAL, event.is_pressed())

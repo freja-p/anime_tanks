@@ -79,11 +79,11 @@ func _process(delta):
 	pass
 
 func _unhandled_input(event : InputEvent):
-	if event.is_action("primary_attack"):
+	if event.is_action("primary_ability"):
 		mainGun.activate(event.is_pressed())
 	if event.is_action("defensive_ability"):
 		defensive.activate(event.is_pressed())
-	if event.is_action("secondary_attack"):
+	if event.is_action("secondary_ability"):
 		secondaryhp.activate(event.is_pressed())
 		
 	controller.process_unhandled_input(event)
