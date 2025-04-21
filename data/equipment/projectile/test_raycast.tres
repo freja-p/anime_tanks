@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ProjectileBehaviourData" load_steps=3 format=3 uid="uid://vkgb2tdxvlo8"]
 
-[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_c4bs8"]
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile_behaviours/projectile_behaviour_data.gd" id="1_c4bs8"]
 [ext_resource type="Resource" uid="uid://bcw8td85ukfu7" path="res://data/fx/test_vfx_explosion.tres" id="2_jmyfv"]
 
 [resource]

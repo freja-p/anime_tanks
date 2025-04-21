@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=9 format=3 uid="uid://ub2qcgba0psx"]
 
-[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile/projectile_behaviour_data.gd" id="1_8qo0e"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="2_a5i7k"]
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/projectile_behaviours/projectile_behaviour_data.gd" id="1_8qo0e"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="2_a5i7k"]
 [ext_resource type="Script" uid="uid://c1gc4emnyhjkn" path="res://scripts/vfx/vfx_data.gd" id="2_kmqwi"]
 [ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vfx/explosion.tscn" id="3_gkroi"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_kmqwi"]

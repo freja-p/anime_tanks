@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cegggm3e5yg4g"]
+
+[ext_resource type="PackedScene" uid="uid://cmoon7jtawrun" path="res://raw_assets/vehicles/meshes/tank_turret_base.glb" id="1_saw2s"]
+[ext_resource type="Script" uid="uid://dmk1ria1iol3q" path="res://scripts/entities/components/turret/TurretComponent.gd" id="2_7616i"]
+[ext_resource type="Script" uid="uid://ibgl1mcdhi1o" path="res://scripts/entities/components/turret/TurretController.gd" id="3_42hjp"]
+[ext_resource type="Material" uid="uid://cquewirsbeb3f" path="res://raw_assets/vehicles/enemy.tres" id="5_qog68"]
+
+[node name="Turret" instance=ExtResource("1_saw2s")]
+script = ExtResource("2_7616i")
+
+[node name="TurretController" type="Node" parent="." index="0" node_paths=PackedStringArray("barrel", "turret", "virTurret", "virBarrel", "projectileSpawn", "barrelRay")]
+script = ExtResource("3_42hjp")
+barrel = NodePath("../Base_Turret/Gun_Barrel")
+turret = NodePath("../Base_Turret")
+virTurret = NodePath("../VirtualTurret")
+virBarrel = NodePath("../VirtualTurret/VirtualBarrel")
+projectileSpawn = NodePath("../Base_Turret/Gun_Barrel/ProjectileSpawnPoint")
+barrelRay = NodePath("../Base_Turret/Gun_Barrel/BarrelTarget")
+
+[node name="Base_Turret" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62452e-08, -0.0112621, -0.185823)
+surface_material_override/0 = ExtResource("5_qog68")
+
+[node name="Gun_Barrel" parent="Base_Turret" index="0"]
+transform = Transform3D(1.0983, 0, 8.9407e-08, 0, 1.0983, 0, 8.9407e-08, 0, 1.0983, 2.98023e-08, 0.347, -1.63)
+surface_material_override/0 = ExtResource("5_qog68")
+
+[node name="ProjectileSpawnPoint" type="Node3D" parent="Base_Turret/Gun_Barrel" index="0"]
+transform = Transform3D(0.910496, 0, 0, 0, 0.910496, 0, 0, 0, 0.910496, -0.00961923, -0.00386974, -4.38445)
+
+[node name="BarrelTarget" type="RayCast3D" parent="Base_Turret/Gun_Barrel" index="1"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 49
+collide_with_areas = true
+
+[node name="VirtualTurret" type="Node3D" parent="." index="2"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="VirtualBarrel" type="Node3D" parent="VirtualTurret" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781267, -2.26739)

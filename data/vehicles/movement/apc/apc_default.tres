@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="APCData" load_steps=4 format=3 uid="uid://cyr80os6pan33"]
 
-[ext_resource type="Script" uid="uid://cpfsykw5xbodt" path="res://scripts/entities/vehicle_components/movement/apc_data.gd" id="1_lu388"]
+[ext_resource type="Script" uid="uid://cpfsykw5xbodt" path="res://scripts/entities/components/movement/apc_data.gd" id="1_lu388"]
 [ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="1_os1ok"]
 [ext_resource type="Curve" uid="uid://df6rs8hiswgty" path="res://data/vehicles/movement/apc/steer_limit_default.tres" id="3_ya66n"]
 

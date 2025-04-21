@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkqw8v0xydhh6"]
+
+[ext_resource type="Script" uid="uid://dpuy2istob56n" path="res://scripts/entities/components/BodyScript.gd" id="1_571eq"]
+[ext_resource type="PackedScene" uid="uid://beg8jfwjlb3n0" path="res://scenes/entities/meshes/tank_body_base_2.tscn" id="2_ayibt"]
+[ext_resource type="PackedScene" uid="uid://uw0tm08or6a5" path="res://scenes/entities/components/bodies/Basic/tracks_base/tank_wheels_L.tscn" id="3_f1vv4"]
+[ext_resource type="Material" uid="uid://b1jv31y04fd4w" path="res://raw_assets/vehicles/player.tres" id="3_y16ht"]
+[ext_resource type="PackedScene" uid="uid://dw1jeqvxfap7i" path="res://scenes/entities/components/bodies/Basic/tracks_base/tank_wheels_R.tscn" id="4_hhpoh"]
+
+[node name="Body" type="Node3D"]
+script = ExtResource("1_571eq")
+
+[node name="tank_body_base2" parent="." instance=ExtResource("2_ayibt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.197446, -0.00827657)
+
+[node name="Base_Body" parent="tank_body_base2" index="0"]
+surface_material_override/0 = ExtResource("3_y16ht")
+
+[node name="tank_wheels_L" parent="." instance=ExtResource("3_f1vv4")]
+
+[node name="tank_wheels_R" parent="." instance=ExtResource("4_hhpoh")]
+
+[editable path="tank_body_base2"]

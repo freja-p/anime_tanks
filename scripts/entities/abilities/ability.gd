@@ -33,7 +33,7 @@ extends Resource
 @export_category("AI")
 @export var selection_weight : int = 10
 
-const PROJECTILE = preload("res://scenes/entities/vehicle_parts/abilities/projectile.tscn")
+const PROJECTILE = preload("res://scenes/entities/components/abilities/projectile.tscn")
 
 # TODO: When should this be called?
 func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:

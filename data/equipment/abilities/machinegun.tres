@@ -2,8 +2,8 @@
 
 [ext_resource type="Resource" uid="uid://vir7elwonxbx" path="res://data/equipment/abilities/test_abilities/test_cooldown_fast_magazine.tres" id="1_gyecu"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_hfmkj"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="1_okta5"]
-[ext_resource type="PackedScene" uid="uid://dlvi34ij1dsbu" path="res://scenes/entities/vehicle_parts/abilities/autogun/autogun_projectiles/projectile_raycast/projectile_raycast.tscn" id="1_r6gyf"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="1_okta5"]
+[ext_resource type="PackedScene" uid="uid://dlvi34ij1dsbu" path="res://scenes/entities/components/abilities/autogun/autogun_projectiles/projectile_raycast/projectile_raycast.tscn" id="1_r6gyf"]
 
 [resource]
 script = ExtResource("1_hfmkj")

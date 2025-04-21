@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfaiq5fb8wufs"]
+
+[ext_resource type="Script" uid="uid://cuolkstvc1upa" path="res://scripts/entities/components/stats/HealthManager.gd" id="1_up5ka"]
+
+[node name="HealthManager" type="Node"]
+script = ExtResource("1_up5ka")
+
+[node name="DotTicker" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="HealthRestoreTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DotTicker" to="." method="_on_dot_timer_timeout"]

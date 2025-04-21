@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Loadout" load_steps=4 format=3 uid="uid://fl5y6qcgxlk1"]
 
 [ext_resource type="Resource" uid="uid://bd81h64m84fir" path="res://data/equipment/abilities/machinegun_burst.tres" id="1_uf8y1"]
-[ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/vehicle_components/abilities/Loadout.gd" id="2_bcy7c"]
+[ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/components/abilities/Loadout.gd" id="2_bcy7c"]
 [ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="3_raqd6"]
 
 [resource]

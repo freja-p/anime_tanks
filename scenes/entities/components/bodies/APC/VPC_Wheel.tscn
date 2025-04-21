@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddessmnqecu76"]
+
+[ext_resource type="Script" uid="uid://ue3wrx1bv1dt" path="res://scenes/entities/components/bodies/APC/VPC_Wheel.gd" id="1_eb38q"]
+[ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="1_nmeox"]
+
+[node name="VehicleWheel3D" type="VehicleWheel3D"]
+wheel_radius = 1.0
+script = ExtResource("1_eb38q")
+
+[node name="WheelMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_nmeox")

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ModifierData" load_steps=6 format=3 uid="uid://dyd35bap17qm7"]
 
 [ext_resource type="Resource" uid="uid://1rmcs2guisy5" path="res://data/equipment/abilities/test_modifier/test_context.tres" id="1_pkfxl"]
-[ext_resource type="Script" uid="uid://ypqm2dm01tjs" path="res://scripts/entities/vehicle_components/modifiers/effects/effect.gd" id="2_6ta4a"]
-[ext_resource type="Script" uid="uid://dxiw7xj4cfled" path="res://scripts/entities/vehicle_components/modifiers/effects/effect_mult.gd" id="3_auc2k"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/vehicle_components/modifiers/modifier_data.gd" id="4_sfnnc"]
+[ext_resource type="Script" uid="uid://ypqm2dm01tjs" path="res://scripts/entities/components/modifiers/effects/effect.gd" id="2_6ta4a"]
+[ext_resource type="Script" uid="uid://dxiw7xj4cfled" path="res://scripts/entities/components/modifiers/effects/effect_mult.gd" id="3_auc2k"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="4_sfnnc"]
 
 [sub_resource type="Resource" id="Resource_8hmrb"]
 script = ExtResource("3_auc2k")
