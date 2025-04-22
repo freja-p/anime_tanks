@@ -2,11 +2,11 @@
 
 [ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/equipment/abilities/defence_bubble.tres" id="1_31ele"]
 [ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/components/abilities/Loadout.gd" id="1_yfxpr"]
+[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_0dyox"]
 [ext_resource type="Resource" uid="uid://cxmwt8vh2vcr8" path="res://data/equipment/abilities/mainGun.tres" id="2_h0yfl"]
-[ext_resource type="Resource" uid="uid://sruykpx7awph" path="res://data/equipment/abilities/microrockets.tres" id="4_klstf"]
 
 [resource]
 script = ExtResource("1_yfxpr")
-primary = ExtResource("2_h0yfl")
-secondary = ExtResource("4_klstf")
+primary = ExtResource("2_0dyox")
+secondary = ExtResource("2_h0yfl")
 internal = ExtResource("1_31ele")

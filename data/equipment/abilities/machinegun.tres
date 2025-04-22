@@ -1,22 +1,53 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://dloci0bf0gaho"]
+[gd_resource type="Resource" script_class="Ability" load_steps=8 format=3 uid="uid://dloci0bf0gaho"]
 
 [ext_resource type="Resource" uid="uid://vir7elwonxbx" path="res://data/equipment/abilities/test_abilities/test_cooldown_fast_magazine.tres" id="1_gyecu"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_hfmkj"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="1_hnfus"]
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/behaviours/projectile_behaviours/projectile_behaviour_data.gd" id="3_mbrtm"]
+[ext_resource type="Resource" uid="uid://bcw8td85ukfu7" path="res://data/fx/test_vfx_explosion.tres" id="4_mbrtm"]
+
+[sub_resource type="Resource" id="Resource_hnfus"]
+script = ExtResource("3_mbrtm")
+behaviour_logic = 2
+vfx = ExtResource("4_mbrtm")
+damage_damage = 10.0
+aoe_radius = 4.0
+body_lifetime_sec = 60.0
+body_initial_velocity = 10.0
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+penetrate_additional_penetrations = 1
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
+
+[sub_resource type="Resource" id="Resource_mbrtm"]
+script = ExtResource("3_mbrtm")
+behaviour_logic = 0
+damage_damage = 10.0
+aoe_radius = 4.0
+body_lifetime_sec = 60.0
+body_initial_velocity = 10.0
+ricochet_count = 1
+ricochet_search_radius = 10.0
+ricochet_damage_multiplier = 0.8
+penetrate_additional_penetrations = 1
+metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
 
 [resource]
 script = ExtResource("1_hfmkj")
 ability_name = "MachineGun"
-base_damage = null
-secondary_damage = null
 cooldown_resource = ExtResource("1_gyecu")
 activation_type = 1
-duration = null
-time_between_burst = null
-max_duration = null
-behaviours = Array[Object]([])
-lifeTime = 2.0
-initial_velocity = null
-modifiers_on_activation = null
-modifiers_on_deactivate = null
-remove_modifiers_on_deactivation = null
-selection_weight = null
+duration = 1.0
+time_between_burst = 1.0
+max_duration = 1.0
+create_projectile = true
+proj_behaviours = Array[ExtResource("3_mbrtm")]([SubResource("Resource_hnfus"), SubResource("Resource_mbrtm")])
+proj_lifeTime = 60.0
+projbody_initial_velocity = 100.0
+apply_buffs = false
+buff_apply_on_activate = Array[ExtResource("1_hnfus")]([])
+buff_remove_on_activate = Array[ExtResource("1_hnfus")]([])
+buff_apply_on_deactivate = Array[ExtResource("1_hnfus")]([])
+buff_remove_on_deactivate = Array[ExtResource("1_hnfus")]([])
+selection_weight = 10

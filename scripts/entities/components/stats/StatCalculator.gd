@@ -23,14 +23,14 @@ class HardpointStat:
 			#stat = _val % 100
 			#hardpoint = _val / 100
 
-@export var modifier_handler : BuffTracker
+@export var buff_tracker : BuffTracker
 
 var _stat_effects : Dictionary[Enums.Stat, Stat]
 var _hardpoint_effects : Dictionary[Enums.Hardpoint, HardpointStat]
 
 func _ready():
-	modifier_handler.buff_added.connect(_on_new_buff_added)
-	modifier_handler.buff_removed.connect(_on_buff_removed)
+	buff_tracker.buff_added.connect(_on_new_buff_added)
+	buff_tracker.buff_removed.connect(_on_buff_removed)
 #
 	for stat in Enums.Stat.values():
 		_stat_effects[stat] = Stat.new()

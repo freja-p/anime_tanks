@@ -8,7 +8,7 @@ signal damage_taken(damage : float)
 const dot_timer_tick_rate : float = 0.25
 
 @export var owner_entity : Entity
-@export var modifier_handler : BuffTracker
+@export var buff_tracker : BuffTracker
 @export var health_restore_delay : float = 3
 @export var health_restore_rate : float = 10
 
@@ -21,8 +21,8 @@ var dot_effects : Dictionary
 
 
 func _ready() -> void:
-	modifier_handler.buff_added.connect(_on_buff_added)
-	modifier_handler.buff_removed.connect(_on_buff_removed)
+	buff_tracker.buff_added.connect(_on_buff_added)
+	buff_tracker.buff_removed.connect(_on_buff_removed)
 	max_health = get_parent().health
 	current_health = max_health
 	

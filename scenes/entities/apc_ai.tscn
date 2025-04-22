@@ -29,13 +29,13 @@
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nsq0u"]
 points = PackedVector3Array(1.55437, 0.812815, 1.5055, 1.11578, 0.79121, 3.12206, 1.10787, -1.65173e-07, 2.33352, 1.55437, 0.812815, -2.048, 1.23053, 1.13178, -1.32222, 1.18548, 1.17499, 0.556008, 1.00865, 1.30603, 0.857659, -1.11552, 0.79121, 3.12257, 0.943816, -1.65173e-07, 2.33402, 1.10787, -1.65173e-07, 1.82891, 1.04791, -1.65173e-07, -1.83341, -1.55472, 0.812815, -2.048, 1.00834, 1.30603, -1.83341, 1.18518, 1.17499, -1.32222, -2.09808e-05, 1.30603, 0.852091, -1.00869, 1.3059, 0.857659, -1.55472, 0.812815, 1.506, -1.10791, -1.65173e-07, 2.33402, -1.04856, -1.65173e-07, -1.83341, -1.23118, 1.13178, -1.32222, -1.18583, 1.17499, -1.32222, -1.00899, 1.3059, -1.83341, -0.000325322, 1.30603, -1.83341, -1.10791, -1.65173e-07, 1.82891, -1.00899, 1.3059, -1.32222, -1.18552, 1.17499, 0.556514)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3k6vw"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7fncc"]
+size = Vector3(2.675, 1.49, 4.225)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wqcgj"]
 radius = 5.245
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7fncc"]
-size = Vector3(2.675, 1.49, 4.225)
+[sub_resource type="BoxMesh" id="BoxMesh_3k6vw"]
 
 [node name="ApcAi" type="VehicleBody3D"]
 collision_layer = 2
@@ -51,6 +51,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03126, 0)
 [node name="BodyCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, 0.411694, -0.147787)
 shape = SubResource("ConvexPolygonShape3D_nsq0u")
+
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("20_0l1ft")
+ownerEntity = NodePath("..")
+health_manager = NodePath("../HealthManager")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0686834, 1.04963, 0.0686834)
+shape = SubResource("BoxShape3D_7fncc")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_wqcgj")
 
 [node name="Body" parent="." node_paths=PackedStringArray("wheels", "turret") instance=ExtResource("5_8bnt6")]
 wheels = [NodePath("../Wheel_Steering_L"), NodePath("../Wheel_Steering_R"), NodePath("../Wheel_L1"), NodePath("../Wheel_L2"), NodePath("../Wheel_R1"), NodePath("../Wheel_R1")]
@@ -184,41 +203,22 @@ Kp_c = 0.7
 script = ExtResource("16_mkmm1")
 owner_entity = NodePath("..")
 
-[node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
+[node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("buff_tracker")]
 script = ExtResource("17_qc6pn")
-modifier_handler = NodePath("../BuffTracker")
+buff_tracker = NodePath("../BuffTracker")
 
-[node name="ThreatAnalyzer" type="Node" parent="." node_paths=PackedStringArray("health_manager", "hitboxes")]
+[node name="ThreatAnalyzer" type="Node" parent="." node_paths=PackedStringArray("detector", "health_manager", "hitboxes")]
 script = ExtResource("17_4o44x")
+detector = NodePath("../EntityDetector")
 health_manager = NodePath("../HealthManager")
 hitboxes = [NodePath("../BodyHitbox")]
-
-[node name="DetectionArea" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
-shape = SubResource("SphereShape3D_wqcgj")
 
 [node name="EntityDetector" type="Node" parent="."]
 script = ExtResource("19_6ou3o")
 
-[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("18_runbh")]
+[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "buff_tracker") instance=ExtResource("18_runbh")]
 owner_entity = NodePath("..")
-modifier_handler = NodePath("../BuffTracker")
-
-[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
-collision_layer = 8
-collision_mask = 0
-script = ExtResource("20_0l1ft")
-ownerEntity = NodePath("..")
-health_manager = NodePath("../HealthManager")
-modifier_handler = NodePath("../BuffTracker")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0686834, 1.04963, 0.0686834)
-shape = SubResource("BoxShape3D_7fncc")
+buff_tracker = NodePath("../BuffTracker")
 
 [node name="AiStateMachine" type="Node" parent="." node_paths=PackedStringArray("navigator", "entity", "threat_analyzer", "starting_state")]
 script = ExtResource("19_87eym")
@@ -247,8 +247,8 @@ script = ExtResource("21_t3unt")
 [node name="Flee" type="Node" parent="AiStateMachine"]
 script = ExtResource("23_wdrws")
 
+[connection signal="body_entered" from="DetectionArea" to="EntityDetector" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="EntityDetector" method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="InputController/IterationTimer" to="InputController" method="_on_iteration_timer_timeout"]
 [connection signal="navigation_finished" from="Navigator" to="Navigator" method="_on_navigation_finished"]
 [connection signal="path_changed" from="Navigator" to="Navigator" method="_on_path_changed"]
-[connection signal="body_entered" from="DetectionArea" to="EntityDetector" method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="EntityDetector" method="_on_detection_area_body_exited"]

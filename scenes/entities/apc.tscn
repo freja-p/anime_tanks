@@ -43,14 +43,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106862, 0.581662, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140987, -0.0204543, -0.147787)
 shape = SubResource("ConvexPolygonShape3D_nsq0u")
 
-[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
+[node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106862, -0.432148, 0)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("6_yhege")
 ownerEntity = NodePath("..")
 health_manager = NodePath("../HealthManager")
-modifier_handler = NodePath("../BuffTracker")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881894, 0.133577)
@@ -178,10 +177,10 @@ unique_name_in_owner = true
 script = ExtResource("15_tcejk")
 owner_entity = NodePath("..")
 
-[node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
+[node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("buff_tracker")]
 script = ExtResource("18_letig")
-modifier_handler = NodePath("../BuffTracker")
+buff_tracker = NodePath("../BuffTracker")
 
-[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("20_t70pv")]
+[node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "buff_tracker") instance=ExtResource("20_t70pv")]
 owner_entity = NodePath("..")
-modifier_handler = NodePath("../BuffTracker")
+buff_tracker = NodePath("../BuffTracker")

@@ -4,8 +4,6 @@ extends Resource
 @export var ability_name : String = "Ability"
 @export var icon : Image
 @export var activation_sfx : AudioStream
-@export var base_damage : float = 10.0
-@export var secondary_damage : float = 5.0
 @export var cooldown_resource : CooldownResource
 
 @export_category("Activation")
@@ -20,19 +18,21 @@ extends Resource
 
 
 @export_category("Behaviours")
+@export var create_projectile : bool = false
 @export_subgroup("Projectile", "proj_")
-@export var proj_scene : PackedScene
 @export var proj_behaviours : Array[ProjectileBehaviourData]
 @export var proj_lifeTime : float = 60.0
 
 @export_subgroup("RigidBody", "projbody_")
 @export var projbody_initial_velocity : float = 100.0
 
-@export_subgroup("Modifiers", "modifier_")
-@export var modifier_apply_on_activate : Array[BuffData]
-@export var modifier_remove_on_activate : Array[BuffData]
-@export var modifier_apply_on_deactivate : Array[BuffData]
-@export var modifier_remove_on_deactivate : Array[BuffData]
+@export_category("Buff Application")
+@export var apply_buffs : bool = false
+@export_subgroup("Modifiers", "buff_")
+@export var buff_apply_on_activate : Array[BuffData]
+@export var buff_remove_on_activate : Array[BuffData]
+@export var buff_apply_on_deactivate : Array[BuffData]
+@export var buff_remove_on_deactivate : Array[BuffData]
 
 
 @export_category("AI")

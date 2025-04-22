@@ -35,16 +35,10 @@ func _physics_process_behaviour(delta):
 			break
 		
 		if result.collider is Hitbox:
-			print("Raycast Hit: {0}".format([result.collider.get_entity()]))
-			
+						
 			if result.collider.ownerEntity == projectile_origin.shooter:
 				i = i - 1
 			else:
-				#result.collider.hit(
-					#projectile_origin.damage, 
-					#projectile_origin.shooter, 
-					#projectile_origin.modifier_payload
-					#)
 				create_vfx(result.position)
 				projectile_origin.projectile_collided.emit(result, self)
 			rid_exclusions.append(result.rid)
@@ -57,7 +51,9 @@ func _physics_process_behaviour(delta):
 
 	behaviour_ended.emit()
 
-func create_vfx(world_pos : Vector3):
+func create_vfx(world_pos : Vector3) -> void:
+	if not projectile_behaviour_data.vfx:
+		return
 	var new_vfx : VFX = projectile_behaviour_data.vfx.build()
 	get_tree().root.add_child(new_vfx)
 	new_vfx.global_position = world_pos

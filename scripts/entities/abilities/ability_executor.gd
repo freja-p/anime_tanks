@@ -21,10 +21,10 @@ enum AbilityState {
 	RELOAD
 	}
 	
-var ability_resource : Ability
+var ability : Ability
 var cooldown_resource : CooldownResource
 var cooldown : CooldownInterface
-var ownerEntity : Entity
+var ownerEntity : Entity_Vehicle
 var hardpoint : Enums.Hardpoint
 var hardpointNode : Node3D
 var stat_calculator : StatCalculator
@@ -56,11 +56,11 @@ func _ready():
 	_currentState = AbilityState.READY
 
 # TODO: Make this like a builder pattern? Maybe make Ability.build() return an AbilityExecutor instead?
-func construct(ability : Ability, arg_hardpoint : Enums.Hardpoint, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
+func construct(arg_ability : Ability, arg_hardpoint : Enums.Hardpoint, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
 	ownerEntity = arg_ownerEntity
 	hardpoint = arg_hardpoint
 	hardpointNode = arg_ownerEntity.get_hardpoint(arg_hardpoint)
-	ability_resource = ability
+	ability = arg_ability
 	
 	cooldown = ability.cooldown_resource.create_instance(stat_calculator, ability)
 	add_child(cooldown)
@@ -80,7 +80,7 @@ func activate(toggle_on : bool = true) -> bool:
 		print("not ready")
 		return false
 	
-	match ability_resource.activation_type:
+	match ability.activation_type:
 		ActivationType.SINGLE:
 			if not toggle_on:
 				return false
@@ -106,32 +106,50 @@ func activate(toggle_on : bool = true) -> bool:
 			else:
 				_enter_active()
 				
-	_execute_logic()
+	_trigger_ability()
 	return true
 
 
-func _execute_logic():
-	AbilityLogicManager.execute_logic(
-			ability_resource, 
-			hardpointNode,
-			ownerEntity, 
-			stat_calculator.get_hardpoint_stat(
-					ability_resource.base_damage, 
-					hardpoint, 
-					Enums.HardpointStat.DAMAGE),
-			stat_calculator.get_hardpoint_stat(
-				ability_resource.secondary_damage, 
-				hardpoint, 
-				Enums.HardpointStat.SECONDARY_DAMAGE),
-			modifiers)
+func _trigger_ability(trigger_on : bool = true):
+	if ability.create_projectile:
+		_create_projectile()
+	if ability.apply_buffs and trigger_on:
+		for buff in ability.buff_apply_on_activate:
+			ownerEntity.buff_tracker.add_buff(buff)
+		for buff in ability.buff_remove_on_activate:
+			ownerEntity.buff_tracker.remove_buff(buff)
+	elif ability.apply_buffs and not trigger_on:
+		for buff in ability.buff_apply_on_deactivate:
+			ownerEntity.buff_tracker.add_buff(buff)
+		for buff in ability.buff_remove_on_deactivate:
+			ownerEntity.buff_tracker.remove_buff(buff)
+	#AbilityLogicManager.execute_logic(
+			#ability, 
+			#hardpointNode,
+			#ownerEntity, 
+			#stat_calculator.get_hardpoint_stat(
+					#ability.base_damage, 
+					#hardpoint, 
+					#Enums.HardpointStat.DAMAGE),
+			#stat_calculator.get_hardpoint_stat(
+				#ability.secondary_damage, 
+				#hardpoint, 
+				#Enums.HardpointStat.SECONDARY_DAMAGE),
+			#modifiers)
 					
 	if sfxPlayer.has_stream_playback(): sfxPlayer.play()
 	ability_activated.emit(self)
 	return true
 
-
+func _create_projectile():
+	var projectile : ProjectileBase = ability.build(ownerEntity, hardpoint)
+	get_tree().get_root().add_child(projectile)
+	projectile.global_position = hardpointNode.global_position
+	projectile.global_basis = hardpointNode.global_basis
+	projectile.start_behaviours()
+	
 func get_weight() -> int:
-	return ability_resource.selection_weight
+	return ability.selection_weight
 
 
 func set_modifiers(arg_modifiers : Array[BuffData]) -> void:
@@ -140,7 +158,7 @@ func set_modifiers(arg_modifiers : Array[BuffData]) -> void:
 
 func _enter_active() -> void:
 	_currentState = AbilityState.ACTIVE
-	activeDurationTimer.start(ability_resource.duration)
+	activeDurationTimer.start(ability.duration)
 
 
 func _enter_cooldown() -> void:
@@ -155,7 +173,7 @@ func _enter_ready() -> void:
 	
 	
 func _on_ability_cooldown_timeout():
-	match ability_resource.activation_type:
+	match ability.activation_type:
 		ActivationType.SINGLE, ActivationType.TOGGLE:
 			_enter_ready()
 			
@@ -163,12 +181,12 @@ func _on_ability_cooldown_timeout():
 			if activeDurationTimer.is_stopped():
 				_enter_ready()
 			else:
-				_execute_logic()
+				_trigger_ability()
 				cooldown.start_cooldown()
 				
 		ActivationType.AUTO:
 			if autofiring:
-				_execute_logic()
+				_trigger_ability()
 				cooldown.start_cooldown()
 			else:
 				_enter_ready()
