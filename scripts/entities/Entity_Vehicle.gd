@@ -8,7 +8,7 @@ extends Entity
 @onready var turret = %Turret
 @onready var input = %InputController
 @onready var equipmentLoadout = %EquipmentLoadout as EquipmentLoadout
-@onready var modifier_handler: ModifierHandler = $ModifierHandler as ModifierHandler
+@onready var modifier_handler: BuffTracker = $BuffTracker as BuffTracker
 @onready var health_manager: HealthManager = $HealthManager
 @onready var stat_calculator: StatCalculator = $StatCalculator
 #@onready var entity_detector: EntityDetector = $EntityDetector

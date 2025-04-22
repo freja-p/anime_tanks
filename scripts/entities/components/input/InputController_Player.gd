@@ -19,7 +19,7 @@ func _unhandled_input(event : InputEvent):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.SECONDARY, event.is_pressed())
 	elif event.is_action("defensive_ability"):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.INTERNAL, event.is_pressed())
-	elif event.is_action("special_attack"):
+	elif event.is_action("special_ability"):
 		equipmentLoadout.activate_equipment(Enums.Hardpoint.SPECIAL, event.is_pressed())
 	
 func _physics_process(delta):

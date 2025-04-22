@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://cxmwt8vh2vcr8"]
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cxmwt8vh2vcr8"]
 
 [ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/behaviours/projectile_behaviours/projectile_behaviour_data.gd" id="1_grwm7"]
 [ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_lnkwm"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_vn308"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="2_y6j0f"]
-[ext_resource type="PackedScene" uid="uid://tiknftrqfhsv" path="res://scenes/entities/components/abilities/autogun/autogun_projectiles/projectile_body/projectile_body.tscn" id="3_brei6"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="2_y6j0f"]
 
 [resource]
 script = ExtResource("1_vn308")
@@ -16,10 +15,11 @@ activation_type = 0
 duration = 1.0
 time_between_burst = 1.0
 max_duration = 1.0
-projectile_scene = ExtResource("3_brei6")
-behaviours = Array[ExtResource("1_grwm7")]([])
-lifeTime = 2.0
-initial_velocity = 100.0
-modifiers_on_activation = Array[ExtResource("2_y6j0f")]([])
-remove_modifiers_on_deactivation = true
+proj_behaviours = Array[ExtResource("1_grwm7")]([])
+proj_lifeTime = 60.0
+projbody_initial_velocity = 100.0
+modifier_apply_on_activate = Array[ExtResource("2_y6j0f")]([])
+modifier_remove_on_activate = Array[ExtResource("2_y6j0f")]([])
+modifier_apply_on_deactivate = Array[ExtResource("2_y6j0f")]([])
+modifier_remove_on_deactivate = Array[ExtResource("2_y6j0f")]([])
 selection_weight = 10

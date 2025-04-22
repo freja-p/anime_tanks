@@ -4,22 +4,41 @@ extends Node
 ##
 ## Provides the most current values of entity stats
 
-@export var modifier_handler : ModifierHandler
+class Stat:
+	var effects : Dictionary[EffectData, int]
 
-var _stat_effects : Dictionary
-var _hardpoint_effects : Dictionary
+class HardpointStat:
+	var stats : Dictionary[Enums.HardpointStat, Stat]
+	func effects(stat : Enums.HardpointStat) -> Dictionary[EffectData, int]:
+		return stats[stat].effects
+
+# Maybe revisit some form of dual key hashmap datastruct in the future
+#class Hardpoint_Stat:
+	#var hardpoint : Enums.Hardpoint
+	#var stat : Enums.HardpointStat
+	#var key : int :
+		#get():
+			#return hardpoint * 100 + stat
+		#set(_val):
+			#stat = _val % 100
+			#hardpoint = _val / 100
+
+@export var modifier_handler : BuffTracker
+
+var _stat_effects : Dictionary[Enums.Stat, Stat]
+var _hardpoint_effects : Dictionary[Enums.Hardpoint, HardpointStat]
 
 func _ready():
-	modifier_handler.modifier_added.connect(_on_new_modifier_added)
-	modifier_handler.modifier_removed.connect(_on_modifier_removed)
-
+	modifier_handler.buff_added.connect(_on_new_buff_added)
+	modifier_handler.buff_removed.connect(_on_buff_removed)
+#
 	for stat in Enums.Stat.values():
-		_stat_effects[stat] = {}
+		_stat_effects[stat] = Stat.new()
 		
 	for hardpoint in Enums.Hardpoint.values():
-		_hardpoint_effects[hardpoint] = {}
+		_hardpoint_effects[hardpoint] = HardpointStat.new()
 		for stat in Enums.HardpointStat.values():
-			_hardpoint_effects[hardpoint][stat] = {}
+			_hardpoint_effects[hardpoint].stats[stat] = Stat.new()
 			
 			
 func get_stat(base_value : float, stat : Enums.Stat) -> float:
@@ -36,11 +55,11 @@ func _calculate_stat(
 		hardpoint : Enums.Hardpoint, 
 		hardpoint_stat : Enums.HardpointStat) -> float:
 			
-	var multipliers : Dictionary
+	var multipliers : Dictionary[EffectData, int]
 	if stat > -1:
-		multipliers = _stat_effects[stat] as Dictionary
+		multipliers = _stat_effects[stat].effects
 	elif hardpoint > -1 and hardpoint_stat > -1:
-		multipliers = _hardpoint_effects[hardpoint][hardpoint_stat] as Dictionary
+		multipliers = _hardpoint_effects[hardpoint].effects(hardpoint_stat)
 	else:
 		print("Error, invalid arguments provided to calculate_stat() at %s" % self)
 		return 0
@@ -61,40 +80,40 @@ func _calculate_stat(
 	return (base_value + flat) *  additive  * multiplicative
 	
 	
-func _on_new_modifier_added(modifier : ModifierData):
+func _on_new_buff_added(modifier : BuffData):
 	for effect in modifier.effects:
 		if effect is Effect_StatMult:
-			var stat_effects_dict : Dictionary = _stat_effects[effect.stat_affected]
-			if stat_effects_dict.has(effect):
-				stat_effects_dict[effect] += 1
+			var effects : Dictionary[EffectData, int] = _stat_effects[effect.stat_affected].effects
+			if effects.has(effect):
+				effects[effect] += 1
 			else:
-				stat_effects_dict[effect] = 1
+				effects[effect] = 1
 		
 		elif effect is Effect_HardpointStatMult:
-			var hardpoint_stat_effects_dict : Dictionary = _hardpoint_effects[effect.hardpoint_affected][effect.stat_affected]
-			if hardpoint_stat_effects_dict.has(effect):
-				hardpoint_stat_effects_dict[effect] += 1
+			var effects : Dictionary[EffectData, int] = _hardpoint_effects[effect.hardpoint_affected].effects(effect.stat_affected)
+			if effects.has(effect):
+				effects[effect] += 1
 			else:
-				hardpoint_stat_effects_dict[effect] = 1
+				effects[effect] = 1
 				
 				
-func _on_modifier_removed(modifier : ModifierData):
+func _on_buff_removed(modifier : BuffData):
 	for effect in modifier.effects:
 		if effect is Effect_StatMult:
-			var stat_effects_dict : Dictionary = _stat_effects[effect.stat_affected]
-			if stat_effects_dict.has(effect):
-				stat_effects_dict[effect] -= 1
-				if stat_effects_dict[effect] == 0:
-					stat_effects_dict.erase(effect)
+			var effects : Dictionary[EffectData, int] = _stat_effects[effect.stat_affected].effects
+			if effects.has(effect):
+				effects[effect] -= 1
+				if effects[effect] == 0:
+					effects.erase(effect)
 			else:
 				printerr("Error: %s tried to remove non-existent effect %s" % [self, effect])
 		
 		elif effect is Effect_HardpointStatMult:
-			var hardpoint_stat_effects_dict : Dictionary = _hardpoint_effects[effect.hardpoint_affected][effect.stat_affected]
-			if hardpoint_stat_effects_dict.has(effect):
-				hardpoint_stat_effects_dict[effect] -= 1
-				if hardpoint_stat_effects_dict[effect] == 0:
-					hardpoint_stat_effects_dict.erase(effect)
+			var effects : Dictionary[EffectData, int] = _hardpoint_effects[effect.hardpoint_affected].effects(effect.stat_affected)
+			if effects.has(effect):
+				effects[effect] -= 1
+				if effects[effect] == 0:
+					effects.erase(effect)
 			else:
 				printerr("Error: %s tried to remove non-existent effect %s" % [self, effect])
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://csbgm5khdwqun"]
 
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="1_0snjg"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="1_0snjg"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="1_bi2c6"]
 [ext_resource type="PackedScene" uid="uid://qlmdyrvgr7o3" path="res://scenes/entities/components/abilities/defense_bubble/defensive.tscn" id="1_f7047"]
 [ext_resource type="Resource" uid="uid://r0xfxoxoif5m" path="res://data/equipment/abilities/test_abilities/test_cooldown_simple.tres" id="1_qiw4c"]

@@ -29,10 +29,10 @@ extends Resource
 @export var projbody_initial_velocity : float = 100.0
 
 @export_subgroup("Modifiers", "modifier_")
-@export var modifier_apply_on_activate : Array[ModifierData]
-@export var modifier_remove_on_activate : Array[ModifierData]
-@export var modifier_apply_on_deactivate : Array[ModifierData]
-@export var modifier_remove_on_deactivate : Array[ModifierData]
+@export var modifier_apply_on_activate : Array[BuffData]
+@export var modifier_remove_on_activate : Array[BuffData]
+@export var modifier_apply_on_deactivate : Array[BuffData]
+@export var modifier_remove_on_deactivate : Array[BuffData]
 
 
 @export_category("AI")

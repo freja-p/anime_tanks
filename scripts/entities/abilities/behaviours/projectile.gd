@@ -7,7 +7,7 @@ var secondary_damage : float
 var dying : bool = false
 var ability_resource : Ability
 
-var modifier_payload : Array[ModifierData] = []
+var modifier_payload : Array[BuffData] = []
 
 func start() -> void:
 	return

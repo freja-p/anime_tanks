@@ -1,7 +1,6 @@
 extends Node
 
 const TEST_RAYCAST = preload("res://data/equipment/projectile/test_raycast.tres")
-const PROJECTILE = preload("res://scenes/entities/components/abilities/projectile.tscn")
 const TEST_ABILITY_BEHAVIOUR = preload("res://data/equipment/projectile/test_ability_behaviour.tres")
 const TEST_ABILITY_BEHAVIOUR_BODY = preload("res://data/equipment/projectile/test_ability_behaviour_body.tres")
 

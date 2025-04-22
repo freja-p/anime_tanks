@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://sruykpx7awph"]
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://sruykpx7awph"]
 
 [ext_resource type="Script" uid="uid://s4xukmmhoamr" path="res://scripts/entities/abilities/cooldown/cooldown_resource.gd" id="1_hw5pg"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="1_it142"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="1_it142"]
 [ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/behaviours/projectile_behaviours/projectile_behaviour_data.gd" id="1_yqswk"]
-[ext_resource type="PackedScene" uid="uid://bjn8urkj1uugf" path="res://scenes/entities/components/abilities/micro_rockets/projectile_microrocket.tscn" id="2_g3oka"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_nb17b"]
 
 [sub_resource type="Resource" id="Resource_s7c77"]
@@ -27,10 +26,11 @@ activation_type = 1
 duration = 2.0
 time_between_burst = 1.0
 max_duration = 1.0
-projectile_scene = ExtResource("2_g3oka")
-behaviours = Array[ExtResource("1_yqswk")]([])
-lifeTime = 2.0
-initial_velocity = 100.0
-modifiers_on_activation = Array[ExtResource("1_it142")]([])
-remove_modifiers_on_deactivation = true
+proj_behaviours = Array[ExtResource("1_yqswk")]([])
+proj_lifeTime = 60.0
+projbody_initial_velocity = 100.0
+modifier_apply_on_activate = Array[ExtResource("1_it142")]([])
+modifier_remove_on_activate = Array[ExtResource("1_it142")]([])
+modifier_apply_on_deactivate = Array[ExtResource("1_it142")]([])
+modifier_remove_on_deactivate = Array[ExtResource("1_it142")]([])
 selection_weight = 10

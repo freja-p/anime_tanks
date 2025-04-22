@@ -18,7 +18,7 @@
 [ext_resource type="Curve" path="res://data/vehicles/movement/apc/steer_brake_default.tres" id="16_paqet"]
 [ext_resource type="Curve" uid="uid://cmjobh5to8q58" path="res://data/vehicles/movement/apc/engine_curve_default.tres" id="17_klq6q"]
 [ext_resource type="Script" uid="uid://dckjko7vv63dp" path="res://scripts/entities/components/abilities/EquipmentLoadout.gd" id="18_g8yl2"]
-[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/modifier_handler.gd" id="19_fyebw"]
+[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/buff_tracker.gd" id="19_fyebw"]
 [ext_resource type="Resource" uid="uid://d35ou6o38qs4l" path="res://data/equipment/abilities/test_modifier/test_modifier_attachmod.tres" id="20_kn0fl"]
 [ext_resource type="Script" uid="uid://cxqtswwjvb237" path="res://scripts/entities/components/stats/StatCalculator.gd" id="21_45fbm"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/entities/components/misc/health_manager.tscn" id="22_f0lqa"]

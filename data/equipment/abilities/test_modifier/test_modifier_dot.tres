@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="ModifierData" load_steps=6 format=3 uid="uid://3bpd4g2xb6fn"]
+[gd_resource type="Resource" script_class="BuffData" load_steps=5 format=3 uid="uid://3bpd4g2xb6fn"]
 
-[ext_resource type="Resource" uid="uid://1rmcs2guisy5" path="res://data/equipment/abilities/test_modifier/test_context.tres" id="1_easi2"]
 [ext_resource type="Script" uid="uid://ypqm2dm01tjs" path="res://scripts/entities/components/modifiers/effects/effect.gd" id="2_5buye"]
 [ext_resource type="Script" uid="uid://cgn4754idasyq" path="res://scripts/entities/components/modifiers/effects/effect_dot.gd" id="3_a6x0s"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="4_mhato"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="4_mhato"]
 
 [sub_resource type="Resource" id="Resource_yt3sy"]
 script = ExtResource("3_a6x0s")
@@ -11,7 +10,9 @@ damage_per_second = 10.0
 
 [resource]
 script = ExtResource("4_mhato")
-modifier_name = "TEST_MODIFIER_DOT"
+buff_name = ""
 effects = Array[ExtResource("2_5buye")]([SubResource("Resource_yt3sy")])
-context = ExtResource("1_easi2")
+has_duration = true
+duration = 10.0
+remove_stacks_individually = false
 max_stacks = 3

@@ -1,16 +1,9 @@
-[gd_resource type="Resource" script_class="ModifierData" load_steps=8 format=3 uid="uid://d35ou6o38qs4l"]
+[gd_resource type="Resource" script_class="BuffData" load_steps=6 format=3 uid="uid://d35ou6o38qs4l"]
 
-[ext_resource type="Script" uid="uid://cj6c1ee0xyjta" path="res://scripts/entities/components/modifiers/effects/ModifierContext.gd" id="1_wfq4a"]
 [ext_resource type="Script" uid="uid://ypqm2dm01tjs" path="res://scripts/entities/components/modifiers/effects/effect.gd" id="2_k4n5n"]
 [ext_resource type="Resource" uid="uid://3bpd4g2xb6fn" path="res://data/equipment/abilities/test_modifier/test_modifier_dot.tres" id="2_pd1t1"]
-[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/modifier_data.gd" id="2_y0tyj"]
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="2_y0tyj"]
 [ext_resource type="Script" uid="uid://c3bw847og33ai" path="res://scripts/entities/components/modifiers/effects/effect_attachtoprojectile.gd" id="4_fpuvm"]
-
-[sub_resource type="Resource" id="Resource_u73tn"]
-script = ExtResource("1_wfq4a")
-has_duration = false
-duration = 0.0
-condition_expression = "entity.has_tag(Enums.Tag.OnFire)"
 
 [sub_resource type="Resource" id="Resource_5wg2b"]
 script = ExtResource("4_fpuvm")
@@ -19,7 +12,9 @@ hardpoint_affected = 0
 
 [resource]
 script = ExtResource("2_y0tyj")
-modifier_name = "TEST_MODIFIER_ATTACH-DOT"
+buff_name = ""
 effects = Array[ExtResource("2_k4n5n")]([SubResource("Resource_5wg2b")])
-context = SubResource("Resource_u73tn")
+has_duration = true
+duration = 10.0
+remove_stacks_individually = false
 max_stacks = 1

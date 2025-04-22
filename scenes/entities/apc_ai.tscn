@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bmhx1apw1smhr"]
+[gd_scene load_steps=30 format=3 uid="uid://bmhx1apw1smhr"]
 
 [ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_jh07m"]
 [ext_resource type="Resource" uid="uid://fl5y6qcgxlk1" path="res://data/equipment/loadouts/ai_apc.tres" id="2_7caaw"]
@@ -14,9 +14,8 @@
 [ext_resource type="Resource" uid="uid://cyr80os6pan33" path="res://data/vehicles/movement/apc/apc_default.tres" id="12_ld2n8"]
 [ext_resource type="Script" uid="uid://dckjko7vv63dp" path="res://scripts/entities/components/abilities/EquipmentLoadout.gd" id="13_yifmc"]
 [ext_resource type="Script" uid="uid://bsg0jc3v8epxf" path="res://scripts/entities/components/Navigator.gd" id="15_vwrf1"]
-[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/modifier_handler.gd" id="16_mkmm1"]
+[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/buff_tracker.gd" id="16_mkmm1"]
 [ext_resource type="Script" uid="uid://55oj7t0cilgf" path="res://scenes/entities/components/threatanalyzer/ThreatAnalyzer.gd" id="17_4o44x"]
-[ext_resource type="Resource" uid="uid://dyd35bap17qm7" path="res://data/equipment/abilities/test_modifier/test_modifier_flatHP.tres" id="17_fomll"]
 [ext_resource type="Script" uid="uid://cxqtswwjvb237" path="res://scripts/entities/components/stats/StatCalculator.gd" id="17_qc6pn"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/entities/components/misc/health_manager.tscn" id="18_runbh"]
 [ext_resource type="Script" uid="uid://dgojvbs2vr7lc" path="res://scenes/entities/components/detector/EntityDetector.gd" id="19_6ou3o"]
@@ -168,7 +167,7 @@ vehicle_data = ExtResource("12_ld2n8")
 unique_name_in_owner = true
 script = ExtResource("13_yifmc")
 bodyComponent = NodePath("../Body")
-modifierHandler = NodePath("../ModifierHandler")
+modifierHandler = NodePath("../BuffTracker")
 stat_calculator = NodePath("../StatCalculator")
 
 [node name="Navigator" type="NavigationAgent3D" parent="." node_paths=PackedStringArray("body", "inputController")]
@@ -181,14 +180,13 @@ body = NodePath("..")
 inputController = NodePath("../InputController")
 Kp_c = 0.7
 
-[node name="ModifierHandler" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]
+[node name="BuffTracker" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]
 script = ExtResource("16_mkmm1")
 owner_entity = NodePath("..")
-test_mod = ExtResource("17_fomll")
 
 [node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
 script = ExtResource("17_qc6pn")
-modifier_handler = NodePath("../ModifierHandler")
+modifier_handler = NodePath("../BuffTracker")
 
 [node name="ThreatAnalyzer" type="Node" parent="." node_paths=PackedStringArray("health_manager", "hitboxes")]
 script = ExtResource("17_4o44x")
@@ -208,7 +206,7 @@ script = ExtResource("19_6ou3o")
 
 [node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("18_runbh")]
 owner_entity = NodePath("..")
-modifier_handler = NodePath("../ModifierHandler")
+modifier_handler = NodePath("../BuffTracker")
 
 [node name="BodyHitbox" type="Area3D" parent="." node_paths=PackedStringArray("ownerEntity", "health_manager", "modifier_handler")]
 collision_layer = 8
@@ -216,7 +214,7 @@ collision_mask = 0
 script = ExtResource("20_0l1ft")
 ownerEntity = NodePath("..")
 health_manager = NodePath("../HealthManager")
-modifier_handler = NodePath("../ModifierHandler")
+modifier_handler = NodePath("../BuffTracker")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0686834, 1.04963, 0.0686834)

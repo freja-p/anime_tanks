@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://d3j7r28flcie7" path="res://scenes/entities/EntityEventBus.gd" id="10_dopfq"]
 [ext_resource type="Script" uid="uid://biwi8yne3jh2w" path="res://scripts/entities/components/input/InputController_Player.gd" id="11_kntdl"]
 [ext_resource type="Script" uid="uid://pu4s0w0xxggj" path="res://scripts/entities/components/movement/vehicle_controller_apc.gd" id="14_fyjrq"]
-[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/modifier_handler.gd" id="15_tcejk"]
+[ext_resource type="Script" uid="uid://bw7rdjabr8ii1" path="res://scripts/entities/components/modifiers/buff_tracker.gd" id="15_tcejk"]
 [ext_resource type="Script" uid="uid://cxqtswwjvb237" path="res://scripts/entities/components/stats/StatCalculator.gd" id="18_letig"]
 [ext_resource type="PackedScene" uid="uid://bfaiq5fb8wufs" path="res://scenes/entities/components/misc/health_manager.tscn" id="20_t70pv"]
 
@@ -50,7 +50,7 @@ collision_mask = 0
 script = ExtResource("6_yhege")
 ownerEntity = NodePath("..")
 health_manager = NodePath("../HealthManager")
-modifier_handler = NodePath("../ModifierHandler")
+modifier_handler = NodePath("../BuffTracker")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881894, 0.133577)
@@ -170,18 +170,18 @@ vehicle_data = ExtResource("2_1l833")
 unique_name_in_owner = true
 script = ExtResource("10_6gqms")
 bodyComponent = NodePath("../Body")
-modifierHandler = NodePath("../ModifierHandler")
+modifierHandler = NodePath("../BuffTracker")
 stat_calculator = NodePath("../StatCalculator")
 
-[node name="ModifierHandler" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]
+[node name="BuffTracker" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]
 unique_name_in_owner = true
 script = ExtResource("15_tcejk")
 owner_entity = NodePath("..")
 
 [node name="StatCalculator" type="Node" parent="." node_paths=PackedStringArray("modifier_handler")]
 script = ExtResource("18_letig")
-modifier_handler = NodePath("../ModifierHandler")
+modifier_handler = NodePath("../BuffTracker")
 
 [node name="HealthManager" parent="." node_paths=PackedStringArray("owner_entity", "modifier_handler") instance=ExtResource("20_t70pv")]
 owner_entity = NodePath("..")
-modifier_handler = NodePath("../ModifierHandler")
+modifier_handler = NodePath("../BuffTracker")

@@ -2,7 +2,7 @@ class_name AbilityLogic
 extends Node
 
 
-func execute_logic(ability : Ability, ability_origin : Node3D, shooter : Entity, damage : float, secondary_damage : float, modifier_payload : Array[ModifierData]):
+func execute_logic(ability : Ability, ability_origin : Node3D, shooter : Entity, damage : float, secondary_damage : float, modifier_payload : Array[BuffData]):
 	var projectile : Projectile = ability.projectile_scene.instantiate() as Projectile
 	projectile.ability_resource = ability
 	projectile.shooter = shooter

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ModifierContext" load_steps=2 format=3 uid="uid://1rmcs2guisy5"]
-
-[ext_resource type="Script" uid="uid://cj6c1ee0xyjta" path="res://scripts/entities/components/modifiers/effects/ModifierContext.gd" id="1_esw8k"]
-
-[resource]
-script = ExtResource("1_esw8k")
-has_duration = true
-duration = 1.0
-condition_expression = "entity.has_tag(Enums.Tag.OnFire)"

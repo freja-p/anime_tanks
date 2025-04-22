@@ -22,7 +22,7 @@ var listener_behaviours : Array[ProjectileListenerBehaviour]
 var shooter : Entity_Vehicle
 var stat_calculator : StatCalculator
 var hardpoint : Enums.Hardpoint
-var modifier_payload : Array[ModifierData]
+var modifier_payload : Array[BuffData]
 var damage : float
 
 

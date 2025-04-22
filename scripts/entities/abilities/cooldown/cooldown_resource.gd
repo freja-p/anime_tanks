@@ -20,7 +20,7 @@ enum CooldownType {
 @export var overheat_threshold : float = 100.0
 @export var overheat_dropoff_per_second : float = 10.0
 @export var overheat_dropoff_delay : float = 2.0
-@export var overheat_modifier : ModifierData
+@export var overheat_modifier : BuffData
 
 var cooldown_type_map : Dictionary = {
 	CooldownType.SIMPLE : preload("res://scenes/entities/components/abilities/cooldown/CooldownSimple.tscn"),

@@ -29,7 +29,7 @@ var hardpoint : Enums.Hardpoint
 var hardpointNode : Node3D
 var stat_calculator : StatCalculator
 
-var modifiers : Array[ModifierData] = []
+var modifiers : Array[BuffData] = []
 var target : Vector3 = Vector3.ZERO
 var readyToUse : bool = true
 var autofiring : bool = false
@@ -134,7 +134,7 @@ func get_weight() -> int:
 	return ability_resource.selection_weight
 
 
-func set_modifiers(arg_modifiers : Array[ModifierData]) -> void:
+func set_modifiers(arg_modifiers : Array[BuffData]) -> void:
 	modifiers = arg_modifiers
 
 

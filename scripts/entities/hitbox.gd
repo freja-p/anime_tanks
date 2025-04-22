@@ -5,16 +5,16 @@ signal hit_by(entity : Entity, damage : float)
 
 @export var ownerEntity : Entity_Vehicle
 @export var health_manager : HealthManager
-@export var modifier_handler : ModifierHandler
+@export var modifier_handler : BuffTracker
 
 
 func get_entity() -> Entity:
 	return ownerEntity
 
 
-func hit(damage : float, shooter : Entity, modifiers : Array[ModifierData]):
+func hit(damage : float, shooter : Entity, modifiers : Array[BuffData]):
 	for mod in modifiers:
-		modifier_handler.add_modifier(mod)
+		modifier_handler.add_buff(mod)
 	health_manager.hurt(damage)
 	hit_by.emit(shooter, damage)
 	

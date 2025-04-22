@@ -9,15 +9,15 @@ extends Node
 signal equipment_set(executor : AbilityExecutor)
 
 @export var bodyComponent : Node3D
-@export var modifierHandler : ModifierHandler
+@export var modifierHandler : BuffTracker
 @export var stat_calculator : StatCalculator
 
 var _equipped : Dictionary	
 
 
 func _ready():
-	modifierHandler.modifier_added.connect(_on_modifier_added)
-	modifierHandler.modifier_removed.connect(_on_modifier_removed)
+	modifierHandler.buff_added.connect(_on_buff_added)
+	modifierHandler.buff_removed.connect(_on_buff_removed)
 
 
 func set_equipment(hardpoint : Enums.Hardpoint, ability : Ability):
@@ -47,15 +47,13 @@ func activate_equipment(hardpoint: Enums.Hardpoint, toggle_on : bool = true) -> 
 	return _equipped[hardpoint].activate(toggle_on)
 
 
-func _on_modifier_added(modifier : ModifierData):
+func _on_buff_added(modifier : BuffData):
 	for effect in modifier.effects:
 		if effect is Effect_AttachModToProjectile:
 			_equipped[effect.hardpoint_affected].modifiers.append(effect.modifier_attached)
-		elif effect is Effect_OnHit:
-			pass
 
 
-func _on_modifier_removed(modifier : ModifierData):
+func _on_buff_removed(modifier : BuffData):
 	for effect in modifier.effects:
 		if effect is Effect_AttachModToProjectile:
 			_equipped[effect.hardpoint_affected].modifiers.erase(effect.modifier_attached)

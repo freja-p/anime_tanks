@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://d0q211qyvc371"]
+
+[ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="1_o2kg8"]
+[ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_p6csv"]
+
+[resource]
+script = ExtResource("3_p6csv")
+ability_name = null
+base_damage = null
+secondary_damage = null
+activation_type = null
+duration = null
+time_between_burst = null
+max_duration = null
+proj_behaviours = null
+proj_lifeTime = null
+projbody_initial_velocity = null
+modifier_apply_on_activate = Array[ExtResource("1_o2kg8")]([null])
+modifier_remove_on_activate = null
+modifier_apply_on_deactivate = null
+modifier_remove_on_deactivate = null
+selection_weight = null
+metadata/_custom_type_script = "uid://btyjs1b5ygr3v"
