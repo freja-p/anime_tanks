@@ -1,23 +1,39 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://d0q211qyvc371"]
+[gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://d0q211qyvc371"]
 
 [ext_resource type="Script" uid="uid://dnc75p4jjhhws" path="res://scripts/entities/components/modifiers/buff_data.gd" id="1_o2kg8"]
+[ext_resource type="Resource" uid="uid://kghw4h1hvu86" path="res://data/equipment/abilities/test_modifier/test_buff_ricochet.tres" id="2_tuaub"]
 [ext_resource type="Script" uid="uid://btyjs1b5ygr3v" path="res://scripts/entities/abilities/ability.gd" id="3_p6csv"]
+[ext_resource type="Script" uid="uid://s4xukmmhoamr" path="res://scripts/entities/abilities/cooldown/cooldown_resource.gd" id="3_u6rbc"]
+[ext_resource type="Script" uid="uid://c5fi7ru6i2hm3" path="res://scripts/entities/abilities/behaviours/projectile_behaviours/projectile_behaviour_data.gd" id="4_p6csv"]
+
+[sub_resource type="Resource" id="Resource_p6csv"]
+script = ExtResource("3_u6rbc")
+cooldown_type = 0
+time_between_shots = 5.0
+time_to_reload = 3.0
+magazine_size = 5
+overheat_buildup = 5.0
+overheat_threshold = 100.0
+overheat_dropoff_per_second = 10.0
+overheat_dropoff_delay = 2.0
+metadata/_custom_type_script = "uid://s4xukmmhoamr"
 
 [resource]
 script = ExtResource("3_p6csv")
-ability_name = null
-base_damage = null
-secondary_damage = null
-activation_type = null
-duration = null
-time_between_burst = null
-max_duration = null
-proj_behaviours = null
-proj_lifeTime = null
-projbody_initial_velocity = null
-modifier_apply_on_activate = Array[ExtResource("1_o2kg8")]([null])
-modifier_remove_on_activate = null
-modifier_apply_on_deactivate = null
-modifier_remove_on_deactivate = null
-selection_weight = null
+ability_name = "Ability"
+cooldown_resource = SubResource("Resource_p6csv")
+activation_type = 0
+duration = 1.0
+time_between_burst = 1.0
+max_duration = 1.0
+create_projectile = false
+proj_behaviours = Array[ExtResource("4_p6csv")]([])
+proj_lifeTime = 60.0
+projbody_initial_velocity = 100.0
+apply_buffs = true
+buff_apply_on_activate = Array[ExtResource("1_o2kg8")]([ExtResource("2_tuaub")])
+buff_remove_on_activate = Array[ExtResource("1_o2kg8")]([])
+buff_apply_on_deactivate = Array[ExtResource("1_o2kg8")]([])
+buff_remove_on_deactivate = Array[ExtResource("1_o2kg8")]([ExtResource("2_tuaub")])
+selection_weight = 10
 metadata/_custom_type_script = "uid://btyjs1b5ygr3v"

@@ -165,11 +165,11 @@ equipmentLoadout = NodePath("../EquipmentLoadout")
 script = ExtResource("14_fyjrq")
 vehicle_data = ExtResource("2_1l833")
 
-[node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
+[node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "buff_tracker", "stat_calculator")]
 unique_name_in_owner = true
 script = ExtResource("10_6gqms")
 bodyComponent = NodePath("../Body")
-modifierHandler = NodePath("../BuffTracker")
+buff_tracker = NodePath("../BuffTracker")
 stat_calculator = NodePath("../StatCalculator")
 
 [node name="BuffTracker" type="Node" parent="." node_paths=PackedStringArray("owner_entity")]

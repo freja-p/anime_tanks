@@ -182,11 +182,11 @@ skeleton = NodePath("../../Navigator")
 script = ExtResource("11_kftdn")
 vehicle_data = ExtResource("12_ld2n8")
 
-[node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "modifierHandler", "stat_calculator")]
+[node name="EquipmentLoadout" type="Node" parent="." node_paths=PackedStringArray("bodyComponent", "buff_tracker", "stat_calculator")]
 unique_name_in_owner = true
 script = ExtResource("13_yifmc")
 bodyComponent = NodePath("../Body")
-modifierHandler = NodePath("../BuffTracker")
+buff_tracker = NodePath("../BuffTracker")
 stat_calculator = NodePath("../StatCalculator")
 
 [node name="Navigator" type="NavigationAgent3D" parent="." node_paths=PackedStringArray("body", "inputController")]

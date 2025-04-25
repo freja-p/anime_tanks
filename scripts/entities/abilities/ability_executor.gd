@@ -23,15 +23,11 @@ enum AbilityState {
 	
 var ability : Ability
 var cooldown_resource : CooldownResource
-var cooldown : CooldownInterface
-var ownerEntity : Entity_Vehicle
-var hardpoint : Enums.Hardpoint
-var hardpointNode : Node3D
-var stat_calculator : StatCalculator
+var cooldown : Cooldown
 
 var modifiers : Array[BuffData] = []
-var target : Vector3 = Vector3.ZERO
-var readyToUse : bool = true
+var behaviours : Array[ProjectileBehaviourData] = []
+
 var autofiring : bool = false
 
 var isReady : bool:
@@ -47,29 +43,30 @@ var isActive : bool:
 		return
 
 var _currentState : AbilityState
-
-@onready var sfxPlayer = %ActivateSFXPlayer as AudioStreamPlayer3D
-@onready var activeDurationTimer = %ActiveDurationTimer as Timer
+var _owner_entity : Entity_Vehicle
+var _hardpoint : Enums.Hardpoint
+var _hardpointNode : Node3D
+var _stat_calculator : StatCalculator
+var _active_duration_timer : Timer
 
 
 func _ready():
 	_currentState = AbilityState.READY
-
-# TODO: Make this like a builder pattern? Maybe make Ability.build() return an AbilityExecutor instead?
-func construct(arg_ability : Ability, arg_hardpoint : Enums.Hardpoint, arg_ownerEntity : Entity, stat_calculator : StatCalculator):
-	ownerEntity = arg_ownerEntity
-	hardpoint = arg_hardpoint
-	hardpointNode = arg_ownerEntity.get_hardpoint(arg_hardpoint)
-	ability = arg_ability
 	
-	cooldown = ability.cooldown_resource.create_instance(stat_calculator, ability)
+	_active_duration_timer = Timer.new()
+	_active_duration_timer.autostart = false
+	_active_duration_timer.one_shot = true
+	_active_duration_timer.timeout.connect(_on_active_duration_timer_timeout)
+	add_child(_active_duration_timer)
+	
+	cooldown = ability.cooldown_resource.build(_stat_calculator, ability)
 	add_child(cooldown)
 	cooldown.cooldown_ended.connect(_on_ability_cooldown_timeout)
 	
 	# I don't like this pattern but I just want this to work
 	if cooldown.has_signal("reload_started"):
 		cooldown.reload_started.connect(_on_reloaded)
-
+		
 
 func activate(toggle_on : bool = true) -> bool:
 	if not toggle_on:
@@ -113,39 +110,30 @@ func activate(toggle_on : bool = true) -> bool:
 func _trigger_ability(trigger_on : bool = true):
 	if ability.create_projectile:
 		_create_projectile()
+		
 	if ability.apply_buffs and trigger_on:
 		for buff in ability.buff_apply_on_activate:
-			ownerEntity.buff_tracker.add_buff(buff)
+			_owner_entity.buff_tracker.add_buff(buff)
 		for buff in ability.buff_remove_on_activate:
-			ownerEntity.buff_tracker.remove_buff(buff)
+			_owner_entity.buff_tracker.remove_buff(buff)
+	
 	elif ability.apply_buffs and not trigger_on:
 		for buff in ability.buff_apply_on_deactivate:
-			ownerEntity.buff_tracker.add_buff(buff)
+			_owner_entity.buff_tracker.add_buff(buff)
 		for buff in ability.buff_remove_on_deactivate:
-			ownerEntity.buff_tracker.remove_buff(buff)
-	#AbilityLogicManager.execute_logic(
-			#ability, 
-			#hardpointNode,
-			#ownerEntity, 
-			#stat_calculator.get_hardpoint_stat(
-					#ability.base_damage, 
-					#hardpoint, 
-					#Enums.HardpointStat.DAMAGE),
-			#stat_calculator.get_hardpoint_stat(
-				#ability.secondary_damage, 
-				#hardpoint, 
-				#Enums.HardpointStat.SECONDARY_DAMAGE),
-			#modifiers)
-					
-	if sfxPlayer.has_stream_playback(): sfxPlayer.play()
+			_owner_entity.buff_tracker.remove_buff(buff)
+	
 	ability_activated.emit(self)
 	return true
 
 func _create_projectile():
-	var projectile : ProjectileBase = ability.build(ownerEntity, hardpoint)
+	var projectile : ProjectileBase = ability.build(_owner_entity, _hardpoint)
+	for behaviour in behaviours:
+		projectile.add_behaviour(behaviour)
+		
 	get_tree().get_root().add_child(projectile)
-	projectile.global_position = hardpointNode.global_position
-	projectile.global_basis = hardpointNode.global_basis
+	projectile.global_position = _hardpointNode.global_position
+	projectile.global_basis = _hardpointNode.global_basis
 	projectile.start_behaviours()
 	
 func get_weight() -> int:
@@ -158,7 +146,7 @@ func set_modifiers(arg_modifiers : Array[BuffData]) -> void:
 
 func _enter_active() -> void:
 	_currentState = AbilityState.ACTIVE
-	activeDurationTimer.start(ability.duration)
+	_active_duration_timer.start(ability.duration)
 
 
 func _enter_cooldown() -> void:
@@ -178,7 +166,7 @@ func _on_ability_cooldown_timeout():
 			_enter_ready()
 			
 		ActivationType.BURST:
-			if activeDurationTimer.is_stopped():
+			if _active_duration_timer.is_stopped():
 				_enter_ready()
 			else:
 				_trigger_ability()
@@ -196,4 +184,15 @@ func _on_active_duration_timer_timeout():
 	_enter_cooldown()
 
 func _on_reloaded():
-	activeDurationTimer.stop()
+	_active_duration_timer.stop()
+
+static func build(ability : Ability, hardpoint : Enums.Hardpoint, owner_entity : Entity_Vehicle) -> AbilityExecutor:
+	var new_executor : AbilityExecutor = AbilityExecutor.new()
+	new_executor._owner_entity = owner_entity
+	new_executor._hardpoint = hardpoint
+	new_executor._hardpointNode = owner_entity.get_hardpoint(hardpoint)
+	new_executor._stat_calculator = owner_entity.stat_calculator
+	new_executor.ability = ability
+	new_executor.name = ability.ability_name
+	
+	return new_executor

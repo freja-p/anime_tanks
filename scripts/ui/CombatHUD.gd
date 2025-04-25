@@ -6,8 +6,8 @@ extends CanvasLayer
 @onready var primary_ammobar: ProgressBar = %PrimaryAmmobar
 @onready var secondary_ammo_bar: ProgressBar = %SecondaryAmmoBar
 
-var primary_cooldown : CooldownInterface
-var secondary_cooldown : CooldownInterface
+var primary_cooldown : Cooldown
+var secondary_cooldown : Cooldown
 
 func initialise() -> void :
 	primary_cooldown = player_entity.equipmentLoadout.get_equipment(Enums.Hardpoint.PRIMARY).cooldown

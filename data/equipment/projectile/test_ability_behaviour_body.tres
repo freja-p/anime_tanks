@@ -7,18 +7,18 @@
 [resource]
 script = ExtResource("3_kmqwi")
 ability_name = "Ability"
-base_damage = 10.0
-secondary_damage = 5.0
 activation_type = 0
 duration = 1.0
 time_between_burst = 1.0
 max_duration = 1.0
+create_projectile = false
 proj_behaviours = Array[ExtResource("1_8qo0e")]([])
 proj_lifeTime = 60.0
 projbody_initial_velocity = 100.0
-modifier_apply_on_activate = Array[ExtResource("2_a5i7k")]([])
-modifier_remove_on_activate = Array[ExtResource("2_a5i7k")]([])
-modifier_apply_on_deactivate = Array[ExtResource("2_a5i7k")]([])
-modifier_remove_on_deactivate = Array[ExtResource("2_a5i7k")]([])
+apply_buffs = false
+buff_apply_on_activate = Array[ExtResource("2_a5i7k")]([])
+buff_remove_on_activate = Array[ExtResource("2_a5i7k")]([])
+buff_apply_on_deactivate = Array[ExtResource("2_a5i7k")]([])
+buff_remove_on_deactivate = Array[ExtResource("2_a5i7k")]([])
 selection_weight = 10
 metadata/_custom_type_script = "uid://btyjs1b5ygr3v"

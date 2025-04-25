@@ -1,4 +1,4 @@
-class_name EffectAddBehaviourToProjectile
+class_name EffectHardpointAttachBehaviour
 extends EffectData
 
 @export var behaviour_added : ProjectileBehaviourData

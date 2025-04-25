@@ -1,4 +1,4 @@
-class_name Effect_AttachModToProjectile
+class_name EffectHardpointAttachBuff
 extends EffectData
 
 @export var modifiers_attached : Array[BuffData]

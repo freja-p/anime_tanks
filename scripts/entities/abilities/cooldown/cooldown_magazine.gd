@@ -1,5 +1,5 @@
 class_name CooldownMagazine
-extends CooldownInterface
+extends Cooldown
 
 signal current_ammo_updated(count : int)
 signal reload_started

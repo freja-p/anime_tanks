@@ -38,7 +38,7 @@ extends Resource
 @export_category("AI")
 @export var selection_weight : int = 10
 
-# TODO: When should this be called?
+
 func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:
 	var new_projectile = ProjectileBase.new()
 	new_projectile.shooter = shooter_entity
@@ -50,6 +50,3 @@ func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> Proj
 		new_projectile.add_behaviour(b)
 		
 	return new_projectile
-
-func build_projectile(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:
-	return null

@@ -1,5 +1,5 @@
 class_name CooldownSimple
-extends CooldownInterface
+extends Cooldown
 
 var timer: Timer
 var current_cooldown : float

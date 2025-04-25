@@ -27,9 +27,16 @@ var cooldown_type_map : Dictionary = {
 	CooldownType.MAGAZINE : preload("res://scenes/entities/components/abilities/cooldown/CooldownMagazine.tscn")
 }
 
-func create_instance(arg_stat_calculator : StatCalculator, ability : Ability) -> CooldownInterface:
-	var cooldown : CooldownInterface = cooldown_type_map[cooldown_type].instantiate()
-	cooldown.stat_calculator = arg_stat_calculator
+func build(stat_calculator : StatCalculator, ability : Ability) -> Cooldown:
+	var cooldown : Cooldown
+	
+	match cooldown_type:
+		CooldownType.SIMPLE:
+			cooldown = CooldownSimple.new()
+		CooldownType.MAGAZINE:
+			cooldown = CooldownMagazine.new()
+	
+	cooldown.stat_calculator = stat_calculator
 	cooldown.ability_resource = ability
 	cooldown.cooldown_resource = self
 	return cooldown

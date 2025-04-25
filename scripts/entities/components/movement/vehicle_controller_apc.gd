@@ -28,14 +28,7 @@ func _physics_process(delta) -> void:
 	
 	speed = _body.linear_velocity.length()
 	velocity_angle = _body.basis.z.angle_to(_body.linear_velocity)
-	
-	# Allow the vehicle to steer harder at high speeds if brakes are appleid
-	#var steer_speed_limiter : float
-	#if braking:
-		#steer_speed_limiter = steerBrakeCurve.sample(speed / STEER_SPEED_LIMIT)  
-	#else: 
-		#steer_speed_limiter = steerLimitCurve.sample(speed / STEER_SPEED_LIMIT)
-		
+
 	var steer_speed_limiter = vehicle_data.steerLimitCurve.sample(speed)
 	var steer_target = min(_turn_ratio,steer_speed_limiter) * vehicle_data.STEER_HARD_LIMIT
 	steer_target = _turn_ratio * vehicle_data.STEER_HARD_LIMIT

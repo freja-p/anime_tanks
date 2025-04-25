@@ -1,4 +1,4 @@
-class_name CooldownInterface
+class_name Cooldown
 extends Node
 
 signal cooldown_ended 
