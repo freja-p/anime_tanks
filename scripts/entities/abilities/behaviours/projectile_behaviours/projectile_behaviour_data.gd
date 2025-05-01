@@ -33,11 +33,10 @@ const PROJECTILE_MICROROCKET = preload("res://scenes/entities/components/abiliti
 @export var body_initial_velocity : float = 10
 @export var body_mesh : Mesh
 @export var body_collider : Shape3D
-
+ 
 @export_subgroup("Ricochet", "ricochet")
 @export var ricochet_count : int = 1
 @export var ricochet_search_radius : float = 10.0
-@export var ricochet_damage_multiplier : float = 0.8
 
 @export_subgroup("Penetrate", "penetrate")
 @export var penetrate_additional_penetrations : int = 1

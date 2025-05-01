@@ -16,7 +16,6 @@ body_lifetime_sec = 60.0
 body_initial_velocity = 10.0
 ricochet_count = 1
 ricochet_search_radius = 10.0
-ricochet_damage_multiplier = 0.8
 penetrate_additional_penetrations = 1
 metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
 
@@ -29,7 +28,6 @@ body_lifetime_sec = 60.0
 body_initial_velocity = 10.0
 ricochet_count = 1
 ricochet_search_radius = 10.0
-ricochet_damage_multiplier = 0.8
 penetrate_additional_penetrations = 1
 metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
 

@@ -136,6 +136,7 @@ func _create_projectile():
 	projectile.global_basis = _hardpointNode.global_basis
 	projectile.start_behaviours()
 	
+	
 func get_weight() -> int:
 	return ability.selection_weight
 
