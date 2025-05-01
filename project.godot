@@ -22,6 +22,10 @@ CameraEventBus="*res://scripts/game_state/camera_event_bus.gd"
 PlayerEventBus="*res://scripts/game_state/player_event_bus.gd"
 AbilityLogicManager="*res://scenes/entities/components/abilities/AbilityLogic.tscn"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GPUTrail/plugin.cfg")
+
 [global_group]
 
 terrain=""
