@@ -49,24 +49,24 @@ func get_health_percent() -> float :
 	return current_health / max_health
 	
 	
-func _on_buff_added(modifier : BuffData):
+func _on_buff_added(modifier : BuffData, count : int):
 	for effect in modifier.effects:
 		if dot_effects.has(effect):
-			dot_effects[effect] += 1
+			dot_effects[effect] += count
 			print("Health manager added stack to current dot effect")
 		elif effect is Effect_DoT:
-			dot_effects[effect] = 1
+			dot_effects[effect] = count
 			if dot_ticker.is_stopped():
 				dot_ticker.start(dot_timer_tick_rate)
 				
 			print("Health manager added new dot effect")
 
 
-func _on_buff_removed(modifier : BuffData):
+func _on_buff_removed(modifier : BuffData, count : int):
 	for effect in modifier.effects:
 		if dot_effects.has(effect):
-			dot_effects[effect] -= 1
-			if dot_effects[effect] == 0:
+			dot_effects[effect] -= count
+			if dot_effects[effect] <= 0:
 				dot_effects.erase(effect)
 				if dot_effects.is_empty():
 					dot_ticker.stop()

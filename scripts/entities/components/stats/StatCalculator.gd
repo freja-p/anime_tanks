@@ -80,7 +80,7 @@ func _calculate_stat(
 	return (base_value + flat) *  additive  * multiplicative
 	
 	
-func _on_new_buff_added(modifier : BuffData):
+func _on_new_buff_added(modifier : BuffData, count : int):
 	for effect in modifier.effects:
 		if effect is Effect_StatMult:
 			var effects : Dictionary[EffectData, int] = _stat_effects[effect.stat_affected].effects
@@ -97,7 +97,7 @@ func _on_new_buff_added(modifier : BuffData):
 				effects[effect] = 1
 				
 				
-func _on_buff_removed(modifier : BuffData):
+func _on_buff_removed(modifier : BuffData, count : int):
 	for effect in modifier.effects:
 		if effect is Effect_StatMult:
 			var effects : Dictionary[EffectData, int] = _stat_effects[effect.stat_affected].effects
