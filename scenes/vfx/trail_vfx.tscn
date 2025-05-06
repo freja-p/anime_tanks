@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://dmsibrt2sybrd"]
+
+[ext_resource type="Script" uid="uid://c164wgrgqso4l" path="res://scripts/vfx/trail_vfx.gd" id="1_7y3vf"]
+[ext_resource type="Shader" uid="uid://dh1i6v12285j2" path="res://addons/GPUTrail/shaders/trail.gdshader" id="2_s25aa"]
+[ext_resource type="Shader" uid="uid://cmwfkdk0wb73d" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="3_le2xj"]
+[ext_resource type="Texture2D" uid="uid://jbcdehcd3aco" path="res://raw_assets/textures/trail.png" id="4_dihsq"]
+[ext_resource type="Script" uid="uid://jkxasmo2364k" path="res://addons/GPUTrail/GPUTrail3D.gd" id="5_vhtqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3fse"]
+shader = ExtResource("2_s25aa")
+
+[sub_resource type="Gradient" id="Gradient_fbyxs"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rlq41"]
+gradient = SubResource("Gradient_fbyxs")
+
+[sub_resource type="Curve" id="Curve_mno2y"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.22619, 1), -0.0724456, -0.0724456, 0, 0, Vector2(0.980159, 0), -3.37765, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hcg23"]
+width = 64
+curve = SubResource("Curve_mno2y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2qxu"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_le2xj")
+shader_parameter/tex = ExtResource("4_dihsq")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_rlq41")
+shader_parameter/curve = SubResource("CurveTexture_hcg23")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+
+[sub_resource type="QuadMesh" id="QuadMesh_ry0bd"]
+material = SubResource("ShaderMaterial_c2qxu")
+
+[node name="TrailVFX" type="Node3D"]
+script = ExtResource("1_7y3vf")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+amount = 100
+lifetime = 100.0
+explosiveness = 1.0
+fixed_fps = 120
+process_material = SubResource("ShaderMaterial_d3fse")
+draw_pass_1 = SubResource("QuadMesh_ry0bd")
+script = ExtResource("5_vhtqc")
+length_seconds = 0.833333
+texture = ExtResource("4_dihsq")
+color_ramp = SubResource("GradientTexture1D_rlq41")
+curve = SubResource("CurveTexture_hcg23")
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://jkxasmo2364k"

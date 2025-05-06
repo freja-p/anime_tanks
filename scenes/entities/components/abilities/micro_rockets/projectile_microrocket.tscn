@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bjn8urkj1uugf"]
 
 [ext_resource type="Script" uid="uid://cfx6x81bljb5w" path="res://scripts/entities/abilities/behaviours/projectile_microrocket.gd" id="1_oxwqp"]
-[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vfx/explosion.tscn" id="2_bpma8"]
+[ext_resource type="PackedScene" uid="uid://bo33rbhwettw5" path="res://scenes/vfx/explosion_vfx.tscn" id="2_bpma8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_48tac"]
 seed = 453454

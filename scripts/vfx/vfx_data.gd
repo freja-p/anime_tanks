@@ -3,7 +3,6 @@ extends Resource
 
 @export var radius : float = 4
 @export var duration : float = 0.4
-
 @export var vfx_scene : PackedScene
 
 func build() -> VFX:

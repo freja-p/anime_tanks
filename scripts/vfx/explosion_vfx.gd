@@ -9,8 +9,9 @@ var tween_transparency : Tween
 func _ready() -> void:
 	mesh_instance_3d.mesh.radius = vfx_data.radius
 	mesh_instance_3d.mesh.height = 2 * vfx_data.radius
-
-func play() -> void:
+ 
+func play(start_point : Vector3, initial_basis : Basis,  end_point : Vector3 = start_point) -> void:
+	super(start_point, initial_basis, end_point)
 	tween_scale = create_tween()
 	tween_scale.tween_property(mesh_instance_3d, "scale", Vector3(1.0, 1.0, 1.0), vfx_data.duration).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	if end_animation_callback:

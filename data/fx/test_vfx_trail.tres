@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VFXData" load_steps=3 format=3 uid="uid://d33mt531ry8ma"]
+
+[ext_resource type="Script" uid="uid://c1gc4emnyhjkn" path="res://scripts/vfx/vfx_data.gd" id="1_woqeu"]
+[ext_resource type="PackedScene" uid="uid://dmsibrt2sybrd" path="res://scenes/vfx/trail_vfx.tscn" id="2_3ctc1"]
+
+[resource]
+script = ExtResource("1_woqeu")
+radius = 4.0
+duration = 0.05
+vfx_scene = ExtResource("2_3ctc1")
+metadata/_custom_type_script = "uid://c1gc4emnyhjkn"

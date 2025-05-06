@@ -51,11 +51,10 @@ func _physics_process_behaviour(delta):
 
 	behaviour_ended.emit()
 
-func create_vfx(world_pos : Vector3) -> void:
+func create_vfx(end_point : Vector3) -> void:
 	if not projectile_behaviour_data.vfx:
 		return
 	var new_vfx : VFX = projectile_behaviour_data.vfx.build()
 	get_tree().root.add_child(new_vfx)
-	new_vfx.global_position = world_pos
-	new_vfx.play()
+	new_vfx.play(global_position, global_basis, end_point)
 	

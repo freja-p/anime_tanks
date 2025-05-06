@@ -55,5 +55,4 @@ func _on_rigidbody_3d_body_entered(body):
 func create_vfx(world_pos : Vector3):
 	var new_vfx : VFX = projectile_behaviour_data.vfx.build()
 	get_tree().root.add_child(new_vfx)
-	new_vfx.global_position = world_pos
-	new_vfx.play()
+	new_vfx.play(world_pos, global_basis)
