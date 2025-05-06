@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Loadout" load_steps=6 format=3 uid="uid://kefunhlgvb2c"]
 
-[ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/equipment/abilities/defence_bubble.tres" id="1_31ele"]
+[ext_resource type="Resource" uid="uid://csbgm5khdwqun" path="res://data/abilities/defence_bubble.tres" id="1_toy0x"]
 [ext_resource type="Script" uid="uid://d18womvihy6h0" path="res://scripts/entities/components/abilities/Loadout.gd" id="1_yfxpr"]
-[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/equipment/abilities/machinegun.tres" id="2_0dyox"]
-[ext_resource type="Resource" uid="uid://cxmwt8vh2vcr8" path="res://data/equipment/abilities/mainGun.tres" id="2_h0yfl"]
-[ext_resource type="Resource" uid="uid://d0q211qyvc371" path="res://data/equipment/abilities/test_abilities/test_ability_ricochet.tres" id="5_toy0x"]
+[ext_resource type="Resource" uid="uid://dloci0bf0gaho" path="res://data/abilities/machinegun.tres" id="2_5ghnx"]
+[ext_resource type="Resource" uid="uid://cxmwt8vh2vcr8" path="res://data/abilities/mainGun.tres" id="4_6txld"]
+[ext_resource type="Resource" uid="uid://d0q211qyvc371" path="res://data/abilities/test_abilities/test_ability_ricochet.tres" id="5_wfceb"]
 
 [resource]
 script = ExtResource("1_yfxpr")
-primary = ExtResource("2_0dyox")
-secondary = ExtResource("2_h0yfl")
-special = ExtResource("5_toy0x")
-internal = ExtResource("1_31ele")
+primary = ExtResource("2_5ghnx")
+secondary = ExtResource("4_6txld")
+special = ExtResource("5_wfceb")
+internal = ExtResource("1_toy0x")
