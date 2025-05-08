@@ -85,8 +85,9 @@ func remove_buff(buff_to_remove : BuffData, count : int = 1) -> void:
 
 func _create_timer(buff_data : BuffData) -> Timer:
 	var timer : Timer = Timer.new()
-
-	timer.name = buff_data.buff_name
+	
+	if buff_data.buff_name:
+		timer.name = buff_data.buff_name
 	timer.timeout.connect(_on_buff_timeout.bind(buff_data))
 	add_child(timer)
 	
