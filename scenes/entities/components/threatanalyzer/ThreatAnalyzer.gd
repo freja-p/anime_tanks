@@ -104,12 +104,14 @@ func _on_detector_entity_died(entity : Entity, killer : Entity):
 		threatLog.erase(entity.name)
 #	if parentEntity.faction.is_allied_to(entity.faction):
 #		return
+	var threatInfo : EntityThreatInfo
 	if not killer.name in threatLog:
-		var threatInfo : EntityThreatInfo = EntityThreatInfo.new()
+		threatInfo = EntityThreatInfo.new()
 		threatInfo.entity = killer
 		threatInfo.ally = parentEntity.faction.is_allied_to(killer.faction)
 		threatLog[killer.name] = threatInfo
-	var threatInfo : EntityThreatInfo = threatLog[killer.name] as EntityThreatInfo
+	else:
+		threatInfo = threatLog[killer.name] as EntityThreatInfo
 	threatInfo.name = killer.name
 	threatInfo.killCount += 1
 	if not threatInfo.ally:

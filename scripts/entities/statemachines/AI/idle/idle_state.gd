@@ -24,5 +24,5 @@ func _on_tick(_delta : float):
 		change_state(flee_state)
 
 
-func _on_threat_updated(entity : Entity):
+func _on_threat_updated(_entity : Entity):
 	has_been_hit = true

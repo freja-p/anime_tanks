@@ -187,13 +187,13 @@ func _on_active_duration_timer_timeout():
 func _on_reloaded():
 	_active_duration_timer.stop()
 
-static func build(ability : Ability, hardpoint : Enums.HardpointType, owner_entity : Entity_Vehicle) -> AbilityExecutor:
+static func build(_ability : Ability, hardpoint : Enums.HardpointType, owner_entity : Entity_Vehicle) -> AbilityExecutor:
 	var new_executor : AbilityExecutor = AbilityExecutor.new()
 	new_executor._owner_entity = owner_entity
 	new_executor._hardpoint = hardpoint
 	new_executor._hardpointNode = owner_entity.get_hardpoint(hardpoint)
 	new_executor._stat_calculator = owner_entity.stat_calculator
-	new_executor.ability = ability
-	new_executor.name = ability.ability_name
+	new_executor.ability = _ability
+	new_executor.name = _ability.ability_name
 	
 	return new_executor

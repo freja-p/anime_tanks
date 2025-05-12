@@ -12,7 +12,6 @@ var lookTarget : Node3D
 var cursorTarget : Vector3
 var targetRot : Vector3
 var cursorRay : RayCast3D
-signal camera_rotated(worldPosition : Vector3)
 
 @export var playerNode : Node3D
 

@@ -12,7 +12,7 @@ var detectedAllies : Dictionary
 
 @onready var parentEntity : Entity_Vehicle = get_parent()
 
-func hit_by(entity : Entity, damage : float) -> void:
+func hit_by(entity : Entity, _damage : float) -> void:
 	alert_allies(entity)
 
 func alert_allies(entity : Entity):
@@ -56,11 +56,11 @@ func _remove_detected_entity(entityName : String):
 	
 
 func _remove_detected_ally(entityName : String):
-		var allyEntity : Entity = detectedAllies[entityName] as Entity
-#		if allyEntity.is_connected("died",_on_entity_died):
-#			allyEntity.disconnect("died", _on_entity_died)
-#		else:
-#			print("Ally %s was not connected" % [entityName])
+		#var allyEntity : Entity = detectedAllies[entityName] as Entity
+		#if allyEntity.is_connected("died",_on_entity_died):
+			#allyEntity.disconnect("died", _on_entity_died)
+		#else:
+			#print("Ally %s was not connected" % [entityName])
 			
 		detectedAllies.erase(entityName)
 

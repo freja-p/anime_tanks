@@ -33,7 +33,6 @@ func pick_random() -> AbilityExecutor:
 			return ability
 		randInt -= ability.get_weight()
 	
-	assert(!"Unreachable code reached")
 	return null
 	
 func pick_random_ready() -> AbilityExecutor:
@@ -45,7 +44,6 @@ func pick_random_ready() -> AbilityExecutor:
 			return ability
 		randInt -= ability.get_weight()
 	
-	assert(!"Unreachable code reached")
 	return null
 
 func has_ready_abilities() -> bool:

@@ -29,7 +29,7 @@ var current_state : NAV_STATE
 	#CameraEventBus.player_cam_camera_rotated.connect(_on_player_cam_camera_rotated)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not is_navigation_finished():
 		
 		var next_waypoint = get_next_path_position()
@@ -74,7 +74,7 @@ func _calculate_curve_speed():
 		
 	curvature /= distance_processed
 	curve_speed = 1 / absf(curvature * Kp_c)
-	var turn : bool
+	#var turn : bool
 	#if absf(curvature) < 0.2:
 		#turn = false
 		#_turning_override(false)
