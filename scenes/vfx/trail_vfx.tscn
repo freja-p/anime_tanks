@@ -43,15 +43,15 @@ script = ExtResource("1_7y3vf")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-amount = 99
-lifetime = 99.0
+amount = 96
+lifetime = 96.0
 explosiveness = 1.0
 fixed_fps = 120
 process_material = SubResource("ShaderMaterial_d3fse")
 draw_pass_1 = SubResource("QuadMesh_ry0bd")
 script = ExtResource("5_vhtqc")
-length = 99
-length_seconds = 0.825
+length = 96
+length_seconds = 0.8
 texture = ExtResource("4_dihsq")
 color_ramp = SubResource("GradientTexture1D_rlq41")
 curve = SubResource("CurveTexture_hcg23")
