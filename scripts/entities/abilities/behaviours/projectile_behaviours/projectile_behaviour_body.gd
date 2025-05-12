@@ -33,12 +33,8 @@ func _physics_process_behaviour(_delta):
 	
 	if not result.is_empty():
 		create_vfx(result.position)
-		if result.collider is Hitbox:
-#			if not collider.get_entity() == shooter:
-			projectile_origin.projectile_collided.emit(result, false, self)
-			_end_behaviour()
-		else:
-			_end_behaviour()
+		projectile_origin.projectile_collided.emit(result, false, self)
+		_end_behaviour()
 			
 	last_frame_position = local_body.global_position
 	

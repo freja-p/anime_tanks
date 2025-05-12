@@ -13,7 +13,7 @@ func _ready_behaviour() -> void:
 	projectile_origin.projectile_collided.connect(_on_projectile_collide)
 	_world_space = get_world_3d().direct_space_state
 	
-	queried_shape.radius = projectile_behaviour_data.aoe_radius
+	queried_shape.radius = projectile_behaviour_data.size_scale
 	_shape_query.shape = queried_shape
 	_shape_query.collide_with_areas = true
 	_shape_query.collision_mask = COLLISION_MASK_HITBOX

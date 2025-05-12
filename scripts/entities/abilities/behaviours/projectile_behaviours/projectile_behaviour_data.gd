@@ -21,12 +21,10 @@ const PROJECTILE_MICROROCKET = preload("res://scenes/entities/components/abiliti
 @export var behaviour_logic : BehaviourLogic
 @export var vfx : VFXData
 @export var sfx : AudioStream
+@export var size_scale : float = 1.0
 
 @export_subgroup("Damage", "damage")
 @export var damage_damage : float = 10.0
-
-@export_subgroup("Damage AOE", "aoe")
-@export var aoe_radius : float = 4.0
 
 @export_subgroup("Rigidbody", "body")
 @export var body_lifetime_sec : float = 60.0
