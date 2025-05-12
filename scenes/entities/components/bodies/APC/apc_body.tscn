@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://g8i1wrhtldwt"]
+[gd_scene load_steps=4 format=3 uid="uid://g8i1wrhtldwt"]
 
 [ext_resource type="PackedScene" uid="uid://qnq5j7pbddl" path="res://raw_assets/vehicles/meshes/apc/apc_body.glb" id="1_h2ck1"]
 [ext_resource type="Script" uid="uid://dpuy2istob56n" path="res://scripts/entities/components/BodyScript.gd" id="2_yr622"]
+[ext_resource type="Script" uid="uid://bxvpecm3fet3m" path="res://scripts/entities/components/abilities/hardpoint.gd" id="3_bkcfv"]
 
 [node name="Body" node_paths=PackedStringArray("wheels", "turretPoint", "wheelPoints", "secondaryHardpoint", "specialHardpoint", "internalHardpoint") instance=ExtResource("1_h2ck1")]
 script = ExtResource("2_yr622")
@@ -11,3 +12,10 @@ wheelPoints = [NodePath("SteeringPoint_L"), NodePath("SteeringPoint_R"), NodePat
 secondaryHardpoint = NodePath("SecondaryPoint")
 specialHardpoint = NodePath("SpecialPoint")
 internalHardpoint = NodePath("InternalPoint")
+
+[node name="SecondaryPoint" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175439, 1.71772, -1.36476)
+script = ExtResource("3_bkcfv")
+
+[node name="RayCast3D" type="RayCast3D" parent="SecondaryPoint" index="0"]
+target_position = Vector3(0, 0, 20)

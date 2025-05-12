@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cgomquoldj72e" path="res://scripts/entities/Entity_Vehicle.gd" id="1_lpcwq"]
 [ext_resource type="Resource" uid="uid://cyr80os6pan33" path="res://data/vehicles/movement/apc/apc_default.tres" id="2_1l833"]
 [ext_resource type="Resource" uid="uid://kefunhlgvb2c" path="res://data/equipment/loadouts/DefaultLoadout.tres" id="2_1vi6e"]
-[ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/entities/components/bodies/APC/VP_Turret_APC.tscn" id="3_cpnh4"]
+[ext_resource type="PackedScene" uid="uid://drlr26ngvwmgu" path="res://scenes/entities/components/bodies/APC/apc_turret.tscn" id="3_cpnh4"]
 [ext_resource type="ArrayMesh" uid="uid://bvjfpkm7rgcha" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_l.res" id="4_m78uk"]
 [ext_resource type="ArrayMesh" uid="uid://bljph6386cih0" path="res://raw_assets/vehicles/meshes/apc/wheel_l.res" id="5_q4hkq"]
 [ext_resource type="Resource" uid="uid://bhl3w22s6bj14" path="res://data/factions/FAC_Ally.tres" id="6_ux2hk"]
 [ext_resource type="ArrayMesh" uid="uid://bvfyxpgdo8ay7" path="res://raw_assets/vehicles/meshes/apc/wheel_steering_r.res" id="6_uxbq3"]
 [ext_resource type="Script" uid="uid://cl83r772itde6" path="res://scripts/entities/hitbox.gd" id="6_yhege"]
-[ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/entities/components/bodies/APC/VP_Body_APC.tscn" id="9_qvub4"]
+[ext_resource type="PackedScene" uid="uid://g8i1wrhtldwt" path="res://scenes/entities/components/bodies/APC/apc_body.tscn" id="9_qvub4"]
 [ext_resource type="Script" uid="uid://dckjko7vv63dp" path="res://scripts/entities/components/abilities/EquipmentLoadout.gd" id="10_6gqms"]
 [ext_resource type="Script" uid="uid://d3j7r28flcie7" path="res://scenes/entities/EntityEventBus.gd" id="10_dopfq"]
 [ext_resource type="Script" uid="uid://biwi8yne3jh2w" path="res://scripts/entities/components/input/InputController_Player.gd" id="11_kntdl"]
@@ -153,12 +153,13 @@ damping_relaxation = 0.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402132, 0, 0)
 mesh = ExtResource("6_uxbq3")
 
-[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("body", "vehicleController", "turretComponent", "equipmentLoadout")]
+[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("body", "vehicleController", "turretComponent", "body_component", "equipmentLoadout")]
 unique_name_in_owner = true
 script = ExtResource("11_kntdl")
 body = NodePath("..")
 vehicleController = NodePath("../VehicleController")
 turretComponent = NodePath("../Turret")
+body_component = NodePath("../Body")
 equipmentLoadout = NodePath("../EquipmentLoadout")
 
 [node name="VehicleController" type="Node" parent="."]
