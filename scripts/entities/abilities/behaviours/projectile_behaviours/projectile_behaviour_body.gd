@@ -4,7 +4,6 @@ extends ProjectileBehaviour
 const COLLISION_MASK_TERRAIN = 1
 const COLLISION_MASK_HITBOX = 8
 
-var initial_velocity : float = 0.0
 var last_frame_position : Vector3
 
 @onready var local_body : RigidBody3D = $Body
