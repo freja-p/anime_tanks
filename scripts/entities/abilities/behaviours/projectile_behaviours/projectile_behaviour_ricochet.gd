@@ -28,7 +28,7 @@ func _ready_behaviour() -> void:
 	
 	return
 
-func reproject_projectile(collision_result : Dictionary, behaviour : ProjectileBehaviour) -> void:
+func reproject_projectile(collision_result : Dictionary, is_body_collision : bool, behaviour : ProjectileBehaviour) -> void:
 	_shape_query.transform = Transform3D(Basis.IDENTITY, collision_result.position)
 	_rid_exclusions.clear()
 	_rid_exclusions.append_array(_shooter_rids)
@@ -43,13 +43,14 @@ func reproject_projectile(collision_result : Dictionary, behaviour : ProjectileB
 		return
 	
 	var nearest_target : Dictionary = target_results[0]
-	var measure_distance : Callable = _get_distance.bind(collision_result.collider.position)
+	var measure_distance : Callable = _get_distance.bind(collision_result.position)
 	var shortest_distance : float = measure_distance.call(nearest_target.collider)
 	
-	for r in target_results:
-		var check_dist : float = measure_distance.call(r.collider)
+	for target in target_results:
+		var check_dist : float = measure_distance.call(target.collider)
+
 		if  check_dist < shortest_distance:
-			nearest_target = r
+			nearest_target = target
 			shortest_distance = check_dist
 			#print("Intersected {0} : Distance {1}".format([r.collider.get_entity(), measure_distance.call(r.collider)]))
 	

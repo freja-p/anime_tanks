@@ -7,22 +7,21 @@ const COLLISION_MASK_HITBOX = 8
 var initial_velocity : float = 0.0
 var last_frame_position : Vector3
 
-@onready var body : RigidBody3D = $Body
+@onready var local_body : RigidBody3D = $Body
 @onready var worldspace : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 
 func _ready_behaviour() -> void:
 	get_tree().create_timer(projectile_behaviour_data.body_lifetime_sec).timeout.connect(_end_behaviour)
-	last_frame_position = body.global_position
-	body.apply_impulse(global_basis.z * projectile_behaviour_data.body_initial_velocity * body.mass)
-	ray_cast_3d.reparent(get_tree().root)
+	local_body.body_shape_entered.connect(_on_body_shape_entered)
+	last_frame_position = local_body.global_position
+	local_body.apply_impulse(global_basis.z * projectile_behaviour_data.body_initial_velocity * local_body.mass)
 
 
 func _physics_process_behaviour(_delta):
 	var query_params : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
-		body.global_position,
-		body.global_position + body.linear_velocity * _delta
+		local_body.global_position,
+		local_body.global_position + local_body.linear_velocity * _delta
 		)
 		
 	query_params.collide_with_areas = true
@@ -37,22 +36,29 @@ func _physics_process_behaviour(_delta):
 		create_vfx(result.position)
 		if result.collider is Hitbox:
 #			if not collider.get_entity() == shooter:
-			projectile_origin.projectile_collided.emit(result, self)
+			projectile_origin.projectile_collided.emit(result, false, self)
 			_end_behaviour()
 		else:
 			_end_behaviour()
 			
-	last_frame_position = body.global_position
-
-
-func _on_rigidbody_3d_body_entered(body):
-	if body is Hitbox:
-		projectile_origin.projectile_collided.emit(self)
-		_end_behaviour()
-	else:
-		_end_behaviour()
-		
+	last_frame_position = local_body.global_position
+	
+	
 func create_vfx(world_pos : Vector3):
 	var new_vfx : VFX = projectile_behaviour_data.vfx.build()
 	get_tree().root.add_child(new_vfx)
 	new_vfx.play(world_pos, global_basis)
+
+func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
+	create_vfx(local_body.global_position)
+	if body is not Hitbox:
+		_end_behaviour()
+		return
+		
+	var result : Dictionary
+	result.collider = body
+	result.collider_id = body_shape_index
+	result.position = local_body.global_position
+	result.rid = body_rid
+	projectile_origin.projectile_collided.emit(result, true, self)
+	_end_behaviour()

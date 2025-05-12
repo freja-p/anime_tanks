@@ -40,12 +40,12 @@ func _physics_process_behaviour(delta):
 				i = i - 1
 			else:
 				create_vfx(result.position)
-				projectile_origin.projectile_collided.emit(result, self)
+				projectile_origin.projectile_collided.emit(result, false, self)
 			rid_exclusions.append(result.rid)
 			
 		else:
 			create_vfx(result.position)
-			projectile_origin.projectile_collided.emit(result, self)
+			projectile_origin.projectile_collided.emit(result, false, self)
 			
 		i = i + 1
 

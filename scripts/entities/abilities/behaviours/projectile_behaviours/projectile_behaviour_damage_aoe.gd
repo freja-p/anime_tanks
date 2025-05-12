@@ -22,7 +22,7 @@ func _ready_behaviour() -> void:
 		)
 	_shape_query.exclude = _rid_exclusions
 	
-func _on_projectile_collide(result : Dictionary, behaviour : ProjectileBehaviour) -> void:
+func _on_projectile_collide(result : Dictionary, is_body_collision : bool, behaviour : ProjectileBehaviour) -> void:
 	_shape_query.transform = Transform3D(Basis.IDENTITY, result.position)
 	_rid_exclusions.clear()
 	_rid_exclusions.append_array(_shooter_rids)

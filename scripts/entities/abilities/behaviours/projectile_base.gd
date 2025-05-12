@@ -5,7 +5,7 @@ extends Node3D
 signal has_died()
 signal behaviour_ended(ended_behaviour : ProjectileBehaviour)
 signal has_hit_entity(hit_entity : Entity)
-signal projectile_collided(result : Dictionary, behaviour : ProjectileBehaviour)
+signal projectile_collided(result : Dictionary, is_body_collision : bool, behaviour : ProjectileBehaviour)
 
 enum ProjectileState {
 	INACTIVE,
@@ -21,7 +21,7 @@ var listener_behaviours : Array[ProjectileListenerBehaviour]
 
 var shooter : Entity_Vehicle
 var stat_calculator : StatCalculator
-var hardpoint : Enums.Hardpoint
+var hardpoint : Enums.HardpointType
 var modifier_payload : Array[BuffData]
 var damage : float
 

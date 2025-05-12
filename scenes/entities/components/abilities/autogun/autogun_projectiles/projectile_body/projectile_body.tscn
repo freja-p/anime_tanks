@@ -17,6 +17,7 @@ script = ExtResource("1_0y65o")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 4
 collision_mask = 9
+contact_monitor = true
 max_contacts_reported = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
@@ -24,7 +25,3 @@ shape = SubResource("CapsuleShape3D_l6xva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("CapsuleMesh_iyblq")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-
-[connection signal="body_entered" from="Body" to="." method="_on_rigidbody_3d_body_entered"]
