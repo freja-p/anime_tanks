@@ -86,7 +86,7 @@ func process_fire() -> void:
 	
 	
 func process_cooldown() -> void:
-	if entity.equipmentLoadout.get_equipment(Enums.Hardpoint.PRIMARY).isReady:
+	if entity.equipmentLoadout.get_equipment(Enums.HardpointType.PRIMARY).isReady:
 		advance_attack_stage()
 	
 	
@@ -99,7 +99,7 @@ func advance_attack_stage() -> void:
 			
 		AttackStage.LOCK:
 			attack_stage = AttackStage.FIRE
-			attack_stage = _activate_ability(entity.equipmentLoadout.get_equipment(Enums.Hardpoint.PRIMARY))
+			attack_stage = _activate_ability(entity.equipmentLoadout.get_equipment(Enums.HardpointType.PRIMARY))
 
 		AttackStage.FIRE:
 			attack_stage = AttackStage.COOLDOWN

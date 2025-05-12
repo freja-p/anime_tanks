@@ -14,7 +14,7 @@ class HardpointStat:
 
 # Maybe revisit some form of dual key hashmap datastruct in the future
 #class Hardpoint_Stat:
-	#var hardpoint : Enums.Hardpoint
+	#var hardpoint : Enums.HardpointType
 	#var stat : Enums.HardpointStat
 	#var key : int :
 		#get():
@@ -26,7 +26,7 @@ class HardpointStat:
 @export var buff_tracker : BuffTracker
 
 var _stat_effects : Dictionary[Enums.Stat, Stat]
-var _hardpoint_effects : Dictionary[Enums.Hardpoint, HardpointStat]
+var _hardpoint_effects : Dictionary[Enums.HardpointType, HardpointStat]
 
 func _ready():
 	buff_tracker.buff_added.connect(_on_new_buff_added)
@@ -35,7 +35,7 @@ func _ready():
 	for stat in Enums.Stat.values():
 		_stat_effects[stat] = Stat.new()
 		
-	for hardpoint in Enums.Hardpoint.values():
+	for hardpoint in Enums.HardpointType.values():
 		_hardpoint_effects[hardpoint] = HardpointStat.new()
 		for stat in Enums.HardpointStat.values():
 			_hardpoint_effects[hardpoint].stats[stat] = Stat.new()
@@ -45,14 +45,14 @@ func get_stat(base_value : float, stat : Enums.Stat) -> float:
 	return _calculate_stat(base_value, stat, -1, -1)
 	
 	
-func get_hardpoint_stat(base_value : float, hardpoint : Enums.Hardpoint, hardpoint_stat : Enums.HardpointStat)  -> float:
+func get_hardpoint_stat(base_value : float, hardpoint : Enums.HardpointType, hardpoint_stat : Enums.HardpointStat)  -> float:
 	return _calculate_stat(base_value, -1, hardpoint, hardpoint_stat )
 	
 	
 func _calculate_stat(
 		base_value : float, 
 		stat : Enums.Stat,
-		hardpoint : Enums.Hardpoint, 
+		hardpoint : Enums.HardpointType, 
 		hardpoint_stat : Enums.HardpointStat) -> float:
 			
 	var multipliers : Dictionary[EffectData, int]

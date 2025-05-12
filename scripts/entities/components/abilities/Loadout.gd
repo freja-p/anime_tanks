@@ -9,20 +9,20 @@ extends Resource
 @export var artillery : Ability
 @export var ultimate : Ability
 
-func get_ability(hardpoint : Enums.Hardpoint) -> Ability:
+func get_ability(hardpoint : Enums.HardpointType) -> Ability:
 	match hardpoint:
-		Enums.Hardpoint.PRIMARY:
+		Enums.HardpointType.PRIMARY:
 			return primary
-		Enums.Hardpoint.SECONDARY:
+		Enums.HardpointType.SECONDARY:
 			return secondary
-		Enums.Hardpoint.SPECIAL:
+		Enums.HardpointType.SPECIAL:
 			return special
-		Enums.Hardpoint.INTERNAL:
+		Enums.HardpointType.INTERNAL:
 			return internal
-		Enums.Hardpoint.ARTILLERY:
+		Enums.HardpointType.ARTILLERY:
 			return artillery
-		Enums.Hardpoint.ULTIMATE:
+		Enums.HardpointType.ULTIMATE:
 			return ultimate
 		_:
-			print("Loadout did not recognize hardpoint: %s " % [Enums.Hardpoint.keys()[hardpoint]])
+			print("Loadout did not recognize hardpoint: %s " % [Enums.HardpointType.keys()[hardpoint]])
 			return null

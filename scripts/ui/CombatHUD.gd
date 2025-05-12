@@ -10,8 +10,8 @@ var primary_cooldown : Cooldown
 var secondary_cooldown : Cooldown
 
 func initialise() -> void :
-	primary_cooldown = player_entity.equipmentLoadout.get_equipment(Enums.Hardpoint.PRIMARY).cooldown
-	secondary_cooldown = player_entity.equipmentLoadout.get_equipment(Enums.Hardpoint.SECONDARY).cooldown
+	primary_cooldown = player_entity.equipmentLoadout.get_equipment(Enums.HardpointType.PRIMARY).cooldown
+	secondary_cooldown = player_entity.equipmentLoadout.get_equipment(Enums.HardpointType.SECONDARY).cooldown
 
 func _process(delta: float) -> void:
 	hp_label.text = str(player_entity.health_manager.current_health)

@@ -13,21 +13,20 @@ extends Node3D
 @export var internalHardpoint : Node3D
 
 
-func _ready():
+func _ready() -> void:
 	turret.global_position = turretPoint.global_position
 	for i in range(wheels.size()):
 		wheels[i].global_position = wheelPoints[i].global_position
 
-
-func get_hardpoint_node(hardpoint : Enums.Hardpoint) -> Node3D:
+func get_hardpoint_node(hardpoint : Enums.HardpointType) -> Node3D:
 	match hardpoint:
-		Enums.Hardpoint.PRIMARY:
+		Enums.HardpointType.PRIMARY:
 			return null
-		Enums.Hardpoint.SECONDARY:
+		Enums.HardpointType.SECONDARY:
 			return secondaryHardpoint
-		Enums.Hardpoint.SPECIAL:
+		Enums.HardpointType.SPECIAL:
 			return specialHardpoint
-		Enums.Hardpoint.INTERNAL:
+		Enums.HardpointType.INTERNAL:
 			return internalHardpoint
 		_:
 			print("Hardpoint not recognized in body")

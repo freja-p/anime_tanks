@@ -12,7 +12,7 @@ signal equipment_set(executor : AbilityExecutor)
 @export var buff_tracker : BuffTracker
 @export var stat_calculator : StatCalculator
 
-var _equipped : Dictionary[Enums.Hardpoint, AbilityExecutor]
+var _equipped : Dictionary[Enums.HardpointType, AbilityExecutor]
 
 
 func _ready() -> void:
@@ -20,24 +20,24 @@ func _ready() -> void:
 	buff_tracker.buff_removed.connect(_on_buff_removed)
 
 
-func set_equipment(hardpoint : Enums.Hardpoint, ability : Ability) -> void:
+func set_equipment(hardpoint : Enums.HardpointType, ability : Ability) -> void:
 	var executor : AbilityExecutor = AbilityExecutor.build(ability, hardpoint, get_parent() as Entity_Vehicle)
 	_equipped[hardpoint] = executor
 	add_child(executor)
 
 
 func set_equipment_loadout(loadout : Loadout) -> void:
-	for hardpoint in Enums.Hardpoint.values():
+	for hardpoint in Enums.HardpointType.values():
 		var ability = loadout.get_ability(hardpoint)
 		if ability:
 			set_equipment(hardpoint, ability)
 
 
-func get_equipment(hardpoint : Enums.Hardpoint) -> AbilityExecutor:
+func get_equipment(hardpoint : Enums.HardpointType) -> AbilityExecutor:
 	return _equipped[hardpoint]
 
 
-func activate_equipment(hardpoint: Enums.Hardpoint, toggle_on : bool = true) -> bool:
+func activate_equipment(hardpoint: Enums.HardpointType, toggle_on : bool = true) -> bool:
 	if not _equipped.has(hardpoint):
 		return false
 	return _equipped[hardpoint].activate(toggle_on)

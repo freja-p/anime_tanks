@@ -35,7 +35,7 @@ enum HardpointStat {
 	PROJECTILE_COUNT,
 }
 
-enum Hardpoint {
+enum HardpointType {
 	PRIMARY,
 	SECONDARY,
 	INTERNAL,

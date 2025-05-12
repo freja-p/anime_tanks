@@ -11,7 +11,7 @@ var dying : bool = false
 # Turret
 @onready var turretMesh : TurretComponent = $Turret as TurretComponent
 
-func get_hardpoint(hardPoint : Enums.Hardpoint) -> Node3D:
+func get_hardpoint(hardPoint : Enums.HardpointType) -> Node3D:
 	var hardPointNode = get_node("Body").get_hardpoint_node(hardPoint)
 	if not hardPointNode:
 		hardPointNode = get_node("Turret").get_hardpoint_node(hardPoint)

@@ -44,7 +44,7 @@ var isActive : bool:
 
 var _currentState : AbilityState
 var _owner_entity : Entity_Vehicle
-var _hardpoint : Enums.Hardpoint
+var _hardpoint : Enums.HardpointType
 var _hardpointNode : Node3D
 var _stat_calculator : StatCalculator
 var _active_duration_timer : Timer
@@ -187,7 +187,7 @@ func _on_active_duration_timer_timeout():
 func _on_reloaded():
 	_active_duration_timer.stop()
 
-static func build(ability : Ability, hardpoint : Enums.Hardpoint, owner_entity : Entity_Vehicle) -> AbilityExecutor:
+static func build(ability : Ability, hardpoint : Enums.HardpointType, owner_entity : Entity_Vehicle) -> AbilityExecutor:
 	var new_executor : AbilityExecutor = AbilityExecutor.new()
 	new_executor._owner_entity = owner_entity
 	new_executor._hardpoint = hardpoint

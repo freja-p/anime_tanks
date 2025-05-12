@@ -39,7 +39,7 @@ extends Resource
 @export var selection_weight : int = 10
 
 
-func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.Hardpoint) -> ProjectileBase:
+func build(shooter_entity : Entity_Vehicle, hardpoint : Enums.HardpointType) -> ProjectileBase:
 	var new_projectile = ProjectileBase.new()
 	new_projectile.shooter = shooter_entity
 	new_projectile.stat_calculator = shooter_entity.stat_calculator

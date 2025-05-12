@@ -47,15 +47,15 @@ func get_barrel_ray() -> RayCast3D:
 	return controller.get_barrel_ray()
 
 
-func get_hardpoint_node(hardpoint : Enums.Hardpoint) -> Node3D:
+func get_hardpoint_node(hardpoint : Enums.HardpointType) -> Node3D:
 	match hardpoint:
-		Enums.Hardpoint.PRIMARY:
+		Enums.HardpointType.PRIMARY:
 			return controller.primaryHardpoint
-		Enums.Hardpoint.SECONDARY:
+		Enums.HardpointType.SECONDARY:
 			return controller.secondaryHardpoint
-		Enums.Hardpoint.SPECIAL:
+		Enums.HardpointType.SPECIAL:
 			return controller.specialHardpoint
-		Enums.Hardpoint.INTERNAL:
+		Enums.HardpointType.INTERNAL:
 			return null
 		_:
 			print("Hardpoint not recognized in turret")
