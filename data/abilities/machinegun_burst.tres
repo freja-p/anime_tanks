@@ -19,8 +19,8 @@ overheat_dropoff_delay = 2.0
 [sub_resource type="Resource" id="Resource_o43ht"]
 script = ExtResource("1_o43ht")
 behaviour_logic = 2
+size_scale = 1.0
 damage_damage = 10.0
-aoe_radius = 4.0
 body_lifetime_sec = 60.0
 body_initial_velocity = 10.0
 ricochet_count = 1
@@ -31,8 +31,8 @@ metadata/_custom_type_script = "uid://c5fi7ru6i2hm3"
 [sub_resource type="Resource" id="Resource_6dom3"]
 script = ExtResource("1_o43ht")
 behaviour_logic = 0
+size_scale = 1.0
 damage_damage = 10.0
-aoe_radius = 4.0
 body_lifetime_sec = 60.0
 body_initial_velocity = 10.0
 ricochet_count = 1

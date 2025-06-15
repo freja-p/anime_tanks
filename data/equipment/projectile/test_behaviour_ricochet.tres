@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_r2w77")
 behaviour_logic = 5
+size_scale = 1.0
 damage_damage = 10.0
-aoe_radius = 4.0
 body_lifetime_sec = 60.0
 body_initial_velocity = 10.0
 ricochet_count = 2
